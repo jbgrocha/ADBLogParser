@@ -8,66 +8,66 @@ namespace LogParser
 {
     class ADBLogParser
     {
-        private string filePath { get; set; }
-        private List<string> fileLines { get; set; }
-        private List<string[]> unparsedEvents { get; set; }
-        private List<ADBLogEvent> parsedEvents { get; set; }
+        private string FilePath { get; set; }
+        private List<string> FileLines { get; set; }
+        private List<string[]> UnparsedEvents { get; set; }
+        private List<ADBLogEvent> ParsedEvents { get; set; }
 
         public ADBLogParser(string filePath)
         {
-            this.filePath = filePath;
-            this.readFile();
-            this.discardLines();
-            this.cleanUpLines();
-            this.readUnparsedEvents();
-            this.parseLogEvents();
+            this.FilePath = filePath;
+            this.ReadFile();
+            this.DiscardLines();
+            this.CleanUpLines();
+            this.ReadUnparsedEvents();
+            this.ParseLogEvents();
         }
 
-        private void parseLogEvents()
+        private void ParseLogEvents()
         {
-            parsedEvents = new List<ADBLogEvent>();
+            ParsedEvents = new List<ADBLogEvent>();
 
-            foreach(string[] unparsedEvent in unparsedEvents)
+            foreach(string[] unparsedEvent in UnparsedEvents)
             {
                 ADBLogEvent parsedEvent = new ADBLogEvent(unparsedEvent);
-                parsedEvents.Add(parsedEvent);
+                ParsedEvents.Add(parsedEvent);
             }
         }
 
-        public void printParsedEvents()
+        public void PrintParsedEvents()
         {
-            foreach(ADBLogEvent parsedEvent in parsedEvents)
+            foreach(ADBLogEvent parsedEvent in ParsedEvents)
             {
                 Console.Out.WriteLine(parsedEvent.ToString());
             }
         }
 
-        private void readUnparsedEvents()
+        private void ReadUnparsedEvents()
         {
-            unparsedEvents = new List<string[]>();
+            UnparsedEvents = new List<string[]>();
 
-            foreach(string line in fileLines)
+            foreach(string line in FileLines)
             {
-                string[] unparsedEvent = this.readUnparsedEvent(line);
-                unparsedEvents.Add(unparsedEvent);
+                string[] unparsedEvent = this.ReadUnparsedEvent(line);
+                UnparsedEvents.Add(unparsedEvent);
             }
         }
 
-        private string[] readUnparsedEvent(string line)
+        private string[] ReadUnparsedEvent(string line)
         {
             string[] result = line.Split(' ');
             return result;
         }
 
-        public void printUnparsedEvents()
+        public void PrintUnparsedEvents()
         {
-            foreach(string[] unparsedEvent in unparsedEvents)
+            foreach(string[] unparsedEvent in UnparsedEvents)
             {
-                this.printUnparsedEvent(unparsedEvent);
+                this.PrintUnparsedEvent(unparsedEvent);
             }
         }
 
-        private void printUnparsedEvent(string[] unparsedEvent)
+        private void PrintUnparsedEvent(string[] unparsedEvent)
         {
             foreach(string property in unparsedEvent)
             {
@@ -76,11 +76,11 @@ namespace LogParser
             Console.Out.WriteLine();
         }
 
-        private void cleanUpLines()
+        private void CleanUpLines()
         {
-            for(int i = 0; i < fileLines.Count; i++)
+            for(int i = 0; i < FileLines.Count; i++)
             {
-                fileLines[i] = this.cleanUpLine(fileLines[i]);
+                FileLines[i] = this.cleanUpLine(FileLines[i]);
             }
         }
 
@@ -95,24 +95,31 @@ namespace LogParser
             return result;
         }
 
-        private void discardLines()
+        public ADBLogParser(string filePath, List<string> fileLines, List<string[]> unparsedEvents, List<ADBLogEvent> parsedEvents) : this(filePath)
+        {
+            FileLines = fileLines;
+            UnparsedEvents = unparsedEvents;
+            ParsedEvents = parsedEvents;
+        }
+
+        private void DiscardLines()
         {
             List<string> cleanedFileLines = new List<string>();
 
-            for (int i = 0; i < fileLines.Count; i++ )
+            for (int i = 0; i < FileLines.Count; i++ )
             {
-                string str = fileLines[i];
+                string str = FileLines[i];
 
-                if (this.keepLine(str))
+                if (this.KeepLine(str))
                 {
                     cleanedFileLines.Add(str);
                 } 
             }
 
-            this.fileLines = cleanedFileLines;
+            this.FileLines = cleanedFileLines;
         }
 
-        private bool keepLine(string str)
+        private bool KeepLine(string str)
         {
             bool discardTest = String.IsNullOrWhiteSpace(str) || str.StartsWith("add device ") || str.StartsWith("  name:");
 
@@ -121,19 +128,19 @@ namespace LogParser
             return result;
         }
 
-        public void printFileLines()
+        public void PrintFileLines()
         {
-            foreach(string line in fileLines)
+            foreach(string line in FileLines)
             {
                 Console.Out.WriteLine(line);
             }
         }
 
-        private void readFile()
+        private void ReadFile()
         {
             try
             {
-                this.fileLines = new List<string>(File.ReadAllLines(filePath));
+                this.FileLines = new List<string>(File.ReadAllLines(FilePath));
             }
             catch (IOException e)
             {

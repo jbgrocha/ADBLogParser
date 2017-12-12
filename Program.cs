@@ -13,7 +13,7 @@ namespace LogParser
             ADBLogParser logParser = new ADBLogParser("..\\..\\Resources\\StrokesLog1.txt");
             //logParser.printFileLines();
             //logParser.printUnparsedEvents();
-            logParser.printParsedEvents();
+            logParser.PrintParsedEvents();
         }
     }
 }

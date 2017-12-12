@@ -14,46 +14,46 @@ namespace ADBLogParser
          * I suspect issues may occur when I attempt to synchronize the
          * emotion data or the EDA data with this
          */ 
-        public double timestamp { get; set; }
-        public string device { get; set; }
-        public string opCode { get; set; }
-        public string eventType { get; set; }
-        public int eventValue { get; set; }
+        public double Timestamp { get; set; }
+        public string Device { get; set; }
+        public string OpCode { get; set; }
+        public string EventType { get; set; }
+        public int EventValue { get; set; }
 
         public const int TOUCH_UP = 0;
         public const int TOUCH_DOWN = 1;
 
         public ADBLogEvent(string[] eventText)
         {
-            this.setTimestamp(eventText[0]);
+            this.SetTimestamp(eventText[0]);
 
-            this.device = eventText[1];
+            this.Device = eventText[1];
 
-            this.opCode = eventText[2];
+            this.OpCode = eventText[2];
 
-            this.eventType = eventText[3];
+            this.EventType = eventText[3];
             
-            this.setEventValue(eventText[4]);
+            this.SetEventValue(eventText[4]);
         }
 
-        private void setTimestamp(string timestampTxt)
+        private void SetTimestamp(string timestampTxt)
         {
-            this.timestamp = Math.Round(double.Parse(timestampTxt, CultureInfo.InvariantCulture.NumberFormat), 6);
+            this.Timestamp = Math.Round(double.Parse(timestampTxt, CultureInfo.InvariantCulture.NumberFormat), 6);
         }
         
-        private void setEventValue(string eventValueTxt)
+        private void SetEventValue(string eventValueTxt)
         {
-            if ((this.eventType == "BTN_TOUCH") && (eventValueTxt == "UP"))
+            if ((this.EventType == "BTN_TOUCH") && (eventValueTxt == "UP"))
             {
-                this.eventValue = TOUCH_UP;
+                this.EventValue = TOUCH_UP;
 
-            } else if ((this.eventType == "BTN_TOUCH") && (eventValueTxt == "DOWN"))
+            } else if ((this.EventType == "BTN_TOUCH") && (eventValueTxt == "DOWN"))
             {
-                this.eventValue = TOUCH_DOWN;
+                this.EventValue = TOUCH_DOWN;
 
             } else
             {
-                this.eventValue = int.Parse(eventValueTxt, NumberStyles.HexNumber);
+                this.EventValue = int.Parse(eventValueTxt, NumberStyles.HexNumber);
             }
         }
 
@@ -61,11 +61,11 @@ namespace ADBLogParser
         public override string ToString()
         {
             string result = "";
-            result += timestamp + " ";
-            result += device + " ";
-            result += opCode + " ";
-            result += eventType + " ";
-            result += eventValue;
+            result += Timestamp + " ";
+            result += Device + " ";
+            result += OpCode + " ";
+            result += EventType + " ";
+            result += EventValue;
 
             return result;
         }
