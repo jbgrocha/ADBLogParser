@@ -9,6 +9,11 @@ namespace ADBLogParser
 {
     class ADBLogEvent
     {
+        /* 
+         * @jbgrocha: I'm suspicious of this 'timestamp' implementation 
+         * I suspect issues may occur when I attempt to synchronize the
+         * emotion data or the EDA data with this
+         */ 
         public double timestamp { get; set; }
         public string device { get; set; }
         public string opCode { get; set; }
@@ -52,8 +57,8 @@ namespace ADBLogParser
             }
         }
 
-        /*
-        public string ToString()
+        
+        public override string ToString()
         {
             string result = "";
             result += timestamp + " ";
@@ -64,6 +69,6 @@ namespace ADBLogParser
 
             return result;
         }
-        */
+        
     }
 }

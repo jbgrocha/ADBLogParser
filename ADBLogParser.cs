@@ -20,6 +20,7 @@ namespace LogParser
             this.discardLines();
             this.cleanUpLines();
             this.readUnparsedEvents();
+            this.parseLogEvents();
         }
 
         private void parseLogEvents()
