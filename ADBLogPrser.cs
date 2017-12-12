@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ADBLogParser;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -10,6 +11,7 @@ namespace LogParser
         private string filePath { get; set; }
         private List<string> fileLines { get; set; }
         private List<string[]> unparsedEvents { get; set; }
+        private List<ADBLogEvent> logEvents { get; set; }
 
         public ADBLogParser(string filePath)
         {
