@@ -11,7 +11,7 @@ namespace LogParser
         private string filePath { get; set; }
         private List<string> fileLines { get; set; }
         private List<string[]> unparsedEvents { get; set; }
-        private List<ADBLogEvent> logEvents { get; set; }
+        private List<ADBLogEvent> parsedEvents { get; set; }
 
         public ADBLogParser(string filePath)
         {
@@ -20,6 +20,25 @@ namespace LogParser
             this.discardLines();
             this.cleanUpLines();
             this.readUnparsedEvents();
+        }
+
+        private void parseLogEvents()
+        {
+            parsedEvents = new List<ADBLogEvent>();
+
+            foreach(string[] unparsedEvent in unparsedEvents)
+            {
+                ADBLogEvent parsedEvent = new ADBLogEvent(unparsedEvent);
+                parsedEvents.Add(parsedEvent);
+            }
+        }
+
+        private void printParsedEvents()
+        {
+            foreach(ADBLogEvent parsedEvent in parsedEvents)
+            {
+                Console.Out.WriteLine(parsedEvent.ToString());
+            }
         }
 
         private void readUnparsedEvents()

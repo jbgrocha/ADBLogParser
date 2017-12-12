@@ -51,5 +51,19 @@ namespace ADBLogParser
                 this.eventValue = int.Parse(eventValueTxt, NumberStyles.HexNumber);
             }
         }
+
+        /*
+        public string ToString()
+        {
+            string result = "";
+            result += timestamp + " ";
+            result += device + " ";
+            result += opCode + " ";
+            result += eventType + " ";
+            result += eventValue;
+
+            return result;
+        }
+        */
     }
 }
