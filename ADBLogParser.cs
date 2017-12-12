@@ -33,7 +33,7 @@ namespace LogParser
             }
         }
 
-        private void printParsedEvents()
+        public void printParsedEvents()
         {
             foreach(ADBLogEvent parsedEvent in parsedEvents)
             {
