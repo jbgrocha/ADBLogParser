@@ -95,13 +95,6 @@ namespace LogParser
             return result;
         }
 
-        public ADBLogParser(string filePath, List<string> fileLines, List<string[]> unparsedEvents, List<ADBLogEvent> parsedEvents) : this(filePath)
-        {
-            FileLines = fileLines;
-            UnparsedEvents = unparsedEvents;
-            ParsedEvents = parsedEvents;
-        }
-
         private void DiscardLines()
         {
             List<string> cleanedFileLines = new List<string>();
