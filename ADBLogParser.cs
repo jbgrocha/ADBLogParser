@@ -28,10 +28,12 @@ namespace LogParser
         private void CalculateFeatureSummary()
         {
             FeatureSummary = new Dictionary<string, int>();
-            foreach(ADBLogEvent logEvent in ParsedEvents)
+            /*
+            foreach (ADBLogEvent logEvent in ParsedEvents)
             {
                 AddFeatureToSummary(logEvent);
             }
+            */
         }
 
         private void AddFeatureToSummary(ADBLogEvent logEvent)
