@@ -14,7 +14,7 @@ namespace LogParser
             //logParser.printFileLines();
             //logParser.printUnparsedEvents();
             //logParser.PrintParsedEvents();
-            logParser.PrintFeatureSummary();
+            //logParser.PrintFeatureSummary();
 
             /*
             // print feature summary for all sessions
