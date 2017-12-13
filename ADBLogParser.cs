@@ -12,6 +12,7 @@ namespace LogParser
         private List<string> FileLines { get; set; }
         private List<string[]> UnparsedEvents { get; set; }
         private List<ADBLogEvent> ParsedEvents { get; set; }
+        private Dictionary<string, int> FeatureSummary { get; set; }
 
         public ADBLogParser(string filePath)
         {
@@ -21,6 +22,40 @@ namespace LogParser
             this.CleanUpLines();
             this.ReadUnparsedEvents();
             this.ParseLogEvents();
+            this.CalculateFeatureSummary();
+        }
+
+        private void CalculateFeatureSummary()
+        {
+            FeatureSummary = new Dictionary<string, int>();
+            foreach(ADBLogEvent logEvent in ParsedEvents)
+            {
+                AddFeatureToSummary(logEvent);
+            }
+        }
+
+        private void AddFeatureToSummary(ADBLogEvent logEvent)
+        {
+            if (logEvent.OpCode == "EV_ABS")
+            {
+                string key = logEvent.EventType;
+                try
+                {
+                    FeatureSummary.Add(key, 0);
+                }
+                catch (ArgumentException)
+                {
+                    FeatureSummary[key] += 1;
+                }
+            }
+        }
+
+        public void PrintFeatureSummary()
+        {
+            foreach (KeyValuePair<string, int> existingFeature in FeatureSummary)
+            {
+                Console.Out.WriteLine(existingFeature.Key + " " + existingFeature.Value);
+            }
         }
 
         private void ParseLogEvents()
@@ -114,9 +149,7 @@ namespace LogParser
 
         private bool KeepLine(string str)
         {
-            bool discardTest = String.IsNullOrWhiteSpace(str) || str.StartsWith("add device ") || str.StartsWith("  name:");
-
-            bool result = !discardTest;
+            bool result = str.StartsWith("[");
 
             return result;
         }

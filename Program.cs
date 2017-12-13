@@ -10,10 +10,23 @@ namespace LogParser
     {
         static void Main(string[] args)
         {
-            ADBLogParser logParser = new ADBLogParser("..\\..\\Resources\\StrokesLog1.txt");
+            ADBLogParser logParser = new ADBLogParser("..\\..\\Resources\\1.txt");
             //logParser.printFileLines();
             //logParser.printUnparsedEvents();
-            logParser.PrintParsedEvents();
+            //logParser.PrintParsedEvents();
+            logParser.PrintFeatureSummary();
+
+            /*
+            // print feature summary for all sessions
+            for (int i = 1; i < 18; i++ )
+            {
+                string file = i + ".txt";
+                Console.WriteLine(file);
+                ADBLogParser logParser = new ADBLogParser("..\\..\\Resources\\" + file);
+                logParser.PrintFeatureSummary();
+                Console.WriteLine();
+            }
+            */
         }
     }
 }
