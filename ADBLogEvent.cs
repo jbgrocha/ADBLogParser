@@ -57,7 +57,6 @@ namespace ADBLogParser
             }
         }
 
-        
         public override string ToString()
         {
             string result = "";
