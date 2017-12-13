@@ -10,9 +10,9 @@ namespace ADBLogParser
     class ADBLogEvent
     {
         /* 
-         * @jbgrocha: I'm suspicious of this 'timestamp' implementation 
+         * @jbgrocha: I'm suspicious of 'timestamp' implementation 
          * I suspect issues may occur when I attempt to synchronize the
-         * emotion data or the EDA data with this
+         * emotion data or the EDA data with 
          */ 
         public double Timestamp { get; set; }
         public string Device { get; set; }
@@ -25,35 +25,35 @@ namespace ADBLogParser
 
         public ADBLogEvent(string[] eventText)
         {
-            this.SetTimestamp(eventText[0]);
+            SetTimestamp(eventText[0]);
 
-            this.Device = eventText[1];
+            Device = eventText[1];
 
-            this.OpCode = eventText[2];
+            OpCode = eventText[2];
 
-            this.EventType = eventText[3];
+            EventType = eventText[3];
             
-            this.SetEventValue(eventText[4]);
+            SetEventValue(eventText[4]);
         }
 
         private void SetTimestamp(string timestampTxt)
         {
-            this.Timestamp = Math.Round(double.Parse(timestampTxt, CultureInfo.InvariantCulture.NumberFormat), 6);
+            Timestamp = Math.Round(double.Parse(timestampTxt, CultureInfo.InvariantCulture.NumberFormat), 6);
         }
         
         private void SetEventValue(string eventValueTxt)
         {
-            if ((this.EventType == "BTN_TOUCH") && (eventValueTxt == "UP"))
+            if ((EventType == "BTN_TOUCH") && (eventValueTxt == "UP"))
             {
-                this.EventValue = TOUCH_UP;
+                EventValue = TOUCH_UP;
 
-            } else if ((this.EventType == "BTN_TOUCH") && (eventValueTxt == "DOWN"))
+            } else if ((EventType == "BTN_TOUCH") && (eventValueTxt == "DOWN"))
             {
-                this.EventValue = TOUCH_DOWN;
+                EventValue = TOUCH_DOWN;
 
             } else
             {
-                this.EventValue = int.Parse(eventValueTxt, NumberStyles.HexNumber);
+                EventValue = int.Parse(eventValueTxt, NumberStyles.HexNumber);
             }
         }
 

@@ -13,16 +13,22 @@ namespace LogParser
         private List<string[]> UnparsedEvents { get; set; }
         private List<ADBLogEvent> ParsedEvents { get; set; }
         private Dictionary<string, int> FeatureSummary { get; set; }
+        private Dictionary<string, int> MultiTouchSummary { get; set; }
 
         public ADBLogParser(string filePath)
         {
-            this.FilePath = filePath;
-            this.ReadFile();
-            this.DiscardLines();
-            this.CleanUpLines();
-            this.ReadUnparsedEvents();
-            this.ParseLogEvents();
-            this.CalculateFeatureSummary();
+            FilePath = filePath;
+            ReadFile();
+            DiscardLines();
+            CleanUpLines();
+            ReadUnparsedEvents();
+            ParseLogEvents();
+            CalculateFeatureSummary();
+        }
+
+        private void CalculateMultiTouchSummary()
+        {
+            MultiTouchSummary = new Dictionary<string, int>();
         }
 
         private void CalculateFeatureSummary()
@@ -85,7 +91,7 @@ namespace LogParser
 
             foreach(string line in FileLines)
             {
-                string[] unparsedEvent = this.ReadUnparsedEvent(line);
+                string[] unparsedEvent = ReadUnparsedEvent(line);
                 UnparsedEvents.Add(unparsedEvent);
             }
         }
@@ -100,7 +106,7 @@ namespace LogParser
         {
             foreach(string[] unparsedEvent in UnparsedEvents)
             {
-                this.PrintUnparsedEvent(unparsedEvent);
+                PrintUnparsedEvent(unparsedEvent);
             }
         }
 
@@ -117,7 +123,7 @@ namespace LogParser
         {
             for(int i = 0; i < FileLines.Count; i++)
             {
-                FileLines[i] = this.cleanUpLine(FileLines[i]);
+                FileLines[i] = cleanUpLine(FileLines[i]);
             }
         }
 
@@ -140,13 +146,13 @@ namespace LogParser
             {
                 string str = FileLines[i];
 
-                if (this.KeepLine(str))
+                if (KeepLine(str))
                 {
                     cleanedFileLines.Add(str);
                 } 
             }
 
-            this.FileLines = cleanedFileLines;
+            FileLines = cleanedFileLines;
         }
 
         private bool KeepLine(string str)
@@ -168,7 +174,7 @@ namespace LogParser
         {
             try
             {
-                this.FileLines = new List<string>(File.ReadAllLines(FilePath));
+                FileLines = new List<string>(File.ReadAllLines(FilePath));
             }
             catch (IOException e)
             {
