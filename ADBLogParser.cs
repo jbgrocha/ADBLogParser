@@ -12,8 +12,6 @@ namespace LogParser
         private List<string> FileLines { get; set; }
         private List<string[]> UnparsedEvents { get; set; }
         private List<ADBLogEvent> ParsedEvents { get; set; }
-        private Dictionary<string, int> FeatureSummary { get; set; }
-        private Dictionary<string, int> MultiTouchSummary { get; set; }
 
         public ADBLogParser(string filePath)
         {
@@ -23,26 +21,58 @@ namespace LogParser
             CleanUpLines();
             ReadUnparsedEvents();
             ParseLogEvents();
-            CalculateFeatureSummary();
         }
 
-        private void CalculateMultiTouchSummary()
+        private void CalculateTouchSummary(Dictionary<string, int> TouchSummary)
         {
-            MultiTouchSummary = new Dictionary<string, int>();
-        }
-
-        private void CalculateFeatureSummary()
-        {
-            FeatureSummary = new Dictionary<string, int>();
-            /*
             foreach (ADBLogEvent logEvent in ParsedEvents)
             {
-                AddFeatureToSummary(logEvent);
+                AddTouchToSummary(logEvent, TouchSummary);
             }
-            */
         }
 
-        private void AddFeatureToSummary(ADBLogEvent logEvent)
+        private void AddTouchToSummary(ADBLogEvent logEvent, Dictionary<string, int> TouchSummary)
+        {
+            if ((logEvent.OpCode == "EV_SYN") || (logEvent.EventType == "ABS_MT_TRACKING_ID"))
+            {
+                AddTouchEvent(logEvent, TouchSummary);
+            }
+        }
+
+        private void AddTouchEvent(ADBLogEvent logEvent, Dictionary<string, int> TouchSummary)
+        {
+            string key = logEvent.EventType + " " + logEvent.EventValue;
+            try
+            {
+                TouchSummary.Add(key, 0);
+            }
+            catch (ArgumentException)
+            {
+                TouchSummary[key] += 1;
+            }
+        }
+
+        public void PrintTouchSummary()
+        {
+            Dictionary<string, int> TouchSummary = new Dictionary<string, int>();
+            
+            CalculateTouchSummary(TouchSummary);
+
+            foreach (KeyValuePair<string, int> existingMultiTouch in TouchSummary)
+            {
+                Console.Out.WriteLine(existingMultiTouch.Key + ": " + existingMultiTouch.Value);
+            }
+        }
+
+        private void CalculateFeatureSummary(Dictionary<string, int> FeatureSummary)
+        {
+            foreach (ADBLogEvent logEvent in ParsedEvents)
+            {
+                AddFeatureToSummary(logEvent, FeatureSummary);
+            }
+        }
+
+        private void AddFeatureToSummary(ADBLogEvent logEvent, Dictionary<string, int> FeatureSummary)
         {
             if (logEvent.OpCode == "EV_ABS")
             {
@@ -60,6 +90,10 @@ namespace LogParser
 
         public void PrintFeatureSummary()
         {
+            Dictionary<string, int> FeatureSummary = new Dictionary<string, int>();
+
+            CalculateFeatureSummary(FeatureSummary);
+
             foreach (KeyValuePair<string, int> existingFeature in FeatureSummary)
             {
                 Console.Out.WriteLine(existingFeature.Key + " " + existingFeature.Value);
