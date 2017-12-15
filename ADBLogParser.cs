@@ -42,11 +42,12 @@ namespace LogParser
         private void AddTouchEvent(ADBLogEvent logEvent, Dictionary<string, int> TouchSummary)
         {
             string key = logEvent.EventType + " " + logEvent.EventValue;
-            try
+
+            if(!TouchSummary.ContainsKey(key))
             {
                 TouchSummary.Add(key, 0);
             }
-            catch (ArgumentException)
+            else
             {
                 TouchSummary[key] += 1;
             }
@@ -77,11 +78,12 @@ namespace LogParser
             if (logEvent.OpCode == "EV_ABS")
             {
                 string key = logEvent.EventType;
-                try
+
+                if (!FeatureSummary.ContainsKey(key))
                 {
                     FeatureSummary.Add(key, 0);
                 }
-                catch (ArgumentException)
+                else
                 {
                     FeatureSummary[key] += 1;
                 }

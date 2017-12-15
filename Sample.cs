@@ -27,5 +27,25 @@ namespace ADBLogParser
             TimeStamp = SampleTimeStamp;
             Features = SampleFeatures;
         }
+
+        public void AddFeature(string key, int value)
+        {
+            if(!Features.ContainsKey(key))
+            {
+                Features.Add(key, value);
+            }
+        }
+
+        public override string ToString()
+        {
+            string result = "Sample - " + TimeStamp + "\n";
+
+            foreach(KeyValuePair<string, int> feature in Features)
+            {
+                result += feature.Key + " - " + feature.Value + "\n";
+            }
+
+            return result;
+        }
     }
 }
