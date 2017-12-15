@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="ADBLogParser.cs" />
     <Compile Include="ADBLogEvent.cs" />
+    <Compile Include="Sample.cs" />
+    <Compile Include="Stroke.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
