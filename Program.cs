@@ -24,6 +24,8 @@ namespace LogParser
 
             //PrintTouchSummaryAllSessions();
             //PrintTouchSummarySingleTouchSessions();
+
+            PrintStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
         }
 
         private static void PrintFeatureSummarySingleTouchSessions()
@@ -34,7 +36,7 @@ namespace LogParser
             Console.WriteLine("Feature Summary - Single Touch Sessions");
             Console.WriteLine();
 
-            PrintFeatureSummary(fileEntries);
+            PrintFeatureSummaries(fileEntries);
 
             Console.WriteLine();
         }
@@ -47,7 +49,7 @@ namespace LogParser
             Console.WriteLine("Feature Summary - All Sessions");
             Console.WriteLine();
 
-            PrintFeatureSummary(fileEntries);
+            PrintFeatureSummaries(fileEntries);
 
             Console.WriteLine();
         }
@@ -60,7 +62,7 @@ namespace LogParser
             Console.WriteLine("Touch Summary - Single Touch Sessions");
             Console.WriteLine();
 
-            PrintTouchSummary(fileEntries);
+            PrintTouchSummaries(fileEntries);
 
             Console.WriteLine();
         }
@@ -73,12 +75,12 @@ namespace LogParser
             Console.WriteLine("Touch Summary - All Touch Sessions");
             Console.WriteLine();
 
-            PrintTouchSummary(fileEntries);
+            PrintTouchSummaries(fileEntries);
 
             Console.WriteLine();
         }
 
-        private static void PrintFeatureSummary(string[] fileEntries)
+        private static void PrintFeatureSummaries(string[] fileEntries)
         {
             foreach (string fileEntry in fileEntries)
             {
@@ -86,7 +88,7 @@ namespace LogParser
             }
         }
 
-        private static void PrintTouchSummary(string[] fileEntries)
+        private static void PrintTouchSummaries(string[] fileEntries)
         {
             foreach (string fileEntry in fileEntries)
             {
@@ -108,6 +110,13 @@ namespace LogParser
             ADBLogParser logParser = new ADBLogParser(filePath);
             logParser.PrintTouchSummary();
             Console.WriteLine();
+        }
+
+        private static void PrintStrokes(string filePath)
+        {
+            Console.WriteLine(filePath);
+            ADBLogParser logParser = new ADBLogParser(filePath);
+            logParser.PrintStrokes();
         }
     }
 }

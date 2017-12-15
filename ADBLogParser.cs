@@ -13,6 +13,8 @@ namespace LogParser
         private List<string[]> UnparsedEvents { get; set; }
         private List<ADBLogEvent> ParsedEvents { get; set; }
 
+        private List<Stroke> Strokes { get; set; }
+
         public ADBLogParser(string filePath)
         {
             FilePath = filePath;
@@ -21,6 +23,23 @@ namespace LogParser
             CleanUpLines();
             ReadUnparsedEvents();
             ParseLogEvents();
+
+            ParseStrokes();
+
+        }
+
+        public void PrintStrokes()
+        {
+            foreach (Stroke stroke in Strokes)
+            {
+                Console.Out.WriteLine(stroke);
+            }
+        }
+
+        private void ParseStrokes()
+        {
+            SingleTouchParser TouchParser = new SingleTouchParser(ParsedEvents);
+            Strokes = TouchParser.Strokes;
         }
 
         private void CalculateTouchSummary(Dictionary<string, int> TouchSummary)
@@ -45,7 +64,7 @@ namespace LogParser
 
             if(!TouchSummary.ContainsKey(key))
             {
-                TouchSummary.Add(key, 0);
+                TouchSummary.Add(key, 1);
             }
             else
             {
@@ -81,7 +100,7 @@ namespace LogParser
 
                 if (!FeatureSummary.ContainsKey(key))
                 {
-                    FeatureSummary.Add(key, 0);
+                    FeatureSummary.Add(key, 1);
                 }
                 else
                 {
