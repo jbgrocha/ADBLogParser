@@ -9,7 +9,7 @@ namespace ADBLogParser
     class SingleTouchParser
     {
         private List<ADBLogEvent> Events { get; set; }
-        private List<Stroke> Strokes { get; set; }
+        public List<Stroke> Strokes { get; set; }
 
         private Stroke CurrentStroke;
         private Sample CurrentSample;
