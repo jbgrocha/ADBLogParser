@@ -19,11 +19,11 @@ namespace LogParser
             //logParser.PrintFeatureSummary();
             //logParser.PrintTouchSummary();
 
-            PrintFeatureSummaryAllSessions();
-            PrintFeatureSummarySingleTouchSessions();
+            //PrintFeatureSummaryAllSessions();
+            //PrintFeatureSummarySingleTouchSessions();
 
-            PrintTouchSummaryAllSessions();
-            PrintTouchSummarySingleTouchSessions();
+            //PrintTouchSummaryAllSessions();
+            //PrintTouchSummarySingleTouchSessions();
         }
 
         private static void PrintFeatureSummarySingleTouchSessions()
