@@ -157,11 +157,11 @@ namespace LogParser
         {
             for(int i = 0; i < FileLines.Count; i++)
             {
-                FileLines[i] = cleanUpLine(FileLines[i]);
+                FileLines[i] = CleanUpLine(FileLines[i]);
             }
         }
 
-        private string cleanUpLine(string line)
+        private string CleanUpLine(string line)
         {
             string result = line;
 
