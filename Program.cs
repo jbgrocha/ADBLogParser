@@ -25,7 +25,7 @@ namespace LogParser
             //PrintTouchSummaryAllSessions();
             //PrintTouchSummarySingleTouchSessions();
 
-            PrintStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
+            //PrintStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
         }
 
         private static void PrintFeatureSummarySingleTouchSessions()
