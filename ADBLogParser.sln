@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADBLogParser", "ADBLogParse
 		{33FD19FF-26AB-450A-8D11-A84985557143} = {33FD19FF-26AB-450A-8D11-A84985557143}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strokes", "..\ClassLibrary1\Strokes.csproj", "{33FD19FF-26AB-450A-8D11-A84985557143}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strokes", "Strokes\Strokes.csproj", "{33FD19FF-26AB-450A-8D11-A84985557143}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
