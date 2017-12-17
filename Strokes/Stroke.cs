@@ -9,15 +9,18 @@ namespace Strokes
     public class Stroke
     {
         public List<Sample> Samples { get; set; }
+        public Dictionary<string, int> Features { get; set; }
 
         public Stroke()
         {
             Samples = new List<Sample>();
+            Features = new Dictionary<string, int>();
         }
 
-        public Stroke(List<Sample> StrokeSamples)
+        public Stroke(List<Sample> StrokeSamples, Dictionary<string, int> features)
         {
             Samples = StrokeSamples;
+            Features = features;
         }
 
         public override string ToString()
