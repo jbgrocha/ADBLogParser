@@ -1,4 +1,5 @@
 ﻿using ADBLogParser;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,11 @@ namespace LogParser
 
             ParseStrokes();
 
+        }
+
+        public string StrokesToJSON()
+        {
+            return JsonConvert.SerializeObject(Strokes, Formatting.Indented);
         }
 
         public void PrintStrokes()
