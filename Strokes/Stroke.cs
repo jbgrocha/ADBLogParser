@@ -23,6 +23,7 @@ namespace Strokes
         public override string ToString()
         {
             string result = "Stroke\n";
+
             foreach (Sample sample in Samples)
             {
                 result += sample;
