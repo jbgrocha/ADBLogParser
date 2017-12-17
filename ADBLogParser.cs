@@ -14,7 +14,7 @@ namespace LogParser
         private List<string[]> UnparsedEvents { get; set; }
         private List<ADBLogEvent> ParsedEvents { get; set; }
 
-        public List<Stroke> Strokes { get; set; }
+        private List<Stroke> Strokes { get; set; }
 
         public ADBLogParser(string filePath)
         {
