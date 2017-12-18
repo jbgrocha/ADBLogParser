@@ -26,6 +26,27 @@ namespace ADBLogParser
             Parse();
         }
 
+        private void AddFeatureToSampleSummary(string key, int value)
+        {
+            if (!CurrentStroke.SampleFeatureSummary.ContainsKey(key))
+            {
+                CurrentStroke.SampleFeatureSummary.Add(key, 1);
+            }
+            else
+            {
+                CurrentStroke.SampleFeatureSummary[key] += 1;
+            }
+        }
+
+        private void AddFeatureToSample(string key, int value)
+        {
+            // Add Feature to Current Sample
+            CurrentSample.AddFeature(key, value);
+
+            // Add or Increment Feature in Stroke Feature Summary
+            AddFeatureToSampleSummary(key, value);
+        }
+
         private void Parse()
         {
             foreach (ADBLogEvent currentEvent in Events)
@@ -50,14 +71,15 @@ namespace ADBLogParser
                     CurrentSample = new Sample(currentEvent.Timestamp);
 
                     // Add Feature to Current Sample
-                    CurrentSample.AddFeature(currentEvent.EventType, currentEvent.EventValue);
+                    AddFeatureToSample(currentEvent.EventType, currentEvent.EventValue);
 
                 } else if((CurrentSample != null) && (currentEvent.OpCode == "EV_ABS"))
                 {
                     // Add Feature to Current Sample
-                    CurrentSample.AddFeature(currentEvent.EventType, currentEvent.EventValue);
+                    AddFeatureToSample(currentEvent.EventType, currentEvent.EventValue);
 
-                } else if((CurrentSample != null) && (currentEvent.EventType == "SYN_MT_REPORT"))
+                }
+                else if((CurrentSample != null) && (currentEvent.EventType == "SYN_MT_REPORT"))
                 {
                     // Add Current Sample to Stroke
                     CurrentStroke.Samples.Add(CurrentSample);
