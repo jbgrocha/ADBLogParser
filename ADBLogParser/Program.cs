@@ -11,7 +11,7 @@ namespace LogParser
             //PrintFeatureEventSummaryAllSessions();
             //PrintFeatureEventSummarySingleTouchSessions();
             //PrintFeatureEventSummary("..\\..\\Resources\\SingleTouch\\01.txt");
-            //PrintFeatureSummaryJSON("..\\..\\Resources\\SingleTouch\\01.txt");
+            //PrintFeatureSummaryToJSON("..\\..\\Resources\\SingleTouch\\01.txt");
 
 
             //PrintTouchEventSummaryAllSessions();
@@ -19,14 +19,8 @@ namespace LogParser
 
             //PrintStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
 
-            //PrintJSONStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
-            PrintJSONSession("..\\..\\Resources\\SingleTouch\\01.txt");
-        }
-
-        private static void PrintFeatureSummaryJSON(string filePath)
-        {
-            ADBLogParser logParser = new ADBLogParser(filePath);
-            Console.Write(logParser.Session.FeatureSummaryToJSON());
+            //PrintStrokesToJSON("..\\..\\Resources\\SingleTouch\\01.txt");
+            PrintSessionToJSON("..\\..\\Resources\\SingleTouch\\01.txt");
         }
 
         private static void PrintFeatureEventSummarySingleTouchSessions()
@@ -120,13 +114,19 @@ namespace LogParser
             logParser.Session.PrintStrokes();
         }
 
-        private static void PrintJSONStrokes(string filePath)
+        private static void PrintFeatureSummaryToJSON(string filePath)
+        {
+            ADBLogParser logParser = new ADBLogParser(filePath);
+            Console.Write(logParser.Session.FeatureSummaryToJSON());
+        }
+
+        private static void PrintStrokesToJSON(string filePath)
         {
             ADBLogParser logParser = new ADBLogParser(filePath);
             Console.Write(logParser.Session.StrokesToJSON());
         }
 
-        private static void PrintJSONSession(string filePath)
+        private static void PrintSessionToJSON(string filePath)
         {
             ADBLogParser logParser = new ADBLogParser(filePath);
             Console.Write(logParser.Session.ToJSON());
