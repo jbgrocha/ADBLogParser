@@ -19,7 +19,8 @@ namespace LogParser
 
             //PrintStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
 
-            PrintJSONStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
+            //PrintJSONStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
+            PrintJSONSession("..\\..\\Resources\\SingleTouch\\01.txt");
         }
 
         private static void PrintFeatureSummaryJSON(string filePath)
@@ -123,6 +124,12 @@ namespace LogParser
         {
             ADBLogParser logParser = new ADBLogParser(filePath);
             Console.Write(logParser.Session.StrokesToJSON());
+        }
+
+        private static void PrintJSONSession(string filePath)
+        {
+            ADBLogParser logParser = new ADBLogParser(filePath);
+            Console.Write(logParser.Session.ToJSON());
         }
     }
 }

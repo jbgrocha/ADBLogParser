@@ -72,6 +72,9 @@ namespace ADBLogParser
                 {
                     // Add Current Stroke to Session.Strokes
                     Session.Strokes.Add(CurrentStroke);
+
+                    // Update Session Number Of Samples
+                    Session.NumberOfSamples += CurrentStroke.Samples.Count;
                     
                     // End Stroke
                     CurrentStroke = null;

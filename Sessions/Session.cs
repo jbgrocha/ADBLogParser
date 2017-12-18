@@ -10,19 +10,27 @@ namespace Sessions
         public string FilePath { get; set; }
         public List<Stroke> Strokes { get; set; }
         public Dictionary<string, int> FeatureSummary { get; set; }
+        public int NumberOfSamples;
 
         public Session(string filepath)
         {
             FilePath = filepath;
             Strokes = new List<Stroke>();
             FeatureSummary = new Dictionary<string, int>();
+            NumberOfSamples = 0;
         }
 
-        public Session(string filepath, List<Stroke> strokes, Dictionary<string, int> summary)
+        public Session(string filepath, List<Stroke> strokes, Dictionary<string, int> summary, int numberOfSamples)
         {
             FilePath = filepath;
             Strokes = strokes;
             FeatureSummary = summary;
+            NumberOfSamples = numberOfSamples;
+        }
+
+        public string ToJSON()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
         public string FeatureSummaryToJSON()
