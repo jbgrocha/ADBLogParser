@@ -20,7 +20,8 @@ namespace LogParser
             //PrintStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
 
             //PrintStrokesToJSON("..\\..\\Resources\\SingleTouch\\01.txt");
-            PrintSessionToJSON("..\\..\\Resources\\SingleTouch\\01.txt");
+            //PrintSessionToJSON("..\\..\\Resources\\SingleTouch\\01.txt");
+            PrintSessionValidation("..\\..\\Resources\\SingleTouch\\01.txt");
         }
 
         private static void PrintFeatureEventSummarySingleTouchSessions()
@@ -130,6 +131,12 @@ namespace LogParser
         {
             ADBLogParser logParser = new ADBLogParser(filePath);
             Console.Write(logParser.Session.ToJSON());
+        }
+
+        private static void PrintSessionValidation(string filePath)
+        {
+            ADBLogParser logParser = new ADBLogParser(filePath);
+            Console.Write(logParser.Session.ValidateSession());
         }
     }
 }

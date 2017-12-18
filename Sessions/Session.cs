@@ -28,6 +28,22 @@ namespace Sessions
             NumberOfSamples = numberOfSamples;
         }
 
+        public bool ValidateSession()
+        {
+            bool result = true;
+
+            foreach(KeyValuePair<string, int> feature in FeatureSummary)
+            {
+                if(feature.Value != NumberOfSamples)
+                {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
         public string ToJSON()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
