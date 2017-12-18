@@ -1,11 +1,12 @@
-﻿using Sessions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SingleTouchSessionParser;
+using Sessions;
 
-namespace SingleTouchSessionParser
+namespace SingleTouchFeatureComputation
 {
     class Program
     {
@@ -16,10 +17,9 @@ namespace SingleTouchSessionParser
 
         private static void PrintSessionToJSON(string filePath)
         {
-            SingleTouchSessionParser sessionParser = new SingleTouchSessionParser(filePath);
+            SessionParser sessionParser = new SessionParser(filePath);
             Console.Write(sessionParser.Session.ToJSON());
 
         }
-
     }
 }

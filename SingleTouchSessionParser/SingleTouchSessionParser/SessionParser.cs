@@ -7,13 +7,13 @@ using System;
 
 namespace SingleTouchSessionParser
 {
-    public class SingleTouchSessionParser
+    public class SessionParser
     {
         private string FilePath;
         private string SessionJSON;
         public Session Session;
 
-        public SingleTouchSessionParser(string filepath)
+        public SessionParser(string filepath)
         {
             FilePath = filepath;
             ReadFile();
