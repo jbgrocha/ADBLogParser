@@ -27,6 +27,93 @@ namespace ADBLogParser
 
         }
 
+        private void CalculateTouchEventsSummary(Dictionary<string, int> TouchSummary)
+        {
+            foreach (ADBLogEvent logEvent in ParsedEvents)
+            {
+                AddTouchEventToSummary(logEvent, TouchSummary);
+            }
+        }
+
+        private void AddTouchEventToSummary(ADBLogEvent logEvent, Dictionary<string, int> TouchSummary)
+        {
+            if ((logEvent.OpCode == "EV_SYN") || (logEvent.EventType == "ABS_MT_TRACKING_ID"))
+            {
+                AddTouchEvent(logEvent, TouchSummary);
+            }
+        }
+
+        private void AddTouchEvent(ADBLogEvent logEvent, Dictionary<string, int> TouchSummary)
+        {
+            string key = logEvent.EventType + " " + logEvent.EventValue;
+
+            if (!TouchSummary.ContainsKey(key))
+            {
+                TouchSummary.Add(key, 1);
+            }
+            else
+            {
+                TouchSummary[key] += 1;
+            }
+        }
+
+        public void PrintTouchEventSummary()
+        {
+            Dictionary<string, int> TouchSummary = new Dictionary<string, int>();
+
+            CalculateTouchEventsSummary(TouchSummary);
+
+            foreach (KeyValuePair<string, int> existingMultiTouch in TouchSummary)
+            {
+                Console.Out.WriteLine(existingMultiTouch.Key + ": " + existingMultiTouch.Value);
+            }
+        }
+
+        private void CalculateFeatureEventSummary(Dictionary<string, int> FeatureSummary)
+        {
+            foreach (ADBLogEvent logEvent in ParsedEvents)
+            {
+                AddFeatureEventToSummary(logEvent, FeatureSummary);
+            }
+        }
+
+        private void AddFeatureEventToSummary(ADBLogEvent logEvent, Dictionary<string, int> FeatureSummary)
+        {
+            if (logEvent.OpCode == "EV_ABS")
+            {
+                string key = logEvent.EventType;
+
+                if (!FeatureSummary.ContainsKey(key))
+                {
+                    FeatureSummary.Add(key, 1);
+                }
+                else
+                {
+                    FeatureSummary[key] += 1;
+                }
+            }
+        }
+
+        public void PrintFeatureEventSummary()
+        {
+            Dictionary<string, int> FeatureSummary = new Dictionary<string, int>();
+
+            CalculateFeatureEventSummary(FeatureSummary);
+
+            foreach (KeyValuePair<string, int> existingFeature in FeatureSummary)
+            {
+                Console.Out.WriteLine(existingFeature.Key + " " + existingFeature.Value);
+            }
+        }
+
+        public void PrintParsedEvents()
+        {
+            foreach (ADBLogEvent parsedEvent in ParsedEvents)
+            {
+                Console.Out.WriteLine(parsedEvent.ToString());
+            }
+        }
+
         private void ParseLogEvents()
         {
             ParsedEvents = new List<ADBLogEvent>();

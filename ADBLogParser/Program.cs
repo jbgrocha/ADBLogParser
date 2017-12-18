@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ADBLogParser;
 
 namespace LogParser
 {
@@ -11,24 +12,17 @@ namespace LogParser
     {
         static void Main(string[] args)
         {
-            //ADBLogParser logParser = new ADBLogParser("..\\..\\Resources\\SingleTouch\\01.txt");
-
-            //logParser.printFileLines();
-            //logParser.printUnparsedEvents();
-            //logParser.PrintParsedEvents();
-            //logParser.PrintFeatureSummary();
-            //logParser.PrintTouchSummary();
-
-            //PrintFeatureSummaryAllSessions();
-            //PrintFeatureSummarySingleTouchSessions();
-            //PrintFeatureSummary("..\\..\\Resources\\SingleTouch\\01.txt");
+            //PrintFeatureEventSummaryAllSessions();
+            //PrintFeatureEventSummarySingleTouchSessions();
+            //PrintFeatureEventSummary("..\\..\\Resources\\SingleTouch\\01.txt");
             //PrintFeatureSummaryJSON("..\\..\\Resources\\SingleTouch\\01.txt");
 
 
-            //PrintTouchSummaryAllSessions();
-            //PrintTouchSummarySingleTouchSessions();
+            //PrintTouchEventSummaryAllSessions();
+            //PrintTouchEventSummarySingleTouchSessions();
 
             //PrintStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
+
             PrintJSONStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
         }
 
@@ -38,7 +32,7 @@ namespace LogParser
             Console.Write(logParser.FeatureSummaryToJSON());
         }
 
-        private static void PrintFeatureSummarySingleTouchSessions()
+        private static void PrintFeatureEventSummarySingleTouchSessions()
         {
             string targetDirectory = "..\\..\\Resources\\SingleTouch\\";
             string[] fileEntries = Directory.GetFiles(targetDirectory);
@@ -46,12 +40,12 @@ namespace LogParser
             Console.WriteLine("Feature Summary - Single Touch Sessions");
             Console.WriteLine();
 
-            PrintFeatureSummaries(fileEntries);
+            PrintFeatureEventSummaries(fileEntries);
 
             Console.WriteLine();
         }
 
-        private static void PrintFeatureSummaryAllSessions()
+        private static void PrintFeatureEventSummaryAllSessions()
         {
             string targetDirectory = "..\\..\\Resources\\All\\";
             string[] fileEntries = Directory.GetFiles(targetDirectory);
@@ -59,12 +53,12 @@ namespace LogParser
             Console.WriteLine("Feature Summary - All Sessions");
             Console.WriteLine();
 
-            PrintFeatureSummaries(fileEntries);
+            PrintFeatureEventSummaries(fileEntries);
 
             Console.WriteLine();
         }
 
-        private static void PrintTouchSummarySingleTouchSessions()
+        private static void PrintTouchEventSummarySingleTouchSessions()
         {
             string targetDirectory = "..\\..\\Resources\\SingleTouch\\";
             string[] fileEntries = Directory.GetFiles(targetDirectory);
@@ -72,12 +66,12 @@ namespace LogParser
             Console.WriteLine("Touch Summary - Single Touch Sessions");
             Console.WriteLine();
 
-            PrintTouchSummaries(fileEntries);
+            PrintTouchEventSummaries(fileEntries);
 
             Console.WriteLine();
         }
 
-        private static void PrintTouchSummaryAllSessions()
+        private static void PrintTouchEventSummaryAllSessions()
         {
             string targetDirectory = "..\\..\\Resources\\All\\";
             string[] fileEntries = Directory.GetFiles(targetDirectory);
@@ -85,41 +79,40 @@ namespace LogParser
             Console.WriteLine("Touch Summary - All Touch Sessions");
             Console.WriteLine();
 
-            PrintTouchSummaries(fileEntries);
+            PrintTouchEventSummaries(fileEntries);
 
             Console.WriteLine();
         }
 
-        private static void PrintFeatureSummaries(string[] fileEntries)
+        private static void PrintFeatureEventSummaries(string[] fileEntries)
         {
             foreach (string fileEntry in fileEntries)
             {
-                PrintFeatureSummary(fileEntry);
+                PrintFeatureEventSummary(fileEntry);
             }
         }
 
-        private static void PrintTouchSummaries(string[] fileEntries)
+        private static void PrintTouchEventSummaries(string[] fileEntries)
         {
             foreach (string fileEntry in fileEntries)
             {
-                PrintTouchSummary(fileEntry);
+                PrintTouchEventSummary(fileEntry);
             }
         }
         
-        
-        private static void PrintFeatureSummary(string filePath)
+        private static void PrintFeatureEventSummary(string filePath)
         {
             Console.WriteLine(filePath);
-            ADBLogParser logParser = new ADBLogParser(filePath);
-            logParser.PrintFeatureSummary();
+            EventParser eventParser = new EventParser(filePath);
+            eventParser.PrintFeatureEventSummary();
             Console.WriteLine();
         }
 
-        private static void PrintTouchSummary(string filePath)
+        private static void PrintTouchEventSummary(string filePath)
         {
             Console.WriteLine(filePath);
-            ADBLogParser logParser = new ADBLogParser(filePath);
-            logParser.PrintTouchSummary();
+            EventParser eventParser = new EventParser(filePath);
+            eventParser.PrintTouchEventSummary();
             Console.WriteLine();
         }
 
