@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="ADBLogParser.cs" />
     <Compile Include="ADBLogEvent.cs" />
+    <Compile Include="EventParser.cs" />
     <Compile Include="SingleTouchParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
