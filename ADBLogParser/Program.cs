@@ -38,6 +38,7 @@ namespace LogParser
             Console.Write(logParser.FeatureSummaryToJSON());
         }
 
+        /*
         private static void PrintFeatureSummarySingleTouchSessions()
         {
             string targetDirectory = "..\\..\\Resources\\SingleTouch\\";
@@ -89,7 +90,7 @@ namespace LogParser
 
             Console.WriteLine();
         }
-
+        /*
         private static void PrintFeatureSummaries(string[] fileEntries)
         {
             foreach (string fileEntry in fileEntries)
@@ -105,7 +106,8 @@ namespace LogParser
                 PrintTouchSummary(fileEntry);
             }
         }
-
+        
+        
         private static void PrintFeatureSummary(string filePath)
         {
             Console.WriteLine(filePath);
@@ -121,6 +123,7 @@ namespace LogParser
             logParser.PrintTouchSummary();
             Console.WriteLine();
         }
+        */
 
         private static void PrintStrokes(string filePath)
         {

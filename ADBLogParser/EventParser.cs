@@ -14,7 +14,7 @@ namespace ADBLogParser
         private string FilePath { get; set; }
         private List<string> FileLines { get; set; }
         private List<string[]> UnparsedEvents { get; set; }
-        private List<ADBLogEvent> ParsedEvents { get; set; }
+        public List<ADBLogEvent> ParsedEvents { get; set; }
 
         public EventParser(string filePath)
         {
