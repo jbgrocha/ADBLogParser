@@ -27,85 +27,6 @@ namespace ADBLogParser
 
         }
 
-        private void CalculateTouchSummary(Dictionary<string, int> TouchSummary)
-        {
-            foreach (ADBLogEvent logEvent in ParsedEvents)
-            {
-                AddTouchToSummary(logEvent, TouchSummary);
-            }
-        }
-
-        private void AddTouchToSummary(ADBLogEvent logEvent, Dictionary<string, int> TouchSummary)
-        {
-            if ((logEvent.OpCode == "EV_SYN") || (logEvent.EventType == "ABS_MT_TRACKING_ID"))
-            {
-                AddTouchEvent(logEvent, TouchSummary);
-            }
-        }
-
-        private void AddTouchEvent(ADBLogEvent logEvent, Dictionary<string, int> TouchSummary)
-        {
-            string key = logEvent.EventType + " " + logEvent.EventValue;
-
-            if (!TouchSummary.ContainsKey(key))
-            {
-                TouchSummary.Add(key, 1);
-            }
-            else
-            {
-                TouchSummary[key] += 1;
-            }
-        }
-
-        public void PrintTouchSummary()
-        {
-            Dictionary<string, int> TouchSummary = new Dictionary<string, int>();
-
-            CalculateTouchSummary(TouchSummary);
-
-            foreach (KeyValuePair<string, int> existingMultiTouch in TouchSummary)
-            {
-                Console.Out.WriteLine(existingMultiTouch.Key + ": " + existingMultiTouch.Value);
-            }
-        }
-
-        private void CalculateFeatureSummary(Dictionary<string, int> FeatureSummary)
-        {
-            foreach (ADBLogEvent logEvent in ParsedEvents)
-            {
-                AddFeatureToSummary(logEvent, FeatureSummary);
-            }
-        }
-
-        private void AddFeatureToSummary(ADBLogEvent logEvent, Dictionary<string, int> FeatureSummary)
-        {
-            if (logEvent.OpCode == "EV_ABS")
-            {
-                string key = logEvent.EventType;
-
-                if (!FeatureSummary.ContainsKey(key))
-                {
-                    FeatureSummary.Add(key, 1);
-                }
-                else
-                {
-                    FeatureSummary[key] += 1;
-                }
-            }
-        }
-
-        public void PrintFeatureSummary()
-        {
-            Dictionary<string, int> FeatureSummary = new Dictionary<string, int>();
-
-            CalculateFeatureSummary(FeatureSummary);
-
-            foreach (KeyValuePair<string, int> existingFeature in FeatureSummary)
-            {
-                Console.Out.WriteLine(existingFeature.Key + " " + existingFeature.Value);
-            }
-        }
-
         private void ParseLogEvents()
         {
             ParsedEvents = new List<ADBLogEvent>();
@@ -114,14 +35,6 @@ namespace ADBLogParser
             {
                 ADBLogEvent parsedEvent = new ADBLogEvent(unparsedEvent);
                 ParsedEvents.Add(parsedEvent);
-            }
-        }
-
-        public void PrintParsedEvents()
-        {
-            foreach (ADBLogEvent parsedEvent in ParsedEvents)
-            {
-                Console.Out.WriteLine(parsedEvent.ToString());
             }
         }
 
