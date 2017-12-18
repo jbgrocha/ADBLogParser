@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace Strokes
+namespace Sessions
 {
     public class Stroke
     {
