@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strokes", "Strokes\Strokes.csproj", "{33FD19FF-26AB-450A-8D11-A84985557143}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sessions", "Strokes\Sessions.csproj", "{33FD19FF-26AB-450A-8D11-A84985557143}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADBLogParser", "ADBLogParser\ADBLogParser.csproj", "{CBA4C6BA-0118-4520-9D4E-7D23BA925202}"
 	ProjectSection(ProjectDependencies) = postProject

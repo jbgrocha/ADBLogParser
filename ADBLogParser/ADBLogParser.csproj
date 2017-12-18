@@ -85,9 +85,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Strokes\Strokes.csproj">
+    <ProjectReference Include="..\Strokes\Sessions.csproj">
       <Project>{33fd19ff-26ab-450a-8d11-a84985557143}</Project>
-      <Name>Strokes</Name>
+      <Name>Sessions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
