@@ -20,8 +20,9 @@ namespace LogParser
             //PrintStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
 
             //PrintStrokesToJSON("..\\..\\Resources\\SingleTouch\\01.txt");
-            //PrintSessionToJSON("..\\..\\Resources\\SingleTouch\\01.txt");
-            PrintSessionValidation("..\\..\\Resources\\SingleTouch\\01.txt");
+            PrintSessionToJSON("..\\..\\Resources\\SingleTouch\\01.txt");
+
+            //PrintSessionValidation("..\\..\\Resources\\SingleTouch\\01.txt");
         }
 
         private static void PrintFeatureEventSummarySingleTouchSessions()
