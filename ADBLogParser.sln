@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sessions", "Sessions\Sessio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleTouchSessionParser", "SingleTouchSessionParser\SingleTouchSessionParser\SingleTouchSessionParser.csproj", "{4F951595-FF51-4F43-9724-AA13A3C538CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleTouchFeatureComputation", "SingleTouchFeatureComputation\SingleTouchFeatureComputation\SingleTouchFeatureComputation.csproj", "{FE248F44-999C-4166-8ACD-4270D8AA3F3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleTouchFeatureComputation", "SingleTouchFeatureComputation\SingleTouchFeatureComputation.csproj", "{FE248F44-999C-4166-8ACD-4270D8AA3F3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
