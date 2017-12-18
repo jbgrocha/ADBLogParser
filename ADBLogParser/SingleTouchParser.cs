@@ -24,25 +24,25 @@ namespace ADBLogParser
 
         private void AddFeatureToStrokeSummary(string key, int value)
         {
-            if (!CurrentStroke.Summary.ContainsKey(key))
+            if (!CurrentStroke.FeatureSummary.ContainsKey(key))
             {
-                CurrentStroke.Summary.Add(key, 1);
+                CurrentStroke.FeatureSummary.Add(key, 1);
             }
             else
             {
-                CurrentStroke.Summary[key] += 1;
+                CurrentStroke.FeatureSummary[key] += 1;
             }
         }
 
         private void AddFeatureToSessionSummary(string key, int value)
         {
-            if (!Session.Summary.ContainsKey(key))
+            if (!Session.FeatureSummary.ContainsKey(key))
             {
-                Session.Summary.Add(key, 1);
+                Session.FeatureSummary.Add(key, 1);
             }
             else
             {
-                Session.Summary[key] += 1;
+                Session.FeatureSummary[key] += 1;
             }
         }
 
