@@ -9,7 +9,11 @@ namespace Sessions
     {
         public string FilePath { get; set; }
         public List<Stroke> Strokes { get; set; }
+
+        // FeatureSummary should be an indicator of the data in the session, and not something that can be serialized and deserialized
+        // meaning, it should be dynamically calculated from the data present in the session
         public Dictionary<string, int> FeatureSummary { get; set; }
+
         public int NumberOfSamples;
 
         public Session(string filepath)
@@ -28,6 +32,9 @@ namespace Sessions
             NumberOfSamples = numberOfSamples;
         }
 
+        // ValidateSession should be calculated dynamically and not be calculated during the parsing
+        // The purpose is to validate the session data, if everything is already pre calculated, 
+        // the session's integrity cannot be accurately validated
         public bool ValidateSession()
         {
             bool result = true;
