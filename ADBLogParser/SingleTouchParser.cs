@@ -6,15 +6,15 @@ namespace ADBLogParser
     class SingleTouchParser
     {
         private List<ADBLogEvent> Events { get; set; }
-        public List<Stroke> Strokes { get; set; }
+        public Session Session { get; set; }
 
         private Stroke CurrentStroke;
         private Sample CurrentSample;
 
-        public SingleTouchParser(List<ADBLogEvent> EventsToParse)
+        public SingleTouchParser(List<ADBLogEvent> EventsToParse, Session session)
         {
             Events = EventsToParse;
-            Strokes = new List<Stroke>();
+            Session = session;
 
             CurrentStroke = null;
             CurrentSample = null;
@@ -55,8 +55,8 @@ namespace ADBLogParser
 
                 } else if ((currentEvent.EventType == "BTN_TOUCH") && (currentEvent.EventValue == ADBLogEvent.TOUCH_UP) && (CurrentStroke != null))
                 {
-                    // Add Current Stroke to Strokes
-                    Strokes.Add(CurrentStroke);
+                    // Add Current Stroke to Session.Strokes
+                    Session.Strokes.Add(CurrentStroke);
                     
                     // End Stroke
                     CurrentStroke = null;

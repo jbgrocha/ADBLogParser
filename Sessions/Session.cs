@@ -13,6 +13,7 @@ namespace Sessions
         public Session(string filepath)
         {
             FilePath = filepath;
+            Strokes = new List<Stroke>();
         }
 
         public Session(string filepath, List<Stroke> strokes)
@@ -30,6 +31,8 @@ namespace Sessions
         {
             Dictionary<string, int> featureSummary = new Dictionary<string, int>();
 
+            // This can be calculated while parsing, when a feature is added to a stroke's sample summary it should also be added to a session
+            // Then all we need is to get the feature summary from the session
             foreach (Stroke stroke in Strokes)
             {
                 foreach (KeyValuePair<string, int> feature in stroke.SampleFeatureSummary.ToList())

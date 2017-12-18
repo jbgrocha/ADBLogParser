@@ -19,8 +19,8 @@ namespace LogParser
 
         private void ParseStrokes()
         {
-            SingleTouchParser TouchParser = new SingleTouchParser(ParsedEvents);
-            Session.Strokes = TouchParser.Strokes;
+            SingleTouchParser touchParser = new SingleTouchParser(ParsedEvents, Session);
+            Session = touchParser.Session;
         }
 
         private void ParseEvents()
