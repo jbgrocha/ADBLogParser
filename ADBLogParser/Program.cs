@@ -25,7 +25,7 @@ namespace LogParser
         private static void PrintFeatureSummaryJSON(string filePath)
         {
             ADBLogParser logParser = new ADBLogParser(filePath);
-            Console.Write(logParser.FeatureSummaryToJSON());
+            Console.Write(logParser.Session.FeatureSummaryToJSON());
         }
 
         private static void PrintFeatureEventSummarySingleTouchSessions()
@@ -116,13 +116,13 @@ namespace LogParser
         {
             Console.WriteLine(filePath);
             ADBLogParser logParser = new ADBLogParser(filePath);
-            logParser.PrintStrokes();
+            logParser.Session.PrintStrokes();
         }
 
         private static void PrintJSONStrokes(string filePath)
         {
             ADBLogParser logParser = new ADBLogParser(filePath);
-            Console.Write(logParser.StrokesToJSON());
+            Console.Write(logParser.Session.StrokesToJSON());
         }
     }
 }
