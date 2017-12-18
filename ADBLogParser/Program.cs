@@ -21,12 +21,21 @@ namespace LogParser
 
             //PrintFeatureSummaryAllSessions();
             //PrintFeatureSummarySingleTouchSessions();
+            //PrintFeatureSummary("..\\..\\Resources\\SingleTouch\\01.txt");
+            //PrintFeatureSummaryJSON("..\\..\\Resources\\SingleTouch\\01.txt");
+
 
             //PrintTouchSummaryAllSessions();
             //PrintTouchSummarySingleTouchSessions();
 
             //PrintStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
             PrintJSONStrokes("..\\..\\Resources\\SingleTouch\\01.txt");
+        }
+
+        private static void PrintFeatureSummaryJSON(string filePath)
+        {
+            ADBLogParser logParser = new ADBLogParser(filePath);
+            Console.Write(logParser.FeatureSummaryToJSON());
         }
 
         private static void PrintFeatureSummarySingleTouchSessions()

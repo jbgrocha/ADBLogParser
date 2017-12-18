@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 using Strokes;
+using System.Linq;
 
 namespace LogParser
 {
@@ -29,6 +30,33 @@ namespace LogParser
 
             ParseStrokes();
 
+        }
+
+        public string FeatureSummaryToJSON()
+        {
+            return JsonConvert.SerializeObject(FeatureSummary(), Formatting.Indented);
+        }
+
+        public Dictionary<string,int> FeatureSummary()
+        {
+            Dictionary<string, int> featureSummary = new Dictionary<string, int>();
+
+            foreach(Stroke stroke in Strokes)
+            {
+                foreach (KeyValuePair<string, int> feature in stroke.SampleFeatureSummary.ToList())
+                {
+                    if (!featureSummary.ContainsKey(feature.Key))
+                    {
+                        featureSummary.Add(feature.Key, feature.Value);
+
+                    } else {
+
+                        featureSummary[feature.Key] += feature.Value;
+                    }
+                }
+            }
+
+            return featureSummary;
         }
 
         public string StrokesToJSON()
