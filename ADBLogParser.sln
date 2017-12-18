@@ -10,9 +10,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADBLogParser", "ADBLogParse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sessions", "Sessions\Sessions.csproj", "{33FD19FF-26AB-450A-8D11-A84985557143}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleTouchSessionParser", "SingleTouchSessionParser\SingleTouchSessionParser\SingleTouchSessionParser.csproj", "{4F951595-FF51-4F43-9724-AA13A3C538CC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleTouchFeatureComputation", "SingleTouchFeatureComputation\SingleTouchFeatureComputation.csproj", "{FE248F44-999C-4166-8ACD-4270D8AA3F3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleTouchSessionParser", "SingleTouchSessionParser\SingleTouchSessionParser.csproj", "{4F951595-FF51-4F43-9724-AA13A3C538CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,14 +28,14 @@ Global
 		{33FD19FF-26AB-450A-8D11-A84985557143}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33FD19FF-26AB-450A-8D11-A84985557143}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33FD19FF-26AB-450A-8D11-A84985557143}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F951595-FF51-4F43-9724-AA13A3C538CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F951595-FF51-4F43-9724-AA13A3C538CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F951595-FF51-4F43-9724-AA13A3C538CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F951595-FF51-4F43-9724-AA13A3C538CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE248F44-999C-4166-8ACD-4270D8AA3F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE248F44-999C-4166-8ACD-4270D8AA3F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE248F44-999C-4166-8ACD-4270D8AA3F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE248F44-999C-4166-8ACD-4270D8AA3F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F951595-FF51-4F43-9724-AA13A3C538CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F951595-FF51-4F43-9724-AA13A3C538CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F951595-FF51-4F43-9724-AA13A3C538CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F951595-FF51-4F43-9724-AA13A3C538CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -56,7 +56,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Sessions\Sessions.csproj">
+    <ProjectReference Include="..\Sessions\Sessions.csproj">
       <Project>{33fd19ff-26ab-450a-8d11-a84985557143}</Project>
       <Name>Sessions</Name>
     </ProjectReference>
