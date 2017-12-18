@@ -9,48 +9,25 @@ namespace Sessions
     {
         public string FilePath { get; set; }
         public List<Stroke> Strokes { get; set; }
+        public Dictionary<string, int> Summary { get; set; }
 
         public Session(string filepath)
         {
             FilePath = filepath;
             Strokes = new List<Stroke>();
+            Summary = new Dictionary<string, int>();
         }
 
-        public Session(string filepath, List<Stroke> strokes)
+        public Session(string filepath, List<Stroke> strokes, Dictionary<string, int> summary)
         {
             FilePath = filepath;
             Strokes = strokes;
+            Summary = summary;
         }
 
         public string FeatureSummaryToJSON()
         {
-            return JsonConvert.SerializeObject(FeatureSummary(), Formatting.Indented);
-        }
-
-        public Dictionary<string, int> FeatureSummary()
-        {
-            Dictionary<string, int> featureSummary = new Dictionary<string, int>();
-
-            // This can be calculated while parsing, when a feature is added to a stroke's sample summary it should also be added to a session
-            // Then all we need is to get the feature summary from the session
-            foreach (Stroke stroke in Strokes)
-            {
-                foreach (KeyValuePair<string, int> feature in stroke.SampleFeatureSummary.ToList())
-                {
-                    if (!featureSummary.ContainsKey(feature.Key))
-                    {
-                        featureSummary.Add(feature.Key, feature.Value);
-
-                    }
-                    else
-                    {
-
-                        featureSummary[feature.Key] += feature.Value;
-                    }
-                }
-            }
-
-            return featureSummary;
+            return JsonConvert.SerializeObject(Summary, Formatting.Indented);
         }
 
         public string StrokesToJSON()

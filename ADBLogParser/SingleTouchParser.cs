@@ -22,15 +22,27 @@ namespace ADBLogParser
             Parse();
         }
 
-        private void AddFeatureToSampleSummary(string key, int value)
+        private void AddFeatureToStrokeSummary(string key, int value)
         {
-            if (!CurrentStroke.SampleFeatureSummary.ContainsKey(key))
+            if (!CurrentStroke.Summary.ContainsKey(key))
             {
-                CurrentStroke.SampleFeatureSummary.Add(key, 1);
+                CurrentStroke.Summary.Add(key, 1);
             }
             else
             {
-                CurrentStroke.SampleFeatureSummary[key] += 1;
+                CurrentStroke.Summary[key] += 1;
+            }
+        }
+
+        private void AddFeatureToSessionSummary(string key, int value)
+        {
+            if (!Session.Summary.ContainsKey(key))
+            {
+                Session.Summary.Add(key, 1);
+            }
+            else
+            {
+                Session.Summary[key] += 1;
             }
         }
 
@@ -40,7 +52,10 @@ namespace ADBLogParser
             CurrentSample.AddFeature(key, value);
 
             // Add or Increment Feature in Stroke Feature Summary
-            AddFeatureToSampleSummary(key, value);
+            AddFeatureToStrokeSummary(key, value);
+
+            // Add or Increment Feature in Session Feature Summary
+            AddFeatureToSessionSummary(key, value);
         }
 
         private void Parse()
