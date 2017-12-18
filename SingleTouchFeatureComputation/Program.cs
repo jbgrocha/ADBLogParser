@@ -17,9 +17,14 @@ namespace SingleTouchFeatureComputation
 
         private static void PrintSessionToJSON(string filePath)
         {
-            SessionParser sessionParser = new SessionParser(filePath);
-            Console.Write(sessionParser.Session.ToJSON());
+            Session session = ReadSession(filePath);
+            Console.Write(session.ToJSON());
+        }
 
+        private static Session ReadSession(string filePath)
+        {
+            SessionParser sessionParser = new SessionParser(filePath);
+            return sessionParser.Session;
         }
     }
 }
