@@ -1,10 +1,6 @@
 ﻿using ADBLogParser;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-
 using Strokes;
-using System.Linq;
 
 namespace LogParser
 {
