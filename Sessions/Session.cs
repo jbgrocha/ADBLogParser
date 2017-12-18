@@ -24,6 +24,7 @@ namespace Sessions
             NumberOfSamples = 0;
         }
 
+        [JsonConstructor]
         public Session(string filepath, List<Stroke> strokes, Dictionary<string, int> summary, int numberOfSamples)
         {
             FilePath = filepath;
