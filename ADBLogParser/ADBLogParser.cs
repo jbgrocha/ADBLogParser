@@ -1,6 +1,6 @@
 ﻿using ADBLogParser;
 using System.Collections.Generic;
-using Strokes;
+using Sessions;
 
 namespace LogParser
 {

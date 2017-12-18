@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Strokes;
+using Sessions;
 
 namespace ADBLogParser
 {
