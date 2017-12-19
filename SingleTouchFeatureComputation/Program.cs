@@ -13,7 +13,13 @@ namespace SingleTouchFeatureComputation
         public static void Main(string[] args)
         {
             //PrintSessionToJSON("..\\..\\Resources\\Session-01.json");
-            Average_X("..\\..\\Resources\\Session-01.json");
+            List<double> test = Max("..\\..\\Resources\\Session-01.json", "ABS_MT_POSITION_X");
+
+            foreach(double value in test)
+            {
+                Console.WriteLine(value);
+            }
+
         }
 
         private static void PrintSessionToJSON(string filePath)
@@ -28,23 +34,49 @@ namespace SingleTouchFeatureComputation
             return sessionParser.Session;
         }
 
-        private static void Average_X(string filePath)
+        private static List<double> Avg(string filePath, string feature)
         {
             Session session = ReadSession(filePath);
 
-            List<double> averages = new List<double>();
+            List<double> avgs = new List<double>();
 
             foreach (Stroke stroke in session.Strokes)
             {
-                double avg_x = stroke.GetFeatureValuesFromSamples("ABS_MT_POSITION_X").Average();
-                averages.Add(avg_x);
+                double avg_x = stroke.GetFeatureValuesFromSamples(feature).Average();
+                avgs.Add(avg_x);
             }
 
-            Console.WriteLine("Number of Strokes: " + session.Strokes.Count);
+            return avgs;
+        }
 
-            foreach(double average in averages) {
-                Console.WriteLine(average);
+        private static List<double> Min(string filePath, string feature)
+        {
+            Session session = ReadSession(filePath);
+
+            List<double> mins = new List<double>();
+
+            foreach (Stroke stroke in session.Strokes)
+            {
+                double min_x = stroke.GetFeatureValuesFromSamples(feature).Min();
+                mins.Add(min_x);
             }
+
+            return mins;
+        }
+
+        private static List<double> Max(string filePath, string feature)
+        {
+            Session session = ReadSession(filePath);
+
+            List<double> maxs = new List<double>();
+
+            foreach (Stroke stroke in session.Strokes)
+            {
+                double max_x = stroke.GetFeatureValuesFromSamples(feature).Max();
+                maxs.Add(max_x);
+            }
+
+            return maxs;
         }
     }
 }
