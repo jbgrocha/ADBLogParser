@@ -35,5 +35,18 @@ namespace Sessions
 
             return result;
         }
+
+        public List<double> GetFeatureValuesFromSamples(string key)
+        {
+            List<double> result = new List<double>();
+
+            foreach (Sample sample in Samples)
+            {
+                double feature = sample.Features[key];
+                result.Add(feature);
+            }
+
+            return result;
+        }
     }
 }
