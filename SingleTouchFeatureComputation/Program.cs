@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SingleTouchSessionParser;
 using Sessions;
+using Accord.Statistics;
 
 namespace SingleTouchFeatureComputation
 {
@@ -42,8 +43,9 @@ namespace SingleTouchFeatureComputation
 
             foreach (Stroke stroke in session.Strokes)
             {
-                double avg_x = stroke.GetFeatureValuesFromSamples(feature).Average();
-                avgs.Add(avg_x);
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double avg = currentFeature.Average();
+                avgs.Add(avg);
             }
 
             return avgs;
@@ -57,8 +59,9 @@ namespace SingleTouchFeatureComputation
 
             foreach (Stroke stroke in session.Strokes)
             {
-                double min_x = stroke.GetFeatureValuesFromSamples(feature).Min();
-                mins.Add(min_x);
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double min = currentFeature.Min();
+                mins.Add(min);
             }
 
             return mins;
@@ -72,11 +75,44 @@ namespace SingleTouchFeatureComputation
 
             foreach (Stroke stroke in session.Strokes)
             {
-                double max_x = stroke.GetFeatureValuesFromSamples(feature).Max();
-                maxs.Add(max_x);
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double max = currentFeature.Max();
+                maxs.Add(max);
             }
 
             return maxs;
+        }
+
+        private static List<double> StandardDeviation(string filePath, string feature)
+        {
+            Session session = ReadSession(filePath);
+
+            List<double> stds = new List<double>();
+
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double std = Measures.StandardDeviation(currentFeature, currentFeature.Mean());
+                stds.Add(std);
+            }
+
+            return stds;
+        }
+
+        private static List<double> Median(string filePath, string feature)
+        {
+            Session session = ReadSession(filePath);
+
+            List<double> medians = new List<double>();
+
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double median = Measures.Median(currentFeature);
+                medians.Add(median);
+            }
+
+            return medians;
         }
     }
 }

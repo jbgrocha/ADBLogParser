@@ -6,18 +6,18 @@ namespace Sessions
     public class Stroke
     {
         public List<Sample> Samples { get; set; }
-        public Dictionary<string, int> Features { get; set; }
+        public Dictionary<string, double> Features { get; set; }
         public Dictionary<string, int> FeatureSummary { get; set; }
 
 
         public Stroke()
         {
             Samples = new List<Sample>();
-            Features = new Dictionary<string, int>();
+            Features = new Dictionary<string, double>();
             FeatureSummary = new Dictionary<string, int>();
         }
 
-        public Stroke(List<Sample> StrokeSamples, Dictionary<string, int> features, Dictionary<string,int> sampleFeatureSummary)
+        public Stroke(List<Sample> StrokeSamples, Dictionary<string, double> features, Dictionary<string,int> sampleFeatureSummary)
         {
             Samples = StrokeSamples;
             Features = features;
@@ -36,13 +36,13 @@ namespace Sessions
             return result;
         }
 
-        public List<double> GetFeatureValuesFromSamples(string key)
+        public List<int> GetFeatureValuesFromSamples(string key)
         {
-            List<double> result = new List<double>();
+            List<int> result = new List<int>();
 
             foreach (Sample sample in Samples)
             {
-                double feature = sample.Features[key];
+                int feature = sample.Features[key];
                 result.Add(feature);
             }
 
