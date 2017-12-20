@@ -8,6 +8,8 @@ namespace Sessions
         public List<Sample> Samples { get; set; }
         public Dictionary<string, double> Features { get; set; }
         public Dictionary<string, int> FeatureSummary { get; set; }
+        public double StartTime { get; set; }
+        public double EndTime { get; set; }
 
 
         public Stroke()
@@ -15,13 +17,17 @@ namespace Sessions
             Samples = new List<Sample>();
             Features = new Dictionary<string, double>();
             FeatureSummary = new Dictionary<string, int>();
+            StartTime = 0.0;
+            EndTime = 0.0;
         }
 
-        public Stroke(List<Sample> StrokeSamples, Dictionary<string, double> features, Dictionary<string,int> sampleFeatureSummary)
+        public Stroke(List<Sample> StrokeSamples, Dictionary<string, double> features, Dictionary<string,int> sampleFeatureSummary, double strokeStart, double strokeEnd)
         {
             Samples = StrokeSamples;
             Features = features;
             FeatureSummary = sampleFeatureSummary;
+            StartTime = strokeStart;
+            EndTime = strokeEnd;
         }
 
         public override string ToString()

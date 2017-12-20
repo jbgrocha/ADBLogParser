@@ -67,9 +67,11 @@ namespace ADBLogParser
                 {
                     // Start Stroke
                     CurrentStroke = new Stroke();
+                    CurrentStroke.StartTime = currentEvent.Timestamp;
 
                 } else if ((currentEvent.EventType == "BTN_TOUCH") && (currentEvent.EventValue == ADBLogEvent.TOUCH_UP) && (CurrentStroke != null))
                 {
+                    CurrentStroke.EndTime = currentEvent.Timestamp;
                     // Add Current Stroke to Session.Strokes
                     Session.Strokes.Add(CurrentStroke);
 

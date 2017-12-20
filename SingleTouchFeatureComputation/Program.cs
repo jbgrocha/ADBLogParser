@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Accord.Statistics;
+using Sessions;
+using SingleTouchSessionParser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SingleTouchSessionParser;
-using Sessions;
-using Accord.Statistics;
 
 namespace SingleTouchFeatureComputation
 {
@@ -14,9 +12,10 @@ namespace SingleTouchFeatureComputation
         public static void Main(string[] args)
         {
             //PrintSessionToJSON("..\\..\\Resources\\Session-01.json");
-            List<double> test = Max("..\\..\\Resources\\Session-01.json", "ABS_MT_POSITION_X");
+            //List<double> test = Median("..\\..\\Resources\\Session-01.json", "ABS_MT_POSITION_X");
+            List<double> test = TimeElapsed("..\\..\\Resources\\Session-01.json");
 
-            foreach(double value in test)
+            foreach (double value in test)
             {
                 Console.WriteLine(value);
             }
@@ -39,80 +38,139 @@ namespace SingleTouchFeatureComputation
         {
             Session session = ReadSession(filePath);
 
-            List<double> avgs = new List<double>();
+            List<double> result = new List<double>();
 
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double avg = currentFeature.Average();
-                avgs.Add(avg);
+                result.Add(avg);
             }
 
-            return avgs;
+            return result;
         }
 
         private static List<double> Min(string filePath, string feature)
         {
             Session session = ReadSession(filePath);
 
-            List<double> mins = new List<double>();
+            List<double> result = new List<double>();
 
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double min = currentFeature.Min();
-                mins.Add(min);
+                result.Add(min);
             }
 
-            return mins;
+            return result;
         }
 
         private static List<double> Max(string filePath, string feature)
         {
             Session session = ReadSession(filePath);
 
-            List<double> maxs = new List<double>();
+            List<double> result = new List<double>();
 
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double max = currentFeature.Max();
-                maxs.Add(max);
+                result.Add(max);
             }
 
-            return maxs;
+            return result;
         }
 
         private static List<double> StandardDeviation(string filePath, string feature)
         {
             Session session = ReadSession(filePath);
 
-            List<double> stds = new List<double>();
+            List<double> result = new List<double>();
 
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double std = Measures.StandardDeviation(currentFeature, currentFeature.Mean());
-                stds.Add(std);
+                result.Add(std);
             }
 
-            return stds;
+            return result;
         }
 
         private static List<double> Median(string filePath, string feature)
         {
             Session session = ReadSession(filePath);
 
-            List<double> medians = new List<double>();
+            List<double> result = new List<double>();
 
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double median = Measures.Median(currentFeature);
-                medians.Add(median);
+                result.Add(median);
             }
 
-            return medians;
+            return result;
+        }
+
+        private static List<double> Duration(string filePath)
+        {
+            Session session = ReadSession(filePath);
+
+            List<double> result = new List<double>();
+
+            foreach (Stroke stroke in session.Strokes)
+            {
+                result.Add(Duration(stroke));
+            }
+
+            return result;
+        }
+
+        private static double Duration(Stroke stroke)
+        {
+            double result = stroke.EndTime - stroke.StartTime;
+            return result;
+        }
+
+        private static List<double> Dist2Prev(string filePath)
+        {
+            Session session = ReadSession(filePath);
+
+            List<double> result = new List<double>();
+
+            double previousEnd = 0.0;
+            double currentStart = 0.0;
+
+            foreach (Stroke stroke in session.Strokes)
+            {
+                currentStart = stroke.StartTime;
+
+                result.Add(currentStart - previousEnd);
+
+                previousEnd = stroke.EndTime;
+            }
+
+            return result;
+        }
+
+        private static List<double> TimeElapsed(string filePath)
+        {
+            Session session = ReadSession(filePath);
+
+            List<double> result = new List<double>();
+
+            foreach (Stroke stroke in session.Strokes)
+            {
+                double currentStart = stroke.StartTime;
+
+                double sessionStartTime = session.Strokes.First<Stroke>().StartTime;
+
+                result.Add(currentStart - sessionStartTime);
+            }
+
+            return result;
         }
     }
 }

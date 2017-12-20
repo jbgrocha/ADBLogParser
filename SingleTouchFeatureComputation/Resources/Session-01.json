@@ -92,7 +92,9 @@
         "ABS_MT_TOUCH_MAJOR": 8,
         "ABS_MT_WIDTH_MAJOR": 8,
         "ABS_MT_TRACKING_ID": 8
-      }
+      },
+      "StartTime": 16887.110101,
+      "EndTime": 16887.205392
     },
     {
       "Samples": [
@@ -184,7 +186,9 @@
         "ABS_MT_TOUCH_MAJOR": 8,
         "ABS_MT_WIDTH_MAJOR": 8,
         "ABS_MT_TRACKING_ID": 8
-      }
+      },
+      "StartTime": 16888.430154,
+      "EndTime": 16888.526004
     },
     {
       "Samples": [
@@ -306,7 +310,9 @@
         "ABS_MT_TOUCH_MAJOR": 11,
         "ABS_MT_WIDTH_MAJOR": 11,
         "ABS_MT_TRACKING_ID": 11
-      }
+      },
+      "StartTime": 16889.181387,
+      "EndTime": 16889.312932
     },
     {
       "Samples": [
@@ -408,7 +414,9 @@
         "ABS_MT_TOUCH_MAJOR": 9,
         "ABS_MT_WIDTH_MAJOR": 9,
         "ABS_MT_TRACKING_ID": 9
-      }
+      },
+      "StartTime": 16889.41119,
+      "EndTime": 16889.518572
     },
     {
       "Samples": [
@@ -580,7 +588,9 @@
         "ABS_MT_TOUCH_MAJOR": 16,
         "ABS_MT_WIDTH_MAJOR": 16,
         "ABS_MT_TRACKING_ID": 16
-      }
+      },
+      "StartTime": 16889.714272,
+      "EndTime": 16889.90596
     },
     {
       "Samples": [
@@ -722,7 +732,9 @@
         "ABS_MT_TOUCH_MAJOR": 13,
         "ABS_MT_WIDTH_MAJOR": 13,
         "ABS_MT_TRACKING_ID": 13
-      }
+      },
+      "StartTime": 16890.356016,
+      "EndTime": 16890.512197
     },
     {
       "Samples": [
@@ -864,7 +876,9 @@
         "ABS_MT_TOUCH_MAJOR": 13,
         "ABS_MT_WIDTH_MAJOR": 13,
         "ABS_MT_TRACKING_ID": 13
-      }
+      },
+      "StartTime": 16891.893794,
+      "EndTime": 16892.049566
     },
     {
       "Samples": [
@@ -926,7 +940,9 @@
         "ABS_MT_TOUCH_MAJOR": 5,
         "ABS_MT_WIDTH_MAJOR": 5,
         "ABS_MT_TRACKING_ID": 5
-      }
+      },
+      "StartTime": 16893.939718,
+      "EndTime": 16893.998747
     },
     {
       "Samples": [
@@ -1058,7 +1074,9 @@
         "ABS_MT_TOUCH_MAJOR": 12,
         "ABS_MT_WIDTH_MAJOR": 12,
         "ABS_MT_TRACKING_ID": 12
-      }
+      },
+      "StartTime": 16894.399686,
+      "EndTime": 16894.543571
     },
     {
       "Samples": [
@@ -1150,7 +1168,9 @@
         "ABS_MT_TOUCH_MAJOR": 8,
         "ABS_MT_WIDTH_MAJOR": 8,
         "ABS_MT_TRACKING_ID": 8
-      }
+      },
+      "StartTime": 16894.751829,
+      "EndTime": 16894.846329
     },
     {
       "Samples": [
@@ -1272,7 +1292,9 @@
         "ABS_MT_TOUCH_MAJOR": 11,
         "ABS_MT_WIDTH_MAJOR": 11,
         "ABS_MT_TRACKING_ID": 11
-      }
+      },
+      "StartTime": 16895.198661,
+      "EndTime": 16895.330358
     },
     {
       "Samples": [
@@ -1374,7 +1396,9 @@
         "ABS_MT_TOUCH_MAJOR": 9,
         "ABS_MT_WIDTH_MAJOR": 9,
         "ABS_MT_TRACKING_ID": 9
-      }
+      },
+      "StartTime": 16895.804282,
+      "EndTime": 16895.912316
     },
     {
       "Samples": [
@@ -1486,7 +1510,9 @@
         "ABS_MT_TOUCH_MAJOR": 10,
         "ABS_MT_WIDTH_MAJOR": 10,
         "ABS_MT_TRACKING_ID": 10
-      }
+      },
+      "StartTime": 16896.421593,
+      "EndTime": 16896.541342
     },
     {
       "Samples": [
@@ -1598,7 +1624,9 @@
         "ABS_MT_TOUCH_MAJOR": 10,
         "ABS_MT_WIDTH_MAJOR": 10,
         "ABS_MT_TRACKING_ID": 10
-      }
+      },
+      "StartTime": 16897.148656,
+      "EndTime": 16897.267788
     },
     {
       "Samples": [
@@ -1740,7 +1768,9 @@
         "ABS_MT_TOUCH_MAJOR": 13,
         "ABS_MT_WIDTH_MAJOR": 13,
         "ABS_MT_TRACKING_ID": 13
-      }
+      },
+      "StartTime": 16898.419895,
+      "EndTime": 16898.575591
     },
     {
       "Samples": [
@@ -1862,7 +1892,9 @@
         "ABS_MT_TOUCH_MAJOR": 11,
         "ABS_MT_WIDTH_MAJOR": 11,
         "ABS_MT_TRACKING_ID": 11
-      }
+      },
+      "StartTime": 16899.522155,
+      "EndTime": 16899.653333
     },
     {
       "Samples": [
@@ -1954,7 +1986,9 @@
         "ABS_MT_TOUCH_MAJOR": 8,
         "ABS_MT_WIDTH_MAJOR": 8,
         "ABS_MT_TRACKING_ID": 8
-      }
+      },
+      "StartTime": 16899.873117,
+      "EndTime": 16899.968001
     },
     {
       "Samples": [
@@ -4556,7 +4590,9 @@
         "ABS_MT_TOUCH_MAJOR": 259,
         "ABS_MT_WIDTH_MAJOR": 259,
         "ABS_MT_TRACKING_ID": 259
-      }
+      },
+      "StartTime": 16900.477948,
+      "EndTime": 16903.611149
     },
     {
       "Samples": [
@@ -5128,7 +5164,9 @@
         "ABS_MT_TOUCH_MAJOR": 56,
         "ABS_MT_WIDTH_MAJOR": 56,
         "ABS_MT_TRACKING_ID": 56
-      }
+      },
+      "StartTime": 16903.721667,
+      "EndTime": 16904.398041
     },
     {
       "Samples": [
@@ -5270,7 +5308,9 @@
         "ABS_MT_TOUCH_MAJOR": 13,
         "ABS_MT_WIDTH_MAJOR": 13,
         "ABS_MT_TRACKING_ID": 13
-      }
+      },
+      "StartTime": 16904.945077,
+      "EndTime": 16905.100287
     },
     {
       "Samples": [
@@ -5392,7 +5432,9 @@
         "ABS_MT_TOUCH_MAJOR": 11,
         "ABS_MT_WIDTH_MAJOR": 11,
         "ABS_MT_TRACKING_ID": 11
-      }
+      },
+      "StartTime": 16907.414699,
+      "EndTime": 16907.546456
     },
     {
       "Samples": [
@@ -5534,7 +5576,9 @@
         "ABS_MT_TOUCH_MAJOR": 13,
         "ABS_MT_WIDTH_MAJOR": 13,
         "ABS_MT_TRACKING_ID": 13
-      }
+      },
+      "StartTime": 16909.14683,
+      "EndTime": 16909.302752
     },
     {
       "Samples": [
@@ -5736,7 +5780,9 @@
         "ABS_MT_TOUCH_MAJOR": 19,
         "ABS_MT_WIDTH_MAJOR": 19,
         "ABS_MT_TRACKING_ID": 19
-      }
+      },
+      "StartTime": 16909.83767,
+      "EndTime": 16910.065633
     },
     {
       "Samples": [
@@ -5878,7 +5924,9 @@
         "ABS_MT_TOUCH_MAJOR": 13,
         "ABS_MT_WIDTH_MAJOR": 13,
         "ABS_MT_TRACKING_ID": 13
-      }
+      },
+      "StartTime": 16911.024022,
+      "EndTime": 16911.179682
     },
     {
       "Samples": [
@@ -6000,7 +6048,9 @@
         "ABS_MT_TOUCH_MAJOR": 11,
         "ABS_MT_WIDTH_MAJOR": 11,
         "ABS_MT_TRACKING_ID": 11
-      }
+      },
+      "StartTime": 16911.775255,
+      "EndTime": 16911.906521
     },
     {
       "Samples": [
@@ -6112,7 +6162,9 @@
         "ABS_MT_TOUCH_MAJOR": 10,
         "ABS_MT_WIDTH_MAJOR": 10,
         "ABS_MT_TRACKING_ID": 10
-      }
+      },
+      "StartTime": 16912.805147,
+      "EndTime": 16912.924097
     },
     {
       "Samples": [
@@ -6204,7 +6256,9 @@
         "ABS_MT_TOUCH_MAJOR": 8,
         "ABS_MT_WIDTH_MAJOR": 8,
         "ABS_MT_TRACKING_ID": 8
-      }
+      },
+      "StartTime": 16913.797717,
+      "EndTime": 16913.892815
     },
     {
       "Samples": [
@@ -6276,7 +6330,9 @@
         "ABS_MT_TOUCH_MAJOR": 6,
         "ABS_MT_WIDTH_MAJOR": 6,
         "ABS_MT_TRACKING_ID": 6
-      }
+      },
+      "StartTime": 16914.25746,
+      "EndTime": 16914.329
     },
     {
       "Samples": [
@@ -6318,7 +6374,9 @@
         "ABS_MT_TOUCH_MAJOR": 3,
         "ABS_MT_WIDTH_MAJOR": 3,
         "ABS_MT_TRACKING_ID": 3
-      }
+      },
+      "StartTime": 16914.785457,
+      "EndTime": 16914.838687
     },
     {
       "Samples": [
@@ -6420,7 +6478,9 @@
         "ABS_MT_TOUCH_MAJOR": 9,
         "ABS_MT_WIDTH_MAJOR": 9,
         "ABS_MT_TRACKING_ID": 9
-      }
+      },
+      "StartTime": 16916.671039,
+      "EndTime": 16916.783377
     },
     {
       "Samples": [
@@ -6822,7 +6882,9 @@
         "ABS_MT_TOUCH_MAJOR": 39,
         "ABS_MT_WIDTH_MAJOR": 39,
         "ABS_MT_TRACKING_ID": 39
-      }
+      },
+      "StartTime": 16917.022039,
+      "EndTime": 16917.508211
     },
     {
       "Samples": [
@@ -6984,7 +7046,9 @@
         "ABS_MT_TOUCH_MAJOR": 15,
         "ABS_MT_WIDTH_MAJOR": 15,
         "ABS_MT_TRACKING_ID": 15
-      }
+      },
+      "StartTime": 16921.018961,
+      "EndTime": 16921.20523
     },
     {
       "Samples": [
@@ -7966,7 +8030,9 @@
         "ABS_MT_TOUCH_MAJOR": 97,
         "ABS_MT_WIDTH_MAJOR": 97,
         "ABS_MT_TRACKING_ID": 97
-      }
+      },
+      "StartTime": 16924.748401,
+      "EndTime": 16925.960195
     },
     {
       "Samples": [
@@ -8228,7 +8294,9 @@
         "ABS_MT_TOUCH_MAJOR": 25,
         "ABS_MT_WIDTH_MAJOR": 25,
         "ABS_MT_TRACKING_ID": 25
-      }
+      },
+      "StartTime": 16926.662988,
+      "EndTime": 16926.974189
     },
     {
       "Samples": [
@@ -8420,7 +8488,9 @@
         "ABS_MT_TOUCH_MAJOR": 18,
         "ABS_MT_WIDTH_MAJOR": 18,
         "ABS_MT_TRACKING_ID": 18
-      }
+      },
+      "StartTime": 16928.390665,
+      "EndTime": 16928.614491
     },
     {
       "Samples": [
@@ -8622,7 +8692,9 @@
         "ABS_MT_TOUCH_MAJOR": 19,
         "ABS_MT_WIDTH_MAJOR": 19,
         "ABS_MT_TRACKING_ID": 19
-      }
+      },
+      "StartTime": 16929.993163,
+      "EndTime": 16930.229452
     },
     {
       "Samples": [
@@ -8714,7 +8786,9 @@
         "ABS_MT_TOUCH_MAJOR": 8,
         "ABS_MT_WIDTH_MAJOR": 8,
         "ABS_MT_TRACKING_ID": 8
-      }
+      },
+      "StartTime": 16931.082141,
+      "EndTime": 16931.180539
     },
     {
       "Samples": [
@@ -8866,7 +8940,9 @@
         "ABS_MT_TOUCH_MAJOR": 14,
         "ABS_MT_WIDTH_MAJOR": 14,
         "ABS_MT_TRACKING_ID": 14
-      }
+      },
+      "StartTime": 16932.23854,
+      "EndTime": 16932.412301
     },
     {
       "Samples": [
@@ -9188,7 +9264,9 @@
         "ABS_MT_TOUCH_MAJOR": 31,
         "ABS_MT_WIDTH_MAJOR": 31,
         "ABS_MT_TRACKING_ID": 31
-      }
+      },
+      "StartTime": 16934.842585,
+      "EndTime": 16935.22832
     },
     {
       "Samples": [
@@ -9310,7 +9388,9 @@
         "ABS_MT_TOUCH_MAJOR": 11,
         "ABS_MT_WIDTH_MAJOR": 11,
         "ABS_MT_TRACKING_ID": 11
-      }
+      },
+      "StartTime": 16935.430254,
+      "EndTime": 16935.566122
     },
     {
       "Samples": [
@@ -9772,7 +9852,9 @@
         "ABS_MT_TOUCH_MAJOR": 45,
         "ABS_MT_WIDTH_MAJOR": 45,
         "ABS_MT_TRACKING_ID": 45
-      }
+      },
+      "StartTime": 16937.620205,
+      "EndTime": 16938.182273
     },
     {
       "Samples": [
@@ -9864,7 +9946,9 @@
         "ABS_MT_TOUCH_MAJOR": 8,
         "ABS_MT_WIDTH_MAJOR": 8,
         "ABS_MT_TRACKING_ID": 8
-      }
+      },
+      "StartTime": 16938.48434,
+      "EndTime": 16938.583205
     },
     {
       "Samples": [
@@ -10126,7 +10210,9 @@
         "ABS_MT_TOUCH_MAJOR": 25,
         "ABS_MT_WIDTH_MAJOR": 25,
         "ABS_MT_TRACKING_ID": 25
-      }
+      },
+      "StartTime": 16942.439029,
+      "EndTime": 16942.749685
     },
     {
       "Samples": [
@@ -10538,7 +10624,9 @@
         "ABS_MT_TOUCH_MAJOR": 40,
         "ABS_MT_WIDTH_MAJOR": 40,
         "ABS_MT_TRACKING_ID": 40
-      }
+      },
+      "StartTime": 16943.289809,
+      "EndTime": 16943.789009
     },
     {
       "Samples": [
@@ -10730,7 +10818,9 @@
         "ABS_MT_TOUCH_MAJOR": 18,
         "ABS_MT_WIDTH_MAJOR": 18,
         "ABS_MT_TRACKING_ID": 18
-      }
+      },
+      "StartTime": 16943.954147,
+      "EndTime": 16944.177351
     },
     {
       "Samples": [
@@ -10922,7 +11012,9 @@
         "ABS_MT_TOUCH_MAJOR": 18,
         "ABS_MT_WIDTH_MAJOR": 18,
         "ABS_MT_TRACKING_ID": 18
-      }
+      },
+      "StartTime": 16945.297901,
+      "EndTime": 16945.521316
     },
     {
       "Samples": [
@@ -11054,7 +11146,9 @@
         "ABS_MT_TOUCH_MAJOR": 12,
         "ABS_MT_WIDTH_MAJOR": 12,
         "ABS_MT_TRACKING_ID": 12
-      }
+      },
+      "StartTime": 16946.524453,
+      "EndTime": 16946.673104
     },
     {
       "Samples": [
@@ -11226,7 +11320,9 @@
         "ABS_MT_TOUCH_MAJOR": 16,
         "ABS_MT_WIDTH_MAJOR": 16,
         "ABS_MT_TRACKING_ID": 16
-      }
+      },
+      "StartTime": 16947.187617,
+      "EndTime": 16947.386679
     },
     {
       "Samples": [
@@ -11378,7 +11474,9 @@
         "ABS_MT_TOUCH_MAJOR": 14,
         "ABS_MT_WIDTH_MAJOR": 14,
         "ABS_MT_TRACKING_ID": 14
-      }
+      },
+      "StartTime": 16948.114569,
+      "EndTime": 16948.288143
     },
     {
       "Samples": [
@@ -11530,7 +11628,9 @@
         "ABS_MT_TOUCH_MAJOR": 14,
         "ABS_MT_WIDTH_MAJOR": 14,
         "ABS_MT_TRACKING_ID": 14
-      }
+      },
+      "StartTime": 16948.61545,
+      "EndTime": 16948.789562
     },
     {
       "Samples": [
@@ -11742,7 +11842,9 @@
         "ABS_MT_TOUCH_MAJOR": 20,
         "ABS_MT_WIDTH_MAJOR": 20,
         "ABS_MT_TRACKING_ID": 20
-      }
+      },
+      "StartTime": 16951.557723,
+      "EndTime": 16951.805654
     },
     {
       "Samples": [
@@ -11934,7 +12036,9 @@
         "ABS_MT_TOUCH_MAJOR": 18,
         "ABS_MT_WIDTH_MAJOR": 18,
         "ABS_MT_TRACKING_ID": 18
-      }
+      },
+      "StartTime": 16953.396867,
+      "EndTime": 16953.620773
     },
     {
       "Samples": [
@@ -12066,7 +12170,9 @@
         "ABS_MT_TOUCH_MAJOR": 12,
         "ABS_MT_WIDTH_MAJOR": 12,
         "ABS_MT_TRACKING_ID": 12
-      }
+      },
+      "StartTime": 16954.298684,
+      "EndTime": 16954.447271
     },
     {
       "Samples": [
@@ -12258,7 +12364,9 @@
         "ABS_MT_TOUCH_MAJOR": 18,
         "ABS_MT_WIDTH_MAJOR": 18,
         "ABS_MT_TRACKING_ID": 18
-      }
+      },
+      "StartTime": 16954.762124,
+      "EndTime": 16954.985566
     },
     {
       "Samples": [
@@ -12380,7 +12488,9 @@
         "ABS_MT_TOUCH_MAJOR": 11,
         "ABS_MT_WIDTH_MAJOR": 11,
         "ABS_MT_TRACKING_ID": 11
-      }
+      },
+      "StartTime": 16955.813527,
+      "EndTime": 16955.949796
     },
     {
       "Samples": [
@@ -14102,7 +14212,9 @@
         "ABS_MT_TOUCH_MAJOR": 171,
         "ABS_MT_WIDTH_MAJOR": 171,
         "ABS_MT_TRACKING_ID": 171
-      }
+      },
+      "StartTime": 16956.252349,
+      "EndTime": 16958.389843
     },
     {
       "Samples": [
@@ -14554,7 +14666,9 @@
         "ABS_MT_TOUCH_MAJOR": 44,
         "ABS_MT_WIDTH_MAJOR": 44,
         "ABS_MT_TRACKING_ID": 44
-      }
+      },
+      "StartTime": 16959.055801,
+      "EndTime": 16959.603996
     },
     {
       "Samples": [
@@ -15386,7 +15500,9 @@
         "ABS_MT_TOUCH_MAJOR": 82,
         "ABS_MT_WIDTH_MAJOR": 82,
         "ABS_MT_TRACKING_ID": 82
-      }
+      },
+      "StartTime": 16959.881589,
+      "EndTime": 16960.905367
     },
     {
       "Samples": [
@@ -16668,7 +16784,9 @@
         "ABS_MT_TOUCH_MAJOR": 127,
         "ABS_MT_WIDTH_MAJOR": 127,
         "ABS_MT_TRACKING_ID": 127
-      }
+      },
+      "StartTime": 16961.112545,
+      "EndTime": 16962.699987
     },
     {
       "Samples": [
@@ -16990,7 +17108,9 @@
         "ABS_MT_TOUCH_MAJOR": 31,
         "ABS_MT_WIDTH_MAJOR": 31,
         "ABS_MT_TRACKING_ID": 31
-      }
+      },
+      "StartTime": 16964.829113,
+      "EndTime": 16965.216488
     },
     {
       "Samples": [
@@ -17322,7 +17442,9 @@
         "ABS_MT_TOUCH_MAJOR": 32,
         "ABS_MT_WIDTH_MAJOR": 32,
         "ABS_MT_TRACKING_ID": 32
-      }
+      },
+      "StartTime": 16965.856088,
+      "EndTime": 16966.254886
     },
     {
       "Samples": [
@@ -17704,7 +17826,9 @@
         "ABS_MT_TOUCH_MAJOR": 37,
         "ABS_MT_WIDTH_MAJOR": 37,
         "ABS_MT_TRACKING_ID": 37
-      }
+      },
+      "StartTime": 16966.745453,
+      "EndTime": 16967.206616
     },
     {
       "Samples": [
@@ -17896,7 +18020,9 @@
         "ABS_MT_TOUCH_MAJOR": 18,
         "ABS_MT_WIDTH_MAJOR": 18,
         "ABS_MT_TRACKING_ID": 18
-      }
+      },
+      "StartTime": 16967.245646,
+      "EndTime": 16967.469212
     },
     {
       "Samples": [
@@ -18508,7 +18634,9 @@
         "ABS_MT_TOUCH_MAJOR": 60,
         "ABS_MT_WIDTH_MAJOR": 60,
         "ABS_MT_TRACKING_ID": 60
-      }
+      },
+      "StartTime": 16968.022115,
+      "EndTime": 16968.771907
     },
     {
       "Samples": [
@@ -18760,7 +18888,9 @@
         "ABS_MT_TOUCH_MAJOR": 24,
         "ABS_MT_WIDTH_MAJOR": 24,
         "ABS_MT_TRACKING_ID": 24
-      }
+      },
+      "StartTime": 16969.799487,
+      "EndTime": 16970.098801
     },
     {
       "Samples": [
@@ -19142,7 +19272,9 @@
         "ABS_MT_TOUCH_MAJOR": 37,
         "ABS_MT_WIDTH_MAJOR": 37,
         "ABS_MT_TRACKING_ID": 37
-      }
+      },
+      "StartTime": 16970.263838,
+      "EndTime": 16970.724539
     },
     {
       "Samples": [
@@ -19574,7 +19706,9 @@
         "ABS_MT_TOUCH_MAJOR": 42,
         "ABS_MT_WIDTH_MAJOR": 42,
         "ABS_MT_TRACKING_ID": 42
-      }
+      },
+      "StartTime": 16971.277288,
+      "EndTime": 16971.800949
     },
     {
       "Samples": [
@@ -19696,7 +19830,9 @@
         "ABS_MT_TOUCH_MAJOR": 11,
         "ABS_MT_WIDTH_MAJOR": 11,
         "ABS_MT_TRACKING_ID": 11
-      }
+      },
+      "StartTime": 16972.116113,
+      "EndTime": 16972.252487
     }
   ],
   "FeatureSummary": {
