@@ -68,6 +68,16 @@ namespace SingleTouchFeatureComputation
             return StandardDeviation(filePath, Y);
         }
 
+        //  ABS_MT_TOUCH_MAJOR / ABS_MT_WIDTH_MAJOR -> Touch and width relationship -> mojgan called this pressure
+
+        // lengthT -> sum of pitagorean propositions -> layman's version -> sum of the distance between the samples
+
+        // spanX and span Y -> total span in direction of x (probably max - min)
+
+        // distance X and distance Y  -> distance from start to end (probably start.x - end.x)
+
+        // displacement
+
         //Aux Stat
         private static List<double> Avg(string filePath, string feature)
         {
