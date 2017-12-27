@@ -9,6 +9,10 @@ namespace SingleTouchFeatureComputation
 {
     class Program
     {
+        private static string X = "ABS_MT_POSITION_X";
+        private static string Y = "ABS_MT_POSITION_Y";
+
+
         public static void Main(string[] args)
         {
             //PrintSessionToJSON("..\\..\\Resources\\Session-01.json");
@@ -22,18 +26,49 @@ namespace SingleTouchFeatureComputation
 
         }
 
-        private static void PrintSessionToJSON(string filePath)
+        // X features
+        private static List<double> Avg_X(string filePath)
         {
-            Session session = ReadSession(filePath);
-            Console.Write(session.ToJSON());
+            return Avg(filePath, X);
         }
 
-        private static Session ReadSession(string filePath)
+        private static List<double> Min_X(string filePath)
         {
-            SessionParser sessionParser = new SessionParser(filePath);
-            return sessionParser.Session;
+            return Min(filePath, X);
         }
 
+        private static List<double> Max_X(string filePath)
+        {
+            return Max(filePath, X);
+        }
+
+        private static List<double> StandardDeviation_X(string filePath)
+        {
+            return StandardDeviation(filePath, X);
+        }
+
+        //Y features
+        private static List<double> Avg_Y(string filePath)
+        {
+            return Avg(filePath, Y);
+        }
+
+        private static List<double> Min_Y(string filePath)
+        {
+            return Min(filePath, Y);
+        }
+
+        private static List<double> Max_Y(string filePath)
+        {
+            return Max(filePath, Y);
+        }
+
+        private static List<double> StandardDeviation_Y(string filePath)
+        {
+            return StandardDeviation(filePath, Y);
+        }
+
+        //Aux Stat
         private static List<double> Avg(string filePath, string feature)
         {
             Session session = ReadSession(filePath);
@@ -114,6 +149,7 @@ namespace SingleTouchFeatureComputation
             return result;
         }
 
+        //Other Features
         private static List<double> Duration(string filePath)
         {
             Session session = ReadSession(filePath);
@@ -172,5 +208,19 @@ namespace SingleTouchFeatureComputation
 
             return result;
         }
+
+        //Generic operations
+        private static void PrintSessionToJSON(string filePath)
+        {
+            Session session = ReadSession(filePath);
+            Console.Write(session.ToJSON());
+        }
+
+        private static Session ReadSession(string filePath)
+        {
+            SessionParser sessionParser = new SessionParser(filePath);
+            return sessionParser.Session;
+        }
+
     }
 }
