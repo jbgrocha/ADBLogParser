@@ -14,45 +14,45 @@ namespace SingleTouchFeatureComputation
         private static string Y = "ABS_MT_POSITION_Y";
 
         // X features
-        public static List<double> Avg_X(Session session)
+        public static void Avg_X(Session session)
         {
-            return Avg(session, X);
+             Avg(session, X);
         }
 
-        public static List<double> Min_X(Session session)
+        public static void Min_X(Session session)
         {
-            return Min(session, X);
+             Min(session, X);
         }
 
-        public static List<double> Max_X(Session session)
+        public static void Max_X(Session session)
         {
-            return Max(session, X);
+             Max(session, X);
         }
 
-        public static List<double> StandardDeviation_X(Session session)
+        public static void StandardDeviation_X(Session session)
         {
-            return StandardDeviation(session, X);
+             StandardDeviation(session, X);
         }
 
         //Y features
-        public static List<double> Avg_Y(Session session)
+        public static void Avg_Y(Session session)
         {
-            return Avg(session, Y);
+             Avg(session, Y);
         }
 
-        public static List<double> Min_Y(Session session)
+        public static void Min_Y(Session session)
         {
-            return Min(session, Y);
+             Min(session, Y);
         }
 
-        public static List<double> Max_Y(Session session)
+        public static void Max_Y(Session session)
         {
-            return Max(session, Y);
+             Max(session, Y);
         }
 
-        public static List<double> StandardDeviation_Y(Session session)
+        public static void StandardDeviation_Y(Session session)
         {
-            return StandardDeviation(session, Y);
+             StandardDeviation(session, Y);
         }
 
         //  ABS_MT_TOUCH_MAJOR / ABS_MT_WIDTH_MAJOR -> Touch and width relationship -> mojgan called this pressure
@@ -66,93 +66,65 @@ namespace SingleTouchFeatureComputation
         // displacement
 
         //Aux Stat
-        public static List<double> Avg(Session session, string feature)
+        private static void Avg(Session session, string feature)
         {
 
-            List<double> result = new List<double>();
 
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double avg = currentFeature.Average();
-                result.Add(avg);
+                stroke.Features.Add("Avg_" + feature, avg);
             }
-
-            return result;
         }
 
-        public static List<double> Min(Session session, string feature)
+        private static void Min(Session session, string feature)
         {
-
-            List<double> result = new List<double>();
-
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double min = currentFeature.Min();
-                result.Add(min);
+                stroke.Features.Add("Min_" + feature, min);
             }
-
-            return result;
         }
 
-        public static List<double> Max(Session session, string feature)
+        private static void Max(Session session, string feature)
         {
-
-            List<double> result = new List<double>();
-
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double max = currentFeature.Max();
-                result.Add(max);
+                stroke.Features.Add("Max_" + feature, max);
             }
-
-            return result;
         }
 
-        public static List<double> StandardDeviation(Session session, string feature)
+        private static void StandardDeviation(Session session, string feature)
         {
-
-            List<double> result = new List<double>();
-
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double std = Measures.StandardDeviation(currentFeature, currentFeature.Mean());
-                result.Add(std);
+                stroke.Features.Add("Std_" + feature,std);
             }
-
-            return result;
         }
 
-        public static List<double> Median(Session session, string feature)
+        private static void Median(Session session, string feature)
         {
-
-            List<double> result = new List<double>();
-
             foreach (Stroke stroke in session.Strokes)
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double median = Measures.Median(currentFeature);
-                result.Add(median);
+                stroke.Features.Add("Median_" + feature, median);
             }
-
-            return result;
         }
 
         //Other Features
-        public static List<double> Duration(Session session)
+        public static void Duration(Session session)
         {
-
-            List<double> result = new List<double>();
-
             foreach (Stroke stroke in session.Strokes)
             {
-                result.Add(Duration(stroke));
+                stroke.Features.Add("Duration", Duration(stroke));
             }
-
-            return result;
         }
 
         public static double Duration(Stroke stroke)
@@ -161,11 +133,8 @@ namespace SingleTouchFeatureComputation
             return result;
         }
 
-        public static List<double> Dist2Prev(Session session)
+        public static void Dist2Prev(Session session)
         {
-
-            List<double> result = new List<double>();
-
             double previousEnd = 0.0;
             double currentStart = 0.0;
 
@@ -173,18 +142,14 @@ namespace SingleTouchFeatureComputation
             {
                 currentStart = stroke.StartTime;
 
-                result.Add(currentStart - previousEnd);
+                stroke.Features.Add("Dist2Prev", currentStart - previousEnd);
 
                 previousEnd = stroke.EndTime;
             }
-
-            return result;
         }
 
-        public static List<double> TimeElapsed(Session session)
+        public static void TimeElapsed(Session session)
         {
-
-            List<double> result = new List<double>();
 
             foreach (Stroke stroke in session.Strokes)
             {
@@ -192,10 +157,8 @@ namespace SingleTouchFeatureComputation
 
                 double sessionStartTime = session.Strokes.First<Stroke>().StartTime;
 
-                result.Add(currentStart - sessionStartTime);
+                stroke.Features.Add("Time_elapsed", currentStart - sessionStartTime);
             }
-
-            return result;
         }
     }
 }

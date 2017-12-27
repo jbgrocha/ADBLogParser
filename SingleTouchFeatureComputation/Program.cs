@@ -15,19 +15,28 @@ namespace SingleTouchFeatureComputation
 
             Session session = ReadSession("..\\..\\Resources\\Session-01.json");
 
-            List<double> test = Features.TimeElapsed(session);
+            Features.Avg_X(session);
+            Features.Max_X(session);
+            Features.Min_X(session);
+            Features.StandardDeviation_X(session);
 
-            foreach (double value in test)
-            {
-                Console.WriteLine(value);
-            }
+
+            Features.Avg_Y(session);
+            Features.Max_Y(session);
+            Features.Min_Y(session);
+            Features.StandardDeviation_Y(session);
+
+            Features.Duration(session);
+            Features.Dist2Prev(session);
+            Features.TimeElapsed(session);
+
+            PrintSessionToJSON(session);
 
         }
 
-        //Generic operations
-        private static void PrintSessionToJSON(string filePath)
+        //Helpers
+        private static void PrintSessionToJSON(Session session)
         {
-            Session session = ReadSession(filePath);
             Console.Write(session.ToJSON());
         }
 
