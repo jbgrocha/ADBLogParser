@@ -13,7 +13,7 @@ namespace SingleTouchFeatureComputation
         private static string X = "ABS_MT_POSITION_X";
         private static string Y = "ABS_MT_POSITION_Y";
 
-        // X features
+        //X features
         public static void Mean_X(Session session)
         {
              Mean(session, X);
@@ -32,6 +32,16 @@ namespace SingleTouchFeatureComputation
         public static void StandardDeviation_X(Session session)
         {
              StandardDeviation(session, X);
+        }
+
+        public static void Span_X(Session session)
+        {
+            Span(session, X);
+        }
+
+        public static void Distance_X(Session session)
+        {
+            Distance(session, X);
         }
 
         //Y features
@@ -53,6 +63,16 @@ namespace SingleTouchFeatureComputation
         public static void StandardDeviation_Y(Session session)
         {
              StandardDeviation(session, Y);
+        }
+
+        public static void Span_Y(Session session)
+        {
+            Span(session, Y);
+        }
+
+        public static void Distance_Y(Session session)
+        {
+            Distance(session, Y);
         }
 
         //  ABS_MT_TOUCH_MAJOR / ABS_MT_WIDTH_MAJOR -> Touch and width relationship -> mojgan called this pressure
@@ -118,6 +138,28 @@ namespace SingleTouchFeatureComputation
             }
         }
 
+        private static void Span(Session session, string feature)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double max = currentFeature.Max();
+                double min = currentFeature.Min();
+                double span = max - min;
+                stroke.Features.Add("Span_" + feature, span);
+            }
+        }
+
+        private static void Distance(Session session, string feature)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double distance = currentFeature.Last() - currentFeature.First();
+                stroke.Features.Add("Distance_" + feature, distance);
+            }
+        }
+
         //Other Features
         public static void Duration(Session session)
         {
@@ -158,6 +200,22 @@ namespace SingleTouchFeatureComputation
                 double sessionStartTime = session.Strokes.First<Stroke>().StartTime;
 
                 stroke.Features.Add("Time_elapsed", currentStart - sessionStartTime);
+            }
+        }
+
+        public static void Displacement(Session session)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] x = stroke.GetFeatureValuesFromSamples(X).ToArray();
+                double distance_x = x.Last() - x.First();
+
+                int[] y = stroke.GetFeatureValuesFromSamples(Y).ToArray();
+                double distance_y = y.Last() - y.First();
+
+                double displacement = Math.Sqrt(Math.Pow(distance_x, 2) + Math.Pow(distance_y, 2));
+
+                stroke.Features.Add("Displacement", displacement);
             }
         }
     }
