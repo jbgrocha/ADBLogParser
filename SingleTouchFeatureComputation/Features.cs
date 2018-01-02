@@ -14,9 +14,9 @@ namespace SingleTouchFeatureComputation
         private static string Y = "ABS_MT_POSITION_Y";
 
         // X features
-        public static void Avg_X(Session session)
+        public static void Mean_X(Session session)
         {
-             Avg(session, X);
+             Mean(session, X);
         }
 
         public static void Min_X(Session session)
@@ -35,9 +35,9 @@ namespace SingleTouchFeatureComputation
         }
 
         //Y features
-        public static void Avg_Y(Session session)
+        public static void Mean_Y(Session session)
         {
-             Avg(session, Y);
+             Mean(session, Y);
         }
 
         public static void Min_Y(Session session)
@@ -66,7 +66,7 @@ namespace SingleTouchFeatureComputation
         // displacement
 
         //Aux Stat
-        private static void Avg(Session session, string feature)
+        private static void Mean(Session session, string feature)
         {
 
 
@@ -74,7 +74,7 @@ namespace SingleTouchFeatureComputation
             {
                 int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
                 double avg = currentFeature.Average();
-                stroke.Features.Add("Avg_" + feature, avg);
+                stroke.Features.Add("Mean_" + feature, avg);
             }
         }
 

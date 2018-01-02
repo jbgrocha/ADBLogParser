@@ -15,13 +15,13 @@ namespace SingleTouchFeatureComputation
 
             Session session = ReadSession("..\\..\\Resources\\Session-01.json");
 
-            Features.Avg_X(session);
+            Features.Mean_X(session);
             Features.Max_X(session);
             Features.Min_X(session);
             Features.StandardDeviation_X(session);
 
 
-            Features.Avg_Y(session);
+            Features.Mean_Y(session);
             Features.Max_Y(session);
             Features.Min_Y(session);
             Features.StandardDeviation_Y(session);
