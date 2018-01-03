@@ -76,89 +76,7 @@ namespace SingleTouchFeatureComputation
         }
 
         //  ABS_MT_TOUCH_MAJOR / ABS_MT_WIDTH_MAJOR -> Touch and width relationship -> mojgan called this pressure
-
         // lengthT -> sum of pitagorean propositions -> layman's version -> sum of the distance between the samples
-
-        // spanX and span Y -> total span in direction of x (probably max - min)
-
-        // distance X and distance Y  -> distance from start to end (probably start.x - end.x)
-
-        // displacement
-
-        //Aux Stat
-        private static void Mean(Session session, string feature)
-        {
-
-
-            foreach (Stroke stroke in session.Strokes)
-            {
-                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
-                double avg = currentFeature.Average();
-                stroke.Features.Add("Mean_" + feature, avg);
-            }
-        }
-
-        private static void Min(Session session, string feature)
-        {
-            foreach (Stroke stroke in session.Strokes)
-            {
-                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
-                double min = currentFeature.Min();
-                stroke.Features.Add("Min_" + feature, min);
-            }
-        }
-
-        private static void Max(Session session, string feature)
-        {
-            foreach (Stroke stroke in session.Strokes)
-            {
-                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
-                double max = currentFeature.Max();
-                stroke.Features.Add("Max_" + feature, max);
-            }
-        }
-
-        private static void StandardDeviation(Session session, string feature)
-        {
-            foreach (Stroke stroke in session.Strokes)
-            {
-                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
-                double std = Measures.StandardDeviation(currentFeature, currentFeature.Mean());
-                stroke.Features.Add("Std_" + feature,std);
-            }
-        }
-
-        private static void Median(Session session, string feature)
-        {
-            foreach (Stroke stroke in session.Strokes)
-            {
-                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
-                double median = Measures.Median(currentFeature);
-                stroke.Features.Add("Median_" + feature, median);
-            }
-        }
-
-        private static void Span(Session session, string feature)
-        {
-            foreach (Stroke stroke in session.Strokes)
-            {
-                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
-                double max = currentFeature.Max();
-                double min = currentFeature.Min();
-                double span = max - min;
-                stroke.Features.Add("Span_" + feature, span);
-            }
-        }
-
-        private static void Distance(Session session, string feature)
-        {
-            foreach (Stroke stroke in session.Strokes)
-            {
-                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
-                double distance = currentFeature.Last() - currentFeature.First();
-                stroke.Features.Add("Distance_" + feature, distance);
-            }
-        }
 
         //Other Features
         public static void Duration(Session session)
@@ -217,6 +135,123 @@ namespace SingleTouchFeatureComputation
 
                 stroke.Features.Add("Displacement", displacement);
             }
+        }
+
+        public static void Length_T(Session session)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                double lengthT = Length(stroke);
+
+                stroke.Features.Add("Length_T", lengthT);
+            }
+        }
+
+        public static void Velocity(Session session)
+        {
+            foreach(Stroke stroke in session.Strokes)
+            {
+                double duration = stroke.EndTime - stroke.StartTime;
+                double length = Length(stroke);
+
+                double velocity = length / duration;
+
+                stroke.Features.Add("Velocity", velocity);
+            }
+        }
+
+        // Aux Functions for Features
+        private static void Mean(Session session, string feature)
+        {
+
+
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double avg = currentFeature.Average();
+                stroke.Features.Add("Mean_" + feature, avg);
+            }
+        }
+
+        private static void Min(Session session, string feature)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double min = currentFeature.Min();
+                stroke.Features.Add("Min_" + feature, min);
+            }
+        }
+
+        private static void Max(Session session, string feature)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double max = currentFeature.Max();
+                stroke.Features.Add("Max_" + feature, max);
+            }
+        }
+
+        private static void StandardDeviation(Session session, string feature)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double std = Measures.StandardDeviation(currentFeature, currentFeature.Mean());
+                stroke.Features.Add("Std_" + feature, std);
+            }
+        }
+
+        private static void Median(Session session, string feature)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double median = Measures.Median(currentFeature);
+                stroke.Features.Add("Median_" + feature, median);
+            }
+        }
+
+        private static void Span(Session session, string feature)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double max = currentFeature.Max();
+                double min = currentFeature.Min();
+                double span = max - min;
+                stroke.Features.Add("Span_" + feature, span);
+            }
+        }
+
+        private static void Distance(Session session, string feature)
+        {
+            foreach (Stroke stroke in session.Strokes)
+            {
+                int[] currentFeature = stroke.GetFeatureValuesFromSamples(feature).ToArray();
+                double distance = currentFeature.Last() - currentFeature.First();
+                stroke.Features.Add("Distance_" + feature, distance);
+            }
+        }
+
+        private static double Length(Stroke stroke)
+        {
+            double length_t = 0.0;
+
+            for(int i = 0; i < stroke.Samples.Count - 1; i++)
+            {
+                Sample start = stroke.Samples.ElementAt(i);
+                Sample end = stroke.Samples.ElementAt(i + 1);
+
+                double segment_length_x = end.Features[X] - start.Features[X];
+                double segment_length_y = end.Features[Y] - start.Features[Y]; ;
+
+                double segment_length = Math.Sqrt(Math.Pow(segment_length_x, 2) + Math.Pow(segment_length_y, 2));
+                length_t += segment_length;
+            }
+
+            return length_t;
         }
     }
 }
