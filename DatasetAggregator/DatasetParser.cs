@@ -19,18 +19,14 @@ namespace DatasetAggregator
         // EDA Dataset FilePath
         private string EDADatasetFilepath = "";
 
-        // Emotion Dataset Parser
-        VideoEmotionDataset EmotionDataset;
-
-        // EDA Dataset Parser
 
         // Touch Events
         public ADBTouchEventsDataset TouchEvents;
 
         // Emotion Dataset
-        // EDA Dataset
+        public VideoEmotionDataset EmotionDataset;
 
-        List<VideoEmotionDatasetEntry> Dataset;
+        // EDA Dataset
 
         public DatasetParser()
         {
@@ -38,7 +34,7 @@ namespace DatasetAggregator
             //Console.WriteLine(TouchEvents.ToString());
             
             ParseEmotionDataset();
-            //Console.WriteLine(EmotionDataset.ToString());
+            Console.WriteLine(EmotionDataset.ToString());
             
             //ParseEDADataset();
         }
