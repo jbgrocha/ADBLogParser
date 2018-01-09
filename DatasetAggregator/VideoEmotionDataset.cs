@@ -9,12 +9,14 @@ namespace DatasetAggregator
     public class VideoEmotionDataset
     {
         public List<string> Labels { get; set; }
-        public List<List<double>> Values { get; set; }
+
+        public List<VideoEmotionDatasetEntry> DataEntries;
 
         public VideoEmotionDataset()
         {
             Labels = new List<string>();
-            Values = new List<List<double>>();
+
+            DataEntries = new List<VideoEmotionDatasetEntry>();
         }
 
         public override string ToString()
@@ -45,27 +47,10 @@ namespace DatasetAggregator
         {
             string result = "";
 
-            foreach (List<double> datasetEntry in Values)
+            foreach (VideoEmotionDatasetEntry entry in DataEntries)
             {
-                result += DataEntryToString(datasetEntry);
+                result += entry.ToString();
                 result += "\n";
-            }
-
-            return result;
-        }
-
-        private string DataEntryToString(List<double> datasetEntry)
-        {
-            string result = "";
-
-            for (int i = 0; i < datasetEntry.Count; i++)
-            {
-                result += datasetEntry.ElementAt(i);
-
-                if (i != datasetEntry.Count - 1)
-                {
-                    result += ";";
-                }
             }
 
             return result;

@@ -21,7 +21,7 @@ namespace DatasetAggregator
             FilePath = filePath;
             ReadFile();
             ParseDataset();
-            NormalizeDatasetTime();
+            //NormalizeDatasetTime();
         }
 
         private void NormalizeDatasetTime()
@@ -29,14 +29,14 @@ namespace DatasetAggregator
             double timeStamp = 0.0;
             double samplingRate = 66.0; // Video Sensor samples at a rate of 15.15152 samples per second (or 1 sample every 66 milliseconds)
 
-            for (int i = 0; i < Dataset.Values.Count; i++)
+            for (int i = 0; i < Dataset.DataEntries.Count; i++)
             {
                 if(i != 0)
                 {
                     timeStamp = timeStamp + samplingRate;
                 }
 
-                Dataset.Values[i][0] = timeStamp;
+                Dataset.DataEntries[i].Timestamp = timeStamp;
             }
         }
 
@@ -68,7 +68,9 @@ namespace DatasetAggregator
         {
             string[] splitLine = line.Split(';');
 
-            List<double> datasetEntry = new List<double>();
+            //List<double> datasetEntry = new List<double>();
+
+            VideoEmotionDatasetEntry datasetEntry = new VideoEmotionDatasetEntry();
 
             for(int i = 0; i < splitLine.Length; i++)
             {
@@ -76,19 +78,21 @@ namespace DatasetAggregator
 
                 if (i == 0)
                 {
-                    parsedValue = ParseTime(splitLine.ElementAt(i));
+                    datasetEntry.Timestamp = ParseTime(splitLine.ElementAt(i));
                 }
                 else
                 {
-                    parsedValue = double.Parse(splitLine.ElementAt(i));
-                }
+                    string key = Dataset.Labels[i];
 
-                datasetEntry.Add(parsedValue);
+                    parsedValue = double.Parse(splitLine.ElementAt(i));
+
+                    datasetEntry.Labels.Add(key, parsedValue);
+                }
             }
 
             //List<double> datasetEntry = splitLine.Select(double.Parse).ToList<double>();
 
-            Dataset.Values.Add(datasetEntry);
+            Dataset.DataEntries.Add(datasetEntry);
         }
 
         // Parses time to Milliseconds
