@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrokeDatasetGenerator", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoEmotionDatasetParser", "VideoEmotionDatasetReader\VideoEmotionDatasetParser.csproj", "{B3122192-B688-468C-8B77-56007F6E87B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatasetAggregator", "DatasetAggregator\DatasetAggregator.csproj", "{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{B3122192-B688-468C-8B77-56007F6E87B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3122192-B688-468C-8B77-56007F6E87B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3122192-B688-468C-8B77-56007F6E87B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
