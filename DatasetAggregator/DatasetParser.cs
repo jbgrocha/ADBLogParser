@@ -30,11 +30,11 @@ namespace DatasetAggregator
 
         public DatasetParser()
         {
-            //ParseTouchEvents();
+            ParseTouchEvents();
             //Console.WriteLine(TouchEvents.ToString());
             
             ParseEmotionDataset();
-            Console.WriteLine(EmotionDataset.ToString());
+            //Console.WriteLine(EmotionDataset.ToString());
             
             //ParseEDADataset();
         }
