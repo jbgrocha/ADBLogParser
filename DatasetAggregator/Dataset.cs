@@ -9,9 +9,11 @@ namespace DatasetAggregator
     public class Dataset
     {
         public List<DatasetEntry> Entries { get; set; }
+        public int SessionId { get; set; }
 
-        public Dataset()
+        public Dataset(int id)
         {
+            SessionId = id;
             Entries = new List<DatasetEntry>();
         }
 
@@ -21,7 +23,7 @@ namespace DatasetAggregator
 
             foreach(DatasetEntry entry in Entries)
             {
-                result += entry.ToString() + "\n";
+                result += SessionId + ";" + entry.ToString() + "\n";
             }
 
             return result;

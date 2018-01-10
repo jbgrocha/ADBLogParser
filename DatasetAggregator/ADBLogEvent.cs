@@ -31,10 +31,10 @@ namespace DatasetAggregator
         public override string ToString()
         {
             string result = "";
-            result += Timestamp + " ";
-            result += Device + " ";
-            result += OpCode + " ";
-            result += EventType + " ";
+            result += Timestamp + ";";
+            result += Device + ";";
+            result += OpCode + ";";
+            result += EventType + ";";
             result += EventValue;
 
             return result;
