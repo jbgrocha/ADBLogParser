@@ -17,22 +17,95 @@ namespace DatasetAggregator
         // EDA Dataset
         public EDADataset EDADataset;
 
+        public Dataset Dataset;
+
         public DatasetAggregator( ADBTouchEventsDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
         {
             TouchEvents = touchEvents;
             EmotionDataset = emotionDataset;
             EDADataset = edaDataset;
+
+            Dataset = new Dataset();
+
+            Agregate();
         }
 
         private void Agregate()
         {
-            throw new NotImplementedException();
-            /*
-             foreach touchEvent in touchEvents
-                index of previous = timestamp / sampling rate // round down
-                index of next = timestamp / sampling rate  + 1 // round up
-                (touchevent, videoprev, videonext, edaprev, edanext)
-             */
+            foreach (ADBLogEvent touchEntry in TouchEvents.DataEntries)
+            {
+                //Emotion
+                VideoEmotionDatasetEntry previousEmotion = PreviousEmotion(touchEntry);
+                VideoEmotionDatasetEntry nextEmotion = NextEmotion(touchEntry);
+
+                // EDA
+                EDADatasetEntry previousEDA = PreviousEDA(touchEntry);
+                EDADatasetEntry nextEDA = NextEDA(touchEntry);
+
+                DatasetEntry entry = new DatasetEntry(touchEntry, previousEmotion, nextEmotion, previousEDA, nextEDA);
+
+                Dataset.Entries.Add(entry);
+            }
+        }
+
+        private VideoEmotionDatasetEntry PreviousEmotion(ADBLogEvent touchEntry)
+        {
+
+            VideoEmotionDatasetEntry result = null;
+
+            int index = (int)(touchEntry.Timestamp / VideoEmotionDataset.SamplingRate);
+            
+            if (index < EmotionDataset.DataEntries.Count)
+            {
+                result = EmotionDataset.DataEntries[index];
+            }
+
+            return result;
+        }
+
+        private VideoEmotionDatasetEntry NextEmotion(ADBLogEvent touchEntry)
+        {
+
+            VideoEmotionDatasetEntry result = null;
+
+            int index = (int)(touchEntry.Timestamp / VideoEmotionDataset.SamplingRate) + 1;
+
+            if (index < EmotionDataset.DataEntries.Count)
+            {
+                result = EmotionDataset.DataEntries[index];
+            }
+
+            return result;
+        }
+
+        private EDADatasetEntry PreviousEDA(ADBLogEvent touchEntry)
+        {
+
+            EDADatasetEntry result = null;
+
+            int index = (int)(touchEntry.Timestamp / EDADataset.SamplingRate);
+
+            if (index < EDADataset.DataEntries.Count)
+            {
+                result = EDADataset.DataEntries[index];
+            }
+
+            return result;
+        }
+
+        private EDADatasetEntry NextEDA(ADBLogEvent touchEntry)
+        {
+
+            EDADatasetEntry result = null;
+
+            int index = (int)(touchEntry.Timestamp / EDADataset.SamplingRate) + 1;
+
+            if (index < EDADataset.DataEntries.Count)
+            {
+                result = EDADataset.DataEntries[index];
+            }
+
+            return result;
         }
     }
 }

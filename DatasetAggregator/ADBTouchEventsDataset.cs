@@ -8,16 +8,16 @@ namespace DatasetAggregator
 {
     public class ADBTouchEventsDataset
     {
-        public List<ADBLogEvent> TouchEvents;
+        public List<ADBLogEvent> DataEntries;
 
         public ADBTouchEventsDataset()
         {
-            TouchEvents = new List<ADBLogEvent>();
+            DataEntries = new List<ADBLogEvent>();
         }
 
         private void CalculateTouchEventsSummary(Dictionary<string, int> TouchSummary)
         {
-            foreach (ADBLogEvent logEvent in TouchEvents)
+            foreach (ADBLogEvent logEvent in DataEntries)
             {
                 AddTouchEventToSummary(logEvent, TouchSummary);
             }
@@ -63,7 +63,7 @@ namespace DatasetAggregator
 
         private void CalculateFeatureEventSummary(Dictionary<string, int> FeatureSummary)
         {
-            foreach (ADBLogEvent logEvent in TouchEvents)
+            foreach (ADBLogEvent logEvent in DataEntries)
             {
                 AddFeatureEventToSummary(logEvent, FeatureSummary);
             }
@@ -106,7 +106,7 @@ namespace DatasetAggregator
         {
             string result = "";
 
-            foreach (ADBLogEvent parsedEvent in TouchEvents)
+            foreach (ADBLogEvent parsedEvent in DataEntries)
             {
                 result += parsedEvent.ToString() + "\n";
             }

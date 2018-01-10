@@ -20,5 +20,22 @@
             PreviousEDA = previousEDA;
             NextEDA = nextEDA;
         }
+
+        /* need to fix null issue for each of the previous and next elements */
+
+        public override string ToString()
+        {
+            string result = "";
+
+            result += Touch.ToString();
+
+            result += PreviousEmotion.ToString();
+            result += NextEmotion.ToString();
+
+            result += PreviousEDA.ToString();
+            result += NextEDA.ToString();
+
+            return result;
+        }
     }
 }

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADBLogEvent.cs" />
+    <Compile Include="Dataset.cs" />
     <Compile Include="DatasetAggregator.cs" />
     <Compile Include="DatasetEntry.cs" />
     <Compile Include="ADBLogEventsParser.cs" />

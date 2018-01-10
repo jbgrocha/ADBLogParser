@@ -31,14 +31,14 @@ namespace DatasetAggregator
         {
             double initialTimestamp = 0.0;
 
-            for (int i = 0; i < Dataset.TouchEvents.Count; i++)
+            for (int i = 0; i < Dataset.DataEntries.Count; i++)
             {
                 if (i == 0)
                 {
-                    initialTimestamp = Dataset.TouchEvents[i].Timestamp;
+                    initialTimestamp = Dataset.DataEntries[i].Timestamp;
                 }
 
-                Dataset.TouchEvents[i].Timestamp = (Dataset.TouchEvents[i].Timestamp - initialTimestamp) * 1000; // Raw Timestamps are in seconds not milliseconds
+                Dataset.DataEntries[i].Timestamp = (Dataset.DataEntries[i].Timestamp - initialTimestamp) * 1000; // Raw Timestamps are in seconds not milliseconds
             }
         }
 
@@ -49,7 +49,7 @@ namespace DatasetAggregator
             foreach (string[] unparsedEvent in UnparsedEvents)
             {
                 ADBLogEvent parsedEvent = ParseADBLogEvent(unparsedEvent);
-                Dataset.TouchEvents.Add(parsedEvent);
+                Dataset.DataEntries.Add(parsedEvent);
             }
         }
 
