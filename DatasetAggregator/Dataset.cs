@@ -14,5 +14,17 @@ namespace DatasetAggregator
         {
             Entries = new List<DatasetEntry>();
         }
+
+        public override string ToString()
+        {
+            string result = "";
+
+            foreach(DatasetEntry entry in Entries)
+            {
+                result += entry.ToString() + "\n";
+            }
+
+            return result;
+        }
     }
 }

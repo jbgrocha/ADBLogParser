@@ -38,7 +38,7 @@ namespace DatasetAggregator
                     initialTimestamp = Dataset.DataEntries[i].Timestamp;
                 }
 
-                Dataset.DataEntries[i].Timestamp = (Dataset.DataEntries[i].Timestamp - initialTimestamp) * 1000; // Raw Timestamps are in seconds not milliseconds
+                Dataset.DataEntries[i].Timestamp = (Dataset.DataEntries[i].Timestamp - initialTimestamp);
             }
         }
 

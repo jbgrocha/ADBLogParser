@@ -29,12 +29,26 @@
 
             result += Touch.ToString();
 
-            result += PreviousEmotion.ToString();
-            result += NextEmotion.ToString();
+            if(PreviousEmotion != null)
+            {
+                result += PreviousEmotion.ToString();
+            }
 
-            result += PreviousEDA.ToString();
-            result += NextEDA.ToString();
+            if(NextEmotion != null)
+            {
+                result += NextEmotion.ToString();
+            }
 
+            if(PreviousEDA != null)
+            {
+                result += PreviousEDA.ToString();
+            }
+            
+            if(NextEDA != null)
+            {
+                result += NextEDA.ToString();
+            }
+            
             return result;
         }
     }

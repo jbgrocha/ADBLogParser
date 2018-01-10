@@ -9,7 +9,7 @@ namespace DatasetAggregator
     public class DatasetAggregator
     {
         // Touch Events
-        public ADBTouchEventsDataset TouchEvents;
+        public ADBTouchEventsDataset TouchDataset;
 
         // Emotion Dataset
         public VideoEmotionDataset EmotionDataset;
@@ -21,7 +21,7 @@ namespace DatasetAggregator
 
         public DatasetAggregator( ADBTouchEventsDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
         {
-            TouchEvents = touchEvents;
+            TouchDataset = touchEvents;
             EmotionDataset = emotionDataset;
             EDADataset = edaDataset;
 
@@ -32,7 +32,7 @@ namespace DatasetAggregator
 
         private void Agregate()
         {
-            foreach (ADBLogEvent touchEntry in TouchEvents.DataEntries)
+            foreach (ADBLogEvent touchEntry in TouchDataset.DataEntries)
             {
                 //Emotion
                 VideoEmotionDatasetEntry previousEmotion = PreviousEmotion(touchEntry);
