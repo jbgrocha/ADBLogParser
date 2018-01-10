@@ -24,6 +24,22 @@ namespace DatasetAggregator
             CleanUpLines();
             ReadUnparsedEvents();
             ParseLogEvents();
+            NormalizeDatasetTime();
+        }
+
+        private void NormalizeDatasetTime()
+        {
+            double initialTimestamp = 0.0;
+
+            for (int i = 0; i < Dataset.TouchEvents.Count; i++)
+            {
+                if (i == 0)
+                {
+                    initialTimestamp = Dataset.TouchEvents[i].Timestamp;
+                }
+
+                Dataset.TouchEvents[i].Timestamp = (Dataset.TouchEvents[i].Timestamp - initialTimestamp) * 1000; // Raw Timestamps are in seconds not milliseconds
+            }
         }
 
         private void ParseLogEvents()

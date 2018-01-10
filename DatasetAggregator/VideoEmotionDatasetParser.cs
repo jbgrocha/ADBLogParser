@@ -21,7 +21,7 @@ namespace DatasetAggregator
             FilePath = filePath;
             ReadFile();
             ParseDataset();
-            //NormalizeDatasetTime();
+            NormalizeDatasetTime();
         }
 
         private void NormalizeDatasetTime()
