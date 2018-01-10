@@ -12,6 +12,8 @@ namespace DatasetAggregator
 
         public List<VideoEmotionDatasetEntry> DataEntries;
 
+        public const double SamplingRate = 66.0;  // Video Sensor samples at a rate of 15.15152 samples per second (or 1 sample every 66 milliseconds)
+
         public VideoEmotionDataset()
         {
             Labels = new List<string>();

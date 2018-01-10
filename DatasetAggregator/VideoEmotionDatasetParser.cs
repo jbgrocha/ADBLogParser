@@ -27,7 +27,7 @@ namespace DatasetAggregator
         private void NormalizeDatasetTime()
         {
             double timeStamp = 0.0;
-            double samplingRate = 66.0; // Video Sensor samples at a rate of 15.15152 samples per second (or 1 sample every 66 milliseconds)
+            double samplingRate = VideoEmotionDataset.SamplingRate;
 
             for (int i = 0; i < Dataset.DataEntries.Count; i++)
             {

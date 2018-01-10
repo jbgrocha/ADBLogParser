@@ -28,7 +28,7 @@ namespace DatasetAggregator
         private void NormalizeDatasetTime()
         {
             double timeStamp = 0.0;
-            double samplingRate = 100; // EDA Sensor samples at a rate of 10 samples per second (or 1 sample every 100 milliseconds)
+            double samplingRate = EDADataset.SamplingRate;
 
             for (int i = 0; i < Dataset.DataEntries.Count; i++)
             {

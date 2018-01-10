@@ -12,6 +12,8 @@ namespace DatasetAggregator
 
         public List<EDADatasetEntry> DataEntries;
 
+        public const double SamplingRate = 100; // EDA Sensor samples at a rate of 10 samples per second (or 1 sample every 100 milliseconds)
+
         public EDADataset()
         {
             Labels = new List<string>();
