@@ -51,8 +51,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ADBTouchEventsDataset.cs" />
+    <Compile Include="EDADataset.cs" />
     <Compile Include="VideoEmotionDataset.cs" />
+    <Compile Include="EDADatasetEntry.cs" />
     <Compile Include="VideoEmotionDatasetEntry.cs" />
+    <Compile Include="EDADatasetParser.cs" />
     <Compile Include="VideoEmotionDatasetParser.cs" />
   </ItemGroup>
   <ItemGroup>
