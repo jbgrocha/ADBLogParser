@@ -15,9 +15,9 @@ namespace DatasetAggregator
 
             // Touch Events
             string touchFilepath = basePath + "01-Strokes.txt";
-            
+
             // Emotion Events
-            string emotionFilepath = basePath + "01-Emotions.csv";
+            string emotionFilepath = null;//basePath + "01-Emotions.csv";
 
             // EDA Events
             string edaFilepath = basePath + "01-EDA.csv";

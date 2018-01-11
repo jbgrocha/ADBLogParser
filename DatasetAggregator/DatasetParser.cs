@@ -48,14 +48,30 @@ namespace DatasetAggregator
 
         private void ParseEDADataset()
         {
-            EDADatasetParser parser = new EDADatasetParser(EDADatasetFilepath);
-            EDADataset = parser.Dataset;
+            if (EDADatasetFilepath != null)
+            {
+                EDADatasetParser parser = new EDADatasetParser(EDADatasetFilepath);
+                EDADataset = parser.Dataset;
+            }
+            else
+            {
+                EDADataset = new EDADataset();
+            }
+            
         }
 
         private void ParseEmotionDataset()
         {
-            VideoEmotionDatasetParser parser = new VideoEmotionDatasetParser(EmotionDatasetFilepath);
-            EmotionDataset = parser.Dataset;
+            if(EmotionDatasetFilepath != null)
+            {
+                VideoEmotionDatasetParser parser = new VideoEmotionDatasetParser(EmotionDatasetFilepath);
+                EmotionDataset = parser.Dataset;
+            }
+            else
+            {
+                EmotionDataset = new VideoEmotionDataset();
+            }
+            
         }
 
         private void ParseTouchEvents()
