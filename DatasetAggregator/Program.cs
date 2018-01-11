@@ -10,10 +10,19 @@ namespace DatasetAggregator
     {
         static void Main(string[] args)
         {
-            // Parse Touch Events
+            // BasePath
+            string basePath = "..\\..\\Resources\\";
+
+            // Touch Events
+            string touchFilepath = basePath + "01-Strokes.txt";
+            
             // Emotion Events
+            string emotionFilepath = basePath + "01-Emotions.csv";
+
             // EDA Events
-            DatasetParser parser = new DatasetParser("..\\..\\Resources\\01-Strokes.txt", "..\\..\\Resources\\01-Emotions.csv", "..\\..\\Resources\\01-EDA.csv");
+            string edaFilepath = basePath + "01-EDA.csv";
+
+            DatasetParser parser = new DatasetParser(touchFilepath, emotionFilepath, edaFilepath);
 
             DatasetAggregator aggregator = new DatasetAggregator(1, parser.TouchEvents, parser.EmotionDataset, parser.EDADataset);
 
