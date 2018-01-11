@@ -9,28 +9,26 @@ namespace DatasetAggregator
     public class EDADatasetEntry
     {
         public double Timestamp { get; set;}
-        public Dictionary<string, double> Labels { get; set; }
+
+        public double EDA { get; set; }
 
         public EDADatasetEntry()
         {
             Timestamp = 0.0;
-            Labels = new Dictionary<string, double>();
+            EDA = 0.0;
         }
 
-        public EDADatasetEntry(double timestamp, Dictionary<string, double> labels)
+        public EDADatasetEntry(double timestamp, double eda)
         {
             Timestamp = timestamp;
-            Labels = labels;
+            EDA = eda;
         }
 
         public override string ToString()
         {
             string result = Timestamp.ToString();
 
-            foreach(KeyValuePair<string, double> label in Labels)
-            {
-                result += ";" + label.Value;
-            }
+            result += ";" + EDA.ToString();
 
             return result;
         }

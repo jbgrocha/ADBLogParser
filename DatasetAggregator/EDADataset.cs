@@ -8,7 +8,6 @@ namespace DatasetAggregator
 {
     public class EDADataset
     {
-        public List<string> Labels { get; set; }
 
         public List<EDADatasetEntry> DataEntries;
 
@@ -16,7 +15,6 @@ namespace DatasetAggregator
 
         public EDADataset()
         {
-            Labels = new List<string>();
 
             DataEntries = new List<EDADatasetEntry>();
         }
@@ -28,17 +26,9 @@ namespace DatasetAggregator
 
         private string LabelsToString()
         {
-            string result = "";
+            string result = "Time";
 
-            for (int i = 0; i < Labels.Count; i++)
-            {
-                result += Labels.ElementAt(i);
-
-                if (i != Labels.Count - 1)
-                {
-                    result += ";";
-                }
-            }
+            result += ";" + "EDA";
 
             result += "\n";
 

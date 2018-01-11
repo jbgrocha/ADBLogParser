@@ -47,25 +47,14 @@ namespace DatasetAggregator
             {
                 string line = FileLines.ElementAt(i);
 
-                if ( i == 0)
+                if (i != 0)
                 {
-                    ParseLabels(line);
-                }
-                else if(i != 0)
-                {
-                    ParseValues(line);
+                    Parse(line);
                 }
             }
         }
 
-        private void ParseLabels(string line)
-        {
-            string[] splitLine = line.Split(';');
-
-            Dataset.Labels = splitLine.ToList<string>();
-        }
-
-        private void ParseValues(string line)
+        private void Parse(string line)
         {
             string[] splitLine = line.Split(';');
 
@@ -73,43 +62,11 @@ namespace DatasetAggregator
 
             EDADatasetEntry datasetEntry = new EDADatasetEntry();
 
-            for(int i = 0; i < splitLine.Length; i++)
-            {
-                double parsedValue = 0.0;
+            datasetEntry.Timestamp = 0.0;
 
-                if (i == 0)
-                {
-                    datasetEntry.Timestamp = ParseTime(splitLine.ElementAt(i));
-                }
-                else
-                {
-                    string key = Dataset.Labels[i];
-
-                    parsedValue = double.Parse(splitLine.ElementAt(i), CultureInfo.InvariantCulture.NumberFormat);
-
-                    datasetEntry.Labels.Add(key, parsedValue);
-                }
-            }
-
-            //List<double> datasetEntry = splitLine.Select(double.Parse).ToList<double>();
+            datasetEntry.EDA = double.Parse(splitLine.ElementAt(1), CultureInfo.InvariantCulture.NumberFormat);
 
             Dataset.DataEntries.Add(datasetEntry);
-        }
-
-        // Parses time to Milliseconds
-        private double ParseTime(string timeStamp)
-        {
-            double result = 0.0;
-            /*
-            string[] split = timeStamp.Split(':');
-
-            // Minutes to Milliseconds
-            result = double.Parse(split[0]) * 60 * 1000;
-
-            // Seconds to Milliseconds
-            result += double.Parse(split[1]) * 1000;
-            */
-            return result;
         }
 
         private void ReadFile()

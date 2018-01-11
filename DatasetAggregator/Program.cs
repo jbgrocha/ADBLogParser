@@ -26,6 +26,7 @@ namespace DatasetAggregator
 
             DatasetAggregator aggregator = new DatasetAggregator(1, parser.TouchEvents, parser.EmotionDataset, parser.EDADataset);
 
+            //Console.WriteLine(aggregator.Dataset.Entries.Count);
             Console.Write(aggregator.Dataset.ToJSON());
             //Console.Write(aggregator.Dataset.ToString());
         }
