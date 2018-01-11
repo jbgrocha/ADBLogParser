@@ -2,7 +2,7 @@
 {
     public class DatasetEntry
     {
-        public ADBLogEvent Touch { get; set; }
+        public ADBLogEvent TouchEvent { get; set; }
 
         public VideoEmotionDatasetEntry PreviousEmotion { get; set; }
         public VideoEmotionDatasetEntry NextEmotion { get; set; }
@@ -12,7 +12,7 @@
 
         public DatasetEntry(ADBLogEvent touch, VideoEmotionDatasetEntry previousEmotion, VideoEmotionDatasetEntry nextEmotion, EDADatasetEntry previousEDA, EDADatasetEntry nextEDA )
         {
-            Touch = touch;
+            TouchEvent = touch;
 
             PreviousEmotion = previousEmotion;
             NextEmotion = nextEmotion;
@@ -27,7 +27,7 @@
         {
             string result = "";
 
-            result += Touch.ToString();
+            result += TouchEvent.ToString();
 
             if(PreviousEmotion != null)
             {

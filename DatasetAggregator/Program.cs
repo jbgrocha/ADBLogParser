@@ -13,11 +13,12 @@ namespace DatasetAggregator
             // Parse Touch Events
             // Emotion Events
             // EDA Events
-            DatasetParser parser = new DatasetParser();
+            DatasetParser parser = new DatasetParser("..\\..\\Resources\\01-Strokes.txt", "..\\..\\Resources\\01-Emotions.csv", "..\\..\\Resources\\01-EDA.csv");
 
             DatasetAggregator aggregator = new DatasetAggregator(1, parser.TouchEvents, parser.EmotionDataset, parser.EDADataset);
 
-            Console.Write(aggregator.Dataset.ToString());
+            Console.Write(aggregator.Dataset.ToJSON());
+            //Console.Write(aggregator.Dataset.ToString());
         }
     }
 }

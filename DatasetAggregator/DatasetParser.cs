@@ -11,13 +11,13 @@ namespace DatasetAggregator
         // Session
 
         // Touch Events Filepath
-        private string TouchEventsFilepath = "..\\..\\Resources\\01-Strokes.txt";
+        private string TouchEventsFilepath;
 
         // Emotion Dataset Filepath
-        private string EmotionDatasetFilepath = "..\\..\\Resources\\01-Emotions.csv";
+        private string EmotionDatasetFilepath;
 
         // EDA Dataset FilePath
-        private string EDADatasetFilepath = "..\\..\\Resources\\01-EDA.csv";
+        private string EDADatasetFilepath;
 
 
         // Touch Events
@@ -29,8 +29,12 @@ namespace DatasetAggregator
         // EDA Dataset
         public EDADataset EDADataset;
 
-        public DatasetParser()
+        public DatasetParser(string touchEventsFilepath, string emotionDatasetFilepath , string eDADatasetFilepath)
         {
+            TouchEventsFilepath = touchEventsFilepath;
+            EmotionDatasetFilepath = emotionDatasetFilepath;
+            EDADatasetFilepath = eDADatasetFilepath;
+
             ParseTouchEvents();
             //Console.WriteLine(TouchEvents.ToString());
             

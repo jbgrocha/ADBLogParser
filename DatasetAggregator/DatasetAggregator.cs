@@ -59,6 +59,10 @@ namespace DatasetAggregator
             {
                 result = EmotionDataset.DataEntries[index];
             }
+            else
+            {
+                result = EmotionDataset.DataEntries[EmotionDataset.DataEntries.Count - 1];
+            }
 
             return result;
         }
@@ -88,6 +92,10 @@ namespace DatasetAggregator
             if (index < EDADataset.DataEntries.Count)
             {
                 result = EDADataset.DataEntries[index];
+            }
+            else
+            {
+                result = result = EDADataset.DataEntries[EDADataset.DataEntries.Count - 1];
             }
 
             return result;
