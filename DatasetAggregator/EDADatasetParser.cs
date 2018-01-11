@@ -60,11 +60,12 @@ namespace DatasetAggregator
 
             //List<double> datasetEntry = new List<double>();
 
-            EDADatasetEntry datasetEntry = new EDADatasetEntry();
+            EDADatasetEntry datasetEntry = new EDADatasetEntry
+            {
+                Timestamp = 0.0,
 
-            datasetEntry.Timestamp = 0.0;
-
-            datasetEntry.EDA = double.Parse(splitLine.ElementAt(1), CultureInfo.InvariantCulture.NumberFormat);
+                EDA = double.Parse(splitLine.ElementAt(1), CultureInfo.InvariantCulture.NumberFormat)
+            };
 
             Dataset.DataEntries.Add(datasetEntry);
         }

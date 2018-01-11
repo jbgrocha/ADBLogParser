@@ -8,15 +8,12 @@ namespace DatasetAggregator
 {
     public class VideoEmotionDataset
     {
-        public List<string> Labels { get; set; }
-
         public List<VideoEmotionDatasetEntry> DataEntries;
 
         public const double SamplingRate = 66.0;  // Video Sensor samples at a rate of 15.15152 samples per second (or 1 sample every 66 milliseconds)
 
         public VideoEmotionDataset()
         {
-            Labels = new List<string>();
 
             DataEntries = new List<VideoEmotionDatasetEntry>();
         }
@@ -30,15 +27,18 @@ namespace DatasetAggregator
         {
             string result = "";
 
-            for (int i = 0; i < Labels.Count; i++)
-            {
-                result += Labels.ElementAt(i);
+            result += "Timestamp";
 
-                if (i != Labels.Count - 1)
-                {
-                    result += ";";
-                }
-            }
+            result += ";" + "Neutral";
+            result += ";" + "Happy";
+            result += ";" + "Sad";
+            result += ";" + "Angry";
+            result += ";" + "Surprised";
+            result += ";" + "Scared";
+            result += ";" + "Disgusted";
+            result += ";" + "Contempt";
+            result += ";" + "Valence";
+            result += ";" + "Arousal";
 
             result += "\n";
 

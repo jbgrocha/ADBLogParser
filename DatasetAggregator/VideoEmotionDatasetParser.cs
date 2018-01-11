@@ -46,22 +46,11 @@ namespace DatasetAggregator
             {
                 string line = FileLines.ElementAt(i);
 
-                if ( i == 0)
-                {
-                    ParseLabels(line);
-                }
-                else if(i != 0)
+                if (i != 0)
                 {
                     ParseValues(line);
                 }
             }
-        }
-
-        private void ParseLabels(string line)
-        {
-            string[] splitLine = line.Split(';');
-
-            Dataset.Labels = splitLine.ToList<string>();
         }
 
         private void ParseValues(string line)
@@ -70,27 +59,21 @@ namespace DatasetAggregator
 
             //List<double> datasetEntry = new List<double>();
 
-            VideoEmotionDatasetEntry datasetEntry = new VideoEmotionDatasetEntry();
-
-            for(int i = 0; i < splitLine.Length; i++)
+            VideoEmotionDatasetEntry datasetEntry = new VideoEmotionDatasetEntry
             {
-                double parsedValue = 0.0;
+                Timestamp = ParseTime(splitLine.ElementAt(0)),
 
-                if (i == 0)
-                {
-                    datasetEntry.Timestamp = ParseTime(splitLine.ElementAt(i));
-                }
-                else
-                {
-                    string key = Dataset.Labels[i];
-
-                    parsedValue = double.Parse(splitLine.ElementAt(i));
-
-                    datasetEntry.Labels.Add(key, parsedValue);
-                }
-            }
-
-            //List<double> datasetEntry = splitLine.Select(double.Parse).ToList<double>();
+                Neutral = double.Parse(splitLine.ElementAt(1)),
+                Happy = double.Parse(splitLine.ElementAt(2)),
+                Sad = double.Parse(splitLine.ElementAt(3)),
+                Angry = double.Parse(splitLine.ElementAt(4)),
+                Surprised = double.Parse(splitLine.ElementAt(5)),
+                Scared = double.Parse(splitLine.ElementAt(6)),
+                Disgusted = double.Parse(splitLine.ElementAt(7)),
+                Contempt = double.Parse(splitLine.ElementAt(8)),
+                Valence = double.Parse(splitLine.ElementAt(9)),
+                Arousal = double.Parse(splitLine.ElementAt(10))
+            };
 
             Dataset.DataEntries.Add(datasetEntry);
         }
