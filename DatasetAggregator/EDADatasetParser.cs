@@ -25,23 +25,6 @@ namespace DatasetAggregator
             {
                 ReadFile();
                 ParseDataset();
-                NormalizeDatasetTime();
-            }
-        }
-
-        private void NormalizeDatasetTime()
-        {
-            double timeStamp = 0.0;
-            double samplingRate = EDADataset.SamplingRate;
-
-            for (int i = 0; i < Dataset.DataEntries.Count; i++)
-            {
-                if(i != 0)
-                {
-                    timeStamp = timeStamp + samplingRate;
-                }
-
-                Dataset.DataEntries[i].Timestamp = timeStamp;
             }
         }
 
@@ -53,20 +36,18 @@ namespace DatasetAggregator
 
                 if (i != 0)
                 {
-                    Parse(line);
+                    Parse(line, i);
                 }
             }
         }
 
-        private void Parse(string line)
+        private void Parse(string line, int lineNumber)
         {
             string[] splitLine = line.Split(';');
 
-            //List<double> datasetEntry = new List<double>();
-
             EDADatasetEntry datasetEntry = new EDADatasetEntry
             {
-                Timestamp = 0.0,
+                Timestamp = (lineNumber - 1) * EDADataset.SamplingRate,
 
                 EDA = double.Parse(splitLine.ElementAt(1), CultureInfo.InvariantCulture.NumberFormat)
             };
@@ -83,7 +64,6 @@ namespace DatasetAggregator
             catch (IOException e)
             {
                 Console.WriteLine(e.ToString());
-                //Console.WriteLine("{0}: The read operation could not be performed because the specified part of the file is locked.", e.GetType().Name);
             }
         }
     }

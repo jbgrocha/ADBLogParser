@@ -24,23 +24,6 @@ namespace DatasetAggregator
             {
                 ReadFile();
                 ParseDataset();
-                NormalizeDatasetTime();
-            }
-        }
-
-        private void NormalizeDatasetTime()
-        {
-            double timeStamp = 0.0;
-            double samplingRate = VideoEmotionDataset.SamplingRate;
-
-            for (int i = 0; i < Dataset.DataEntries.Count; i++)
-            {
-                if(i != 0)
-                {
-                    timeStamp = timeStamp + samplingRate;
-                }
-
-                Dataset.DataEntries[i].Timestamp = timeStamp;
             }
         }
 
@@ -52,22 +35,18 @@ namespace DatasetAggregator
 
                 if (i != 0)
                 {
-                    ParseValues(line);
+                    ParseValues(line, i);
                 }
             }
         }
 
-        private void ParseValues(string line)
+        private void ParseValues(string line, int lineNumber)
         {
             string[] splitLine = line.Split(';');
 
-            //List<double> datasetEntry = new List<double>();
-
-            //Console.WriteLine(line);
-
             VideoEmotionDatasetEntry datasetEntry = new VideoEmotionDatasetEntry
             {
-                Timestamp = ParseTime(splitLine.ElementAt(0)),
+                Timestamp = (lineNumber - 1) * VideoEmotionDataset.SamplingRate,
 
                 Neutral = double.Parse(splitLine.ElementAt(1)),
                 Happy = double.Parse(splitLine.ElementAt(2)),
@@ -84,22 +63,6 @@ namespace DatasetAggregator
             Dataset.DataEntries.Add(datasetEntry);
         }
 
-        // Parses time to Milliseconds
-        private double ParseTime(string timeStamp)
-        {
-            double result = 0.0;
-
-            string[] split = timeStamp.Split(':');
-
-            // Minutes to Milliseconds
-            result = double.Parse(split[0]) * 60 * 1000;
-
-            // Seconds to Milliseconds
-            result += double.Parse(split[1]) * 1000;
-
-            return result;
-        }
-
         private void ReadFile()
         {
             try
@@ -109,7 +72,6 @@ namespace DatasetAggregator
             catch (IOException e)
             {
                 Console.WriteLine(e.ToString());
-                //Console.WriteLine("{0}: The read operation could not be performed because the specified part of the file is locked.", e.GetType().Name);
             }
         }
     }
