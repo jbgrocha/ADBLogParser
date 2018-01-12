@@ -12,7 +12,7 @@ namespace DatasetAggregator
         static void Main(string[] args)
         {
             // BasePath
-            string basePath = "..\\..\\..\\Resources\\";
+            string basePath = "..\\..\\..\\Resources\\Fixed\\";
 
             string[] directories = Directory.GetDirectories(basePath);
 
