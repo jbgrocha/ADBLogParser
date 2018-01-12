@@ -44,23 +44,27 @@ namespace DatasetAggregator
         {
             string[] splitLine = line.Split(';');
 
-            VideoEmotionDatasetEntry datasetEntry = new VideoEmotionDatasetEntry
+            // "correct implementation" needs to validate all entries in splitLines, but we can just assume this simplifcation
+            if ((splitLine[1] != "FIND_FAILED") && (splitLine[1] != "FIT_FAILED"))
             {
-                Timestamp = (lineNumber - 1) * VideoEmotionDataset.SamplingRate,
+                VideoEmotionDatasetEntry datasetEntry = new VideoEmotionDatasetEntry
+                {
+                    Timestamp = (lineNumber - 1) * VideoEmotionDataset.SamplingRate,
 
-                Neutral = double.Parse(splitLine.ElementAt(1)),
-                Happy = double.Parse(splitLine.ElementAt(2)),
-                Sad = double.Parse(splitLine.ElementAt(3)),
-                Angry = double.Parse(splitLine.ElementAt(4)),
-                Surprised = double.Parse(splitLine.ElementAt(5)),
-                Scared = double.Parse(splitLine.ElementAt(6)),
-                Disgusted = double.Parse(splitLine.ElementAt(7)),
-                Contempt = double.Parse(splitLine.ElementAt(8)),
-                Valence = double.Parse(splitLine.ElementAt(9)),
-                Arousal = double.Parse(splitLine.ElementAt(10))
-            };
+                    Neutral = double.Parse(splitLine.ElementAt(1)),
+                    Happy = double.Parse(splitLine.ElementAt(2)),
+                    Sad = double.Parse(splitLine.ElementAt(3)),
+                    Angry = double.Parse(splitLine.ElementAt(4)),
+                    Surprised = double.Parse(splitLine.ElementAt(5)),
+                    Scared = double.Parse(splitLine.ElementAt(6)),
+                    Disgusted = double.Parse(splitLine.ElementAt(7)),
+                    Contempt = double.Parse(splitLine.ElementAt(8)),
+                    Valence = double.Parse(splitLine.ElementAt(9)),
+                    Arousal = double.Parse(splitLine.ElementAt(10))
+                };
 
-            Dataset.DataEntries.Add(datasetEntry);
+                Dataset.DataEntries.Add(datasetEntry);
+            }
         }
 
         private void ReadFile()

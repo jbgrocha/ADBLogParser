@@ -19,7 +19,7 @@ namespace DatasetAggregator
 
         public Dataset Dataset;
 
-        public DatasetAggregator( int datasetId, ADBTouchEventsDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
+        public DatasetAggregator(string datasetId, ADBTouchEventsDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
         {
             TouchDataset = touchEvents;
             EmotionDataset = emotionDataset;

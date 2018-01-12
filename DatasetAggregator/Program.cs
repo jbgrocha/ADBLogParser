@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace DatasetAggregator
 {
@@ -12,31 +13,44 @@ namespace DatasetAggregator
         static void Main(string[] args)
         {
             // BasePath
-            string basePath = "..\\..\\..\\Resources\\Fixed\\";
+            string basePath = "..\\..\\..\\Resources\\Raw\\";
 
             string[] directories = Directory.GetDirectories(basePath);
 
-            foreach(string directory in directories) {
-                // Touch Events
-                string touchFilepath = directory + "\\Strokes.txt";
+            List<Dataset> datasets = new List<Dataset>();
+            ;
+            MergeDatasets(directories, datasets);
 
-                // Emotion Events
-                string emotionFilepath = directory + "\\Video.csv";
+            string jsonDataset = JsonConvert.SerializeObject(datasets, Formatting.Indented);
 
-                // EDA Events
-                string edaFilepath = directory + "\\EDA.csv";
+            Console.WriteLine(jsonDataset);
+        }
 
-                DatasetParser parser = new DatasetParser(touchFilepath, emotionFilepath, edaFilepath);
-
-                DatasetAggregator aggregator = new DatasetAggregator(1, parser.TouchEvents, parser.EmotionDataset, parser.EDADataset);
-
-                //Console.WriteLine(emotionFilepath);
-                Console.Write(aggregator.Dataset.ToJSON());
+        static void MergeDatasets(string[] directories, List<Dataset> datasets)
+        {
+            foreach (string directory in directories)
+            {
+                Dataset aggregated = MergeDataset(directory);
+                datasets.Add(aggregated);
             }
+        }
 
-            //Console.WriteLine(aggregator.Dataset.Entries.Count);
-            //Console.Write(aggregator.Dataset.ToJSON());
-            //Console.Write(aggregator.Dataset.ToString());
+        static Dataset MergeDataset(string directory)
+        {
+            // Touch Events
+            string touchFilepath = directory + "\\Strokes.txt";
+
+            // Emotion Events
+            string emotionFilepath = directory + "\\Video.csv";
+
+            // EDA Events
+            string edaFilepath = directory + "\\EDA.csv";
+
+            DatasetParser parser = new DatasetParser(touchFilepath, emotionFilepath, edaFilepath);
+
+            DatasetAggregator aggregator = new DatasetAggregator(directory, parser.TouchEvents, parser.EmotionDataset, parser.EDADataset);
+
+            return aggregator.Dataset;
         }
     }
 }

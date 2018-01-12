@@ -10,9 +10,9 @@ namespace DatasetAggregator
     public class Dataset
     {
         public List<DatasetEntry> Entries { get; set; }
-        public int SessionId { get; set; }
+        public string SessionId { get; set; }
 
-        public Dataset(int id)
+        public Dataset(string id)
         {
             SessionId = id;
             Entries = new List<DatasetEntry>();
