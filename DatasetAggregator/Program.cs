@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,23 +12,30 @@ namespace DatasetAggregator
         static void Main(string[] args)
         {
             // BasePath
-            string basePath = "..\\..\\Resources\\";
+            string basePath = "..\\..\\..\\Resources\\";
 
-            // Touch Events
-            string touchFilepath = basePath + "01-Strokes.txt";
+            string[] directories = Directory.GetDirectories(basePath);
 
-            // Emotion Events
-            string emotionFilepath = null;//basePath + "01-Emotions.csv";
+            foreach(string directory in directories) {
+                // Touch Events
+                string touchFilepath = directory + "\\Strokes.txt";
 
-            // EDA Events
-            string edaFilepath = basePath + "01-EDA.csv";
+                // Emotion Events
+                string emotionFilepath = directory + "\\Video.csv";
 
-            DatasetParser parser = new DatasetParser(touchFilepath, emotionFilepath, edaFilepath);
+                // EDA Events
+                string edaFilepath = directory + "\\EDA.csv";
 
-            DatasetAggregator aggregator = new DatasetAggregator(1, parser.TouchEvents, parser.EmotionDataset, parser.EDADataset);
+                DatasetParser parser = new DatasetParser(touchFilepath, emotionFilepath, edaFilepath);
+
+                DatasetAggregator aggregator = new DatasetAggregator(1, parser.TouchEvents, parser.EmotionDataset, parser.EDADataset);
+
+                //Console.WriteLine(emotionFilepath);
+                Console.Write(aggregator.Dataset.ToJSON());
+            }
 
             //Console.WriteLine(aggregator.Dataset.Entries.Count);
-            Console.Write(aggregator.Dataset.ToJSON());
+            //Console.Write(aggregator.Dataset.ToJSON());
             //Console.Write(aggregator.Dataset.ToString());
         }
     }

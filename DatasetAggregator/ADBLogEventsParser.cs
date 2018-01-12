@@ -19,12 +19,16 @@ namespace DatasetAggregator
         public ADBLogEventsParser(string filePath)
         {
             FilePath = filePath;
-            ReadFile();
-            DiscardLines();
-            CleanUpLines();
-            ReadUnparsedEvents();
-            ParseLogEvents();
-            NormalizeDatasetTime();
+
+            if(File.Exists(FilePath))
+            {
+                ReadFile();
+                DiscardLines();
+                CleanUpLines();
+                ReadUnparsedEvents();
+                ParseLogEvents();
+                NormalizeDatasetTime();
+            }
         }
 
         private void NormalizeDatasetTime()
@@ -185,7 +189,8 @@ namespace DatasetAggregator
             }
             catch (IOException e)
             {
-                Console.WriteLine("{0}: The read operation could not be performed because the specified part of the file is locked.", e.GetType().Name);
+                Console.WriteLine(e.ToString());
+                //Console.WriteLine("{0}: The read operation could not be performed because the specified part of the file is locked.", e.GetType().Name);
             }
         }
     }
