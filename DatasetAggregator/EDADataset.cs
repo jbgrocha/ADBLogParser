@@ -47,5 +47,28 @@ namespace DatasetAggregator
 
             return result;
         }
+
+        public Tuple<EDADatasetEntry, EDADatasetEntry> GetPreviousNext(double timestamp)
+        {
+            EDADatasetEntry previous = null;
+            EDADatasetEntry next = null;
+
+            foreach(EDADatasetEntry dataEntry in DataEntries)
+            {
+                if(dataEntry.Timestamp <= timestamp)
+                {
+                    previous = dataEntry;
+                }
+                else if(dataEntry.Timestamp > timestamp)
+                {
+                    next = dataEntry;
+                    break;
+                }
+            }
+
+            Tuple<EDADatasetEntry, EDADatasetEntry> result = new Tuple<EDADatasetEntry, EDADatasetEntry>(previous, next);
+
+            return result;
+        }
     }
 }

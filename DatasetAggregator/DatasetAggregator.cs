@@ -35,85 +35,22 @@ namespace DatasetAggregator
             foreach (ADBLogEvent touchEntry in TouchDataset.DataEntries)
             {
                 //Emotion
-                VideoEmotionDatasetEntry previousEmotion = PreviousEmotion(touchEntry);
-                VideoEmotionDatasetEntry nextEmotion = NextEmotion(touchEntry);
+                Tuple<VideoEmotionDatasetEntry, VideoEmotionDatasetEntry> emotionPrevNext = EmotionDataset.GetPreviousNext(touchEntry.Timestamp);
+
+                VideoEmotionDatasetEntry previousEmotion = emotionPrevNext.Item1;
+                VideoEmotionDatasetEntry nextEmotion = emotionPrevNext.Item2;
+
 
                 // EDA
-                EDADatasetEntry previousEDA = PreviousEDA(touchEntry);
-                EDADatasetEntry nextEDA = NextEDA(touchEntry);
+                Tuple<EDADatasetEntry, EDADatasetEntry> edaPrevNext= EDADataset.GetPreviousNext(touchEntry.Timestamp);
+
+                EDADatasetEntry previousEDA = edaPrevNext.Item1;
+                EDADatasetEntry nextEDA = edaPrevNext.Item2;
 
                 DatasetEntry entry = new DatasetEntry(touchEntry, previousEmotion, nextEmotion, previousEDA, nextEDA);
 
                 Dataset.Entries.Add(entry);
             }
-        }
-
-        private VideoEmotionDatasetEntry PreviousEmotion(ADBLogEvent touchEntry)
-        {
-
-            VideoEmotionDatasetEntry result = null;
-
-            int index = (int)(touchEntry.Timestamp / VideoEmotionDataset.SamplingRate);
-            
-            if (index < EmotionDataset.DataEntries.Count)
-            {
-                result = EmotionDataset.DataEntries[index];
-            }
-            else if(EmotionDataset.DataEntries.Count > 0)
-            {
-                result = EmotionDataset.DataEntries[EmotionDataset.DataEntries.Count - 1];
-            }
-
-            return result;
-        }
-
-        private VideoEmotionDatasetEntry NextEmotion(ADBLogEvent touchEntry)
-        {
-
-            VideoEmotionDatasetEntry result = null;
-
-            int index = (int)(touchEntry.Timestamp / VideoEmotionDataset.SamplingRate) + 1;
-
-            if (index < EmotionDataset.DataEntries.Count)
-            {
-                result = EmotionDataset.DataEntries[index];
-            }
-
-            return result;
-        }
-
-        private EDADatasetEntry PreviousEDA(ADBLogEvent touchEntry)
-        {
-
-            EDADatasetEntry result = null;
-
-            int index = (int)(touchEntry.Timestamp / EDADataset.SamplingRate);
-
-            if (index < EDADataset.DataEntries.Count)
-            {
-                result = EDADataset.DataEntries[index];
-            }
-            else if(EDADataset.DataEntries.Count > 0)
-            {
-                result = result = EDADataset.DataEntries[EDADataset.DataEntries.Count - 1];
-            }
-
-            return result;
-        }
-
-        private EDADatasetEntry NextEDA(ADBLogEvent touchEntry)
-        {
-
-            EDADatasetEntry result = null;
-
-            int index = (int)(touchEntry.Timestamp / EDADataset.SamplingRate) + 1;
-
-            if (index < EDADataset.DataEntries.Count)
-            {
-                result = EDADataset.DataEntries[index];
-            }
-
-            return result;
         }
     }
 }

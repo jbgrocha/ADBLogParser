@@ -57,5 +57,28 @@ namespace DatasetAggregator
 
             return result;
         }
+
+        public Tuple<VideoEmotionDatasetEntry, VideoEmotionDatasetEntry> GetPreviousNext(double timestamp)
+        {
+            VideoEmotionDatasetEntry previous = null;
+            VideoEmotionDatasetEntry next = null;
+
+            foreach (VideoEmotionDatasetEntry dataEntry in DataEntries)
+            {
+                if (dataEntry.Timestamp <= timestamp)
+                {
+                    previous = dataEntry;
+                }
+                else if (dataEntry.Timestamp > timestamp)
+                {
+                    next = dataEntry;
+                    break;
+                }
+            }
+
+            Tuple<VideoEmotionDatasetEntry, VideoEmotionDatasetEntry> result = new Tuple<VideoEmotionDatasetEntry, VideoEmotionDatasetEntry>(previous, next);
+
+            return result;
+        }
     }
 }
