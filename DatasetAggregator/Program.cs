@@ -18,7 +18,7 @@ namespace DatasetAggregator
             string[] directories = Directory.GetDirectories(basePath);
 
             List<Dataset> datasets = new List<Dataset>();
-            ;
+            
             MergeDatasets(directories, datasets);
 
             string jsonDataset = JsonConvert.SerializeObject(datasets, Formatting.Indented);
