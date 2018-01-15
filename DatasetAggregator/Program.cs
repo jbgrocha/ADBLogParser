@@ -13,6 +13,17 @@ namespace DatasetAggregator
         static void Main(string[] args)
         {
             // BasePath
+
+            ADBLogEventsParser eventsParser = new ADBLogEventsParser("..\\..\\..\\Resources\\Raw\\05\\Strokes.txt");
+
+            SampleParser sampleParser = new SampleParser(eventsParser.Dataset);
+            
+            Console.WriteLine(Sample.Headers);
+
+            Console.WriteLine(sampleParser.Dataset.ToString());
+
+
+            /*
             string basePath = "..\\..\\..\\Resources\\Raw\\";
 
             string[] directories = Directory.GetDirectories(basePath);
@@ -24,6 +35,7 @@ namespace DatasetAggregator
             string jsonDataset = JsonConvert.SerializeObject(datasets, Formatting.Indented);
 
             Console.WriteLine(jsonDataset);
+            */
         }
 
         static void MergeDatasets(string[] directories, List<Dataset> datasets)
