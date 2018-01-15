@@ -9,7 +9,7 @@ namespace DatasetAggregator
     public class DatasetAggregator
     {
         // Touch Events
-        public ADBTouchEventsDataset TouchDataset;
+        public SampleDataset TouchDataset;
 
         // Emotion Dataset
         public VideoEmotionDataset EmotionDataset;
@@ -19,7 +19,7 @@ namespace DatasetAggregator
 
         public Dataset Dataset;
 
-        public DatasetAggregator(string datasetId, ADBTouchEventsDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
+        public DatasetAggregator(string datasetId, SampleDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
         {
             TouchDataset = touchEvents;
             EmotionDataset = emotionDataset;
@@ -32,7 +32,7 @@ namespace DatasetAggregator
 
         private void Agregate()
         {
-            foreach (ADBLogEvent touchEntry in TouchDataset.DataEntries)
+            foreach (Sample touchEntry in TouchDataset.DataEntries)
             {
                 //Emotion
                 Tuple<VideoEmotionDatasetEntry, VideoEmotionDatasetEntry> emotionPrevNext = EmotionDataset.GetPreviousNext(touchEntry.Timestamp);
@@ -42,7 +42,7 @@ namespace DatasetAggregator
 
 
                 // EDA
-                Tuple<EDADatasetEntry, EDADatasetEntry> edaPrevNext= EDADataset.GetPreviousNext(touchEntry.Timestamp);
+                Tuple<EDADatasetEntry, EDADatasetEntry> edaPrevNext = EDADataset.GetPreviousNext(touchEntry.Timestamp);
 
                 EDADatasetEntry previousEDA = edaPrevNext.Item1;
                 EDADatasetEntry nextEDA = edaPrevNext.Item2;

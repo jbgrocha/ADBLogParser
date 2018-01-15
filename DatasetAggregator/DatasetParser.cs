@@ -21,7 +21,7 @@ namespace DatasetAggregator
 
 
         // Touch Events
-        public ADBTouchEventsDataset TouchEvents;
+        public SampleDataset SampleDataset;
 
         // Emotion Dataset
         public VideoEmotionDataset EmotionDataset;
@@ -77,7 +77,9 @@ namespace DatasetAggregator
         private void ParseTouchEvents()
         {
             ADBLogEventsParser parser = new ADBLogEventsParser(TouchEventsFilepath);
-            TouchEvents = parser.Dataset;
+            SampleParser sampleParser = new SampleParser(parser.Dataset);
+
+            SampleDataset = sampleParser.Dataset;
         }
     }
 }

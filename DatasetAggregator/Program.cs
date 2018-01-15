@@ -12,8 +12,8 @@ namespace DatasetAggregator
     {
         static void Main(string[] args)
         {
-            // BasePath
 
+            /*
             ADBLogEventsParser eventsParser = new ADBLogEventsParser("..\\..\\..\\Resources\\Raw\\05\\Strokes.txt");
 
             SampleParser sampleParser = new SampleParser(eventsParser.Dataset);
@@ -21,9 +21,16 @@ namespace DatasetAggregator
             Console.WriteLine(Sample.Headers);
 
             Console.WriteLine(sampleParser.Dataset.ToString());
-
-
+            */
             /*
+            string directory = "..\\..\\..\\Resources\\Raw\\01";
+
+            Dataset aggregated = MergeDataset(directory);
+
+            Console.WriteLine(aggregated.ToString());
+            */
+            
+            // BasePath
             string basePath = "..\\..\\..\\Resources\\Raw\\";
 
             string[] directories = Directory.GetDirectories(basePath);
@@ -32,10 +39,15 @@ namespace DatasetAggregator
             
             MergeDatasets(directories, datasets);
 
-            string jsonDataset = JsonConvert.SerializeObject(datasets, Formatting.Indented);
+            string csv = ToCSV(datasets);
 
-            Console.WriteLine(jsonDataset);
-            */
+            System.IO.File.WriteAllText(@"dataset.csv", csv);
+
+            //Console.WriteLine(ToCSV(datasets));
+
+            //string jsonDataset = JsonConvert.SerializeObject(datasets, Formatting.Indented);
+
+            //Console.WriteLine(jsonDataset);
         }
 
         static void MergeDatasets(string[] directories, List<Dataset> datasets)
@@ -60,9 +72,21 @@ namespace DatasetAggregator
 
             DatasetParser parser = new DatasetParser(touchFilepath, emotionFilepath, edaFilepath);
 
-            DatasetAggregator aggregator = new DatasetAggregator(directory, parser.TouchEvents, parser.EmotionDataset, parser.EDADataset);
+            DatasetAggregator aggregator = new DatasetAggregator(directory, parser.SampleDataset, parser.EmotionDataset, parser.EDADataset);
 
             return aggregator.Dataset;
+        }
+
+        static string ToCSV(List<Dataset> datasets)
+        {
+            string result = Dataset.CSVHeaders + "\n";
+
+            foreach(Dataset dataset in datasets)
+            {
+                result += dataset.ToString();
+            }
+
+            return result;
         }
     }
 }

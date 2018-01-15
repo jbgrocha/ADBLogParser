@@ -12,6 +12,9 @@ namespace DatasetAggregator
         public List<DatasetEntry> Entries { get; set; }
         public string SessionId { get; set; }
 
+        public const string CSVHeaders = "Session"+ ";" + Sample.Headers + ";" + VideoEmotionDatasetEntry.PreviousHeaders + ";" + 
+            VideoEmotionDatasetEntry.NextHeaders + ";" + EDADatasetEntry.PreviousHeaders + ";" + EDADatasetEntry.NextHeaders;
+
         public Dataset(string id)
         {
             SessionId = id;

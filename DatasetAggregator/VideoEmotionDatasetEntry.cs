@@ -21,6 +21,11 @@ namespace DatasetAggregator
         public double Valence { get; set; }
         public double Arousal { get; set; }
 
+        public const string Headers = "Timestamp;Neutral;Happy;Sad;Angry;Surprised;Scared;Disgusted;Contempt;Valence;Arousal";
+        public const string PreviousHeaders = "Previous Emotion Timestamp;Neutral;Happy;Sad;Angry;Surprised;Scared;Disgusted;Contempt;Valence;Arousal";
+        public const string NextHeaders = "Next Emotion Timestamp;Neutral;Happy;Sad;Angry;Surprised;Scared;Disgusted;Contempt;Valence;Arousal";
+        public const string Null = ";;;;;;;;;;";
+
         public VideoEmotionDatasetEntry()
         {
             Timestamp = 0.0;

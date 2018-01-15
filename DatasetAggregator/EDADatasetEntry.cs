@@ -12,6 +12,11 @@ namespace DatasetAggregator
 
         public double EDA { get; set; }
 
+        public const string Headers = "Timestamp;EDA";
+        public const string PreviousHeaders = "Previous Timestamp;EDA";
+        public const string NextHeaders = "Next Timestamp;EDA";
+        public const string Null = ";";
+
         public EDADatasetEntry()
         {
             Timestamp = 0.0;

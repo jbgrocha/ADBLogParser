@@ -51,7 +51,6 @@
     <Compile Include="DatasetAggregator.cs" />
     <Compile Include="DatasetEntry.cs" />
     <Compile Include="ADBLogEventsParser.cs" />
-    <Compile Include="DatasetGenerator.cs" />
     <Compile Include="DatasetParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

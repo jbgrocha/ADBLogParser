@@ -2,7 +2,7 @@
 {
     public class DatasetEntry
     {
-        public ADBLogEvent TouchEvent { get; set; }
+        public Sample TouchSample { get; set; }
 
         public VideoEmotionDatasetEntry PreviousEmotion { get; set; }
         public VideoEmotionDatasetEntry NextEmotion { get; set; }
@@ -10,9 +10,9 @@
         public EDADatasetEntry PreviousEDA { get; set; }
         public EDADatasetEntry NextEDA { get; set; }
 
-        public DatasetEntry(ADBLogEvent touch, VideoEmotionDatasetEntry previousEmotion, VideoEmotionDatasetEntry nextEmotion, EDADatasetEntry previousEDA, EDADatasetEntry nextEDA )
+        public DatasetEntry(Sample touchSample, VideoEmotionDatasetEntry previousEmotion, VideoEmotionDatasetEntry nextEmotion, EDADatasetEntry previousEDA, EDADatasetEntry nextEDA )
         {
-            TouchEvent = touch;
+            TouchSample = touchSample;
 
             PreviousEmotion = previousEmotion;
             NextEmotion = nextEmotion;
@@ -27,28 +27,52 @@
         {
             string result = "";
 
-            result += TouchEvent.ToString();
+            result += TouchSample.ToString();
 
-            if(PreviousEmotion != null)
+            result += ";";
+
+            if (PreviousEmotion != null)
             {
                 result += PreviousEmotion.ToString();
             }
+            else
+            {
+                result += VideoEmotionDatasetEntry.Null;
+            }
+
+            result += ";";
 
             if(NextEmotion != null)
             {
                 result += NextEmotion.ToString();
             }
+            else
+            {
+                result += VideoEmotionDatasetEntry.Null;
+            }
 
-            if(PreviousEDA != null)
+            result += ";";
+
+            if (PreviousEDA != null)
             {
                 result += PreviousEDA.ToString();
             }
-            
-            if(NextEDA != null)
+            else
+            {
+                result += EDADatasetEntry.Null;
+            }
+
+            result += ";";
+
+            if (NextEDA != null)
             {
                 result += NextEDA.ToString();
             }
-            
+            else
+            {
+                result += EDADatasetEntry.Null;
+            }
+
             return result;
         }
     }
