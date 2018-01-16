@@ -23,11 +23,21 @@ namespace DatasetAggregator
             Console.WriteLine(sampleParser.Dataset.ToString());
             */
             /*
-            string directory = "..\\..\\..\\Resources\\Raw\\01";
+            string session = "17";
+
+            string directory = "..\\..\\..\\Resources\\Raw\\" + session;
+
+            string[] directories = { directory };
 
             Dataset aggregated = MergeDataset(directory);
 
-            Console.WriteLine(aggregated.ToString());
+            List<Dataset> datasets = new List<Dataset>();
+
+            MergeDatasets(directories, datasets);
+
+            string csv = ToCSV(datasets);
+
+            System.IO.File.WriteAllText(session + ".csv", csv);
             */
             
             // BasePath
@@ -42,7 +52,7 @@ namespace DatasetAggregator
             string csv = ToCSV(datasets);
 
             System.IO.File.WriteAllText(@"dataset.csv", csv);
-
+            
             //Console.WriteLine(ToCSV(datasets));
 
             //string jsonDataset = JsonConvert.SerializeObject(datasets, Formatting.Indented);
