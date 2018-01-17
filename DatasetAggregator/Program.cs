@@ -12,16 +12,6 @@ namespace DatasetAggregator
     {
         static void Main(string[] args)
         {
-
-            /*
-            ADBLogEventsParser eventsParser = new ADBLogEventsParser("..\\..\\..\\Resources\\Raw\\05\\Strokes.txt");
-
-            SampleParser sampleParser = new SampleParser(eventsParser.Dataset);
-            
-            Console.WriteLine(Sample.Headers);
-
-            Console.WriteLine(sampleParser.Dataset.ToString());
-            */
             /*
             string session = "17";
 
@@ -29,29 +19,15 @@ namespace DatasetAggregator
 
             string[] directories = { directory };
 
-            Dataset aggregated = MergeDataset(directory);
-
-            List<Dataset> datasets = new List<Dataset>();
-
-            MergeDatasets(directories, datasets);
-
-            string csv = ToCSV(datasets);
-
-            System.IO.File.WriteAllText(session + ".csv", csv);
+            GenerateMergedCSV(directories, session);
             */
-            
+
             // BasePath
             string basePath = "..\\..\\..\\Resources\\Raw\\";
 
             string[] directories = Directory.GetDirectories(basePath);
 
-            List<Dataset> datasets = new List<Dataset>();
-            
-            MergeDatasets(directories, datasets);
-
-            SaveCSV(datasets, "dataset");
-
-            //SaveJSON(datasets, "dataset");
+            GenerateCSVDataset(directories, "dataset");
         }
 
         static void MergeDatasets(string[] directories, List<Dataset> datasets)
@@ -93,18 +69,36 @@ namespace DatasetAggregator
             return result;
         }
 
-        static void SaveCSV(List<Dataset> datasets, string datasetFile)
+        static void SaveCSVDataset(List<Dataset> datasets, string datasetFile)
         {
             string csv = ToCSV(datasets);
 
             System.IO.File.WriteAllText(datasetFile + ".csv", csv);
         }
 
-        static void SaveJSON(List<Dataset> datasets, string datasetFile)
+        static void SaveJSONDataset(List<Dataset> datasets, string datasetFile)
         {
             string json = JsonConvert.SerializeObject(datasets, Formatting.Indented);
 
             System.IO.File.WriteAllText(datasetFile + ".json", datasetFile);
+        }
+
+        static void GenerateCSVDataset(string[] directories, string csvFile)
+        {
+            List<Dataset> datasets = new List<Dataset>();
+
+            MergeDatasets(directories, datasets);
+
+            SaveCSVDataset(datasets, csvFile);
+        }
+
+        static void GenerateJSONDataset(string[] directories, string jsonFile)
+        {
+            List<Dataset> datasets = new List<Dataset>();
+
+            MergeDatasets(directories, datasets);
+
+            SaveJSONDataset(datasets, jsonFile);
         }
     }
 }
