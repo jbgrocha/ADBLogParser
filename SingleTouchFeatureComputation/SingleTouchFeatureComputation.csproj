@@ -65,10 +65,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sessions\Sessions.csproj">
-      <Project>{33fd19ff-26ab-450a-8d11-a84985557143}</Project>
-      <Name>Sessions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SingleTouchSessionParser\SingleTouchSessionParser.csproj">
       <Project>{4f951595-ff51-4f43-9724-aa13a3c538cc}</Project>
       <Name>SingleTouchSessionParser</Name>
