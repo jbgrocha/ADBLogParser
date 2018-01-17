@@ -49,15 +49,9 @@ namespace DatasetAggregator
             
             MergeDatasets(directories, datasets);
 
-            string csv = ToCSV(datasets);
+            SaveCSV(datasets, "dataset");
 
-            System.IO.File.WriteAllText(@"dataset.csv", csv);
-            
-            //Console.WriteLine(ToCSV(datasets));
-
-            //string jsonDataset = JsonConvert.SerializeObject(datasets, Formatting.Indented);
-
-            //Console.WriteLine(jsonDataset);
+            //SaveJSON(datasets, "dataset");
         }
 
         static void MergeDatasets(string[] directories, List<Dataset> datasets)
@@ -97,6 +91,20 @@ namespace DatasetAggregator
             }
 
             return result;
+        }
+
+        static void SaveCSV(List<Dataset> datasets, string datasetFile)
+        {
+            string csv = ToCSV(datasets);
+
+            System.IO.File.WriteAllText(datasetFile + ".csv", csv);
+        }
+
+        static void SaveJSON(List<Dataset> datasets, string datasetFile)
+        {
+            string json = JsonConvert.SerializeObject(datasets, Formatting.Indented);
+
+            System.IO.File.WriteAllText(datasetFile + ".json", datasetFile);
         }
     }
 }
