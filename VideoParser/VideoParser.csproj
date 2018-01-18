@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>DatasetAggregator</RootNamespace>
-    <AssemblyName>DatasetAggregator</AssemblyName>
+    <ProjectGuid>{BACE283E-5BE4-4F64-9B0A-CFFDAA5D7D2B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VideoParser</RootNamespace>
+    <AssemblyName>VideoParser</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,32 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RawDataset.cs" />
-    <Compile Include="RawDatasetAggregator.cs" />
-    <Compile Include="RawDatasetEntry.cs" />
-    <Compile Include="RawDatasetParser.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sample.cs" />
-    <Compile Include="SampleDataset.cs" />
-    <Compile Include="SampleParser.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ADBParser\ADBParser.csproj">
-      <Project>{f56ca224-bd16-46a6-8ec3-ca191ba38596}</Project>
-      <Name>ADBParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EDAParser\EDAParser.csproj">
-      <Project>{c394f15d-59d7-4297-b0b1-aa3130a953a4}</Project>
-      <Name>EDAParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VideoParser\VideoParser.csproj">
-      <Project>{bace283e-5be4-4f64-9b0a-cffdaa5d7d2b}</Project>
-      <Name>VideoParser</Name>
-    </ProjectReference>
+    <Compile Include="VideoEmotionDataset.cs" />
+    <Compile Include="VideoEmotionDatasetEntry.cs" />
+    <Compile Include="VideoEmotionDatasetParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace DatasetAggregator
+namespace RawDatasetAggregator
 {
     class Program
     {
@@ -31,8 +31,8 @@ namespace DatasetAggregator
 
             string[] directories = Directory.GetDirectories(basePath);
 
-            //GenerateCSVDataset(directories, "dataset");
-            GenerateJSONDataset(directories, "dataset");
+            GenerateCSVDataset(directories, "dataset");
+            //GenerateJSONDataset(directories, "dataset");
         }
 
         static void MergeDatasets(string[] directories, List<RawDataset> datasets)

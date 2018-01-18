@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 
-namespace DatasetAggregator
+namespace ADBParser
 {
     public class ADBLogEventsParser
     {

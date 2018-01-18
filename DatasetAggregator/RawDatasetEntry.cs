@@ -1,4 +1,7 @@
-﻿namespace DatasetAggregator
+﻿using VideoParser;
+using EDAParser;
+
+namespace RawDatasetAggregator
 {
     public class RawDatasetEntry
     {

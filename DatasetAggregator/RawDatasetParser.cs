@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ADBParser;
+using VideoParser;
+using EDAParser;
 
-namespace DatasetAggregator
+namespace RawDatasetAggregator
 {
     public class RawDatasetParser
     {
