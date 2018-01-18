@@ -1,6 +1,6 @@
 ﻿namespace DatasetAggregator
 {
-    public class DatasetEntry
+    public class RawDatasetEntry
     {
         public Sample TouchSample { get; set; }
 
@@ -10,7 +10,7 @@
         public EDADatasetEntry PreviousEDA { get; set; }
         public EDADatasetEntry NextEDA { get; set; }
 
-        public DatasetEntry(Sample touchSample, VideoEmotionDatasetEntry previousEmotion, VideoEmotionDatasetEntry nextEmotion, EDADatasetEntry previousEDA, EDADatasetEntry nextEDA )
+        public RawDatasetEntry(Sample touchSample, VideoEmotionDatasetEntry previousEmotion, VideoEmotionDatasetEntry nextEmotion, EDADatasetEntry previousEDA, EDADatasetEntry nextEDA )
         {
             TouchSample = touchSample;
 

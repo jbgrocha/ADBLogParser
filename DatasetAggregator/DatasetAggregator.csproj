@@ -47,11 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADBLogEvent.cs" />
-    <Compile Include="Dataset.cs" />
-    <Compile Include="DatasetAggregator.cs" />
-    <Compile Include="DatasetEntry.cs" />
+    <Compile Include="RawDataset.cs" />
+    <Compile Include="RawDatasetAggregator.cs" />
+    <Compile Include="RawDatasetEntry.cs" />
     <Compile Include="ADBLogEventsParser.cs" />
-    <Compile Include="DatasetParser.cs" />
+    <Compile Include="RawDatasetParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ADBTouchEventsDataset.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatasetAggregator
 {
-    public class DatasetParser
+    public class RawDatasetParser
     {
         // Session
 
@@ -29,7 +29,7 @@ namespace DatasetAggregator
         // EDA Dataset
         public EDADataset EDADataset;
 
-        public DatasetParser(string touchEventsFilepath, string emotionDatasetFilepath , string eDADatasetFilepath)
+        public RawDatasetParser(string touchEventsFilepath, string emotionDatasetFilepath , string eDADatasetFilepath)
         {
             TouchEventsFilepath = touchEventsFilepath;
             EmotionDatasetFilepath = emotionDatasetFilepath;

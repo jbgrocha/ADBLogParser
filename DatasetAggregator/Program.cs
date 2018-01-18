@@ -31,19 +31,20 @@ namespace DatasetAggregator
 
             string[] directories = Directory.GetDirectories(basePath);
 
-            GenerateCSVDataset(directories, "dataset");
+            //GenerateCSVDataset(directories, "dataset");
+            GenerateJSONDataset(directories, "dataset");
         }
 
-        static void MergeDatasets(string[] directories, List<Dataset> datasets)
+        static void MergeDatasets(string[] directories, List<RawDataset> datasets)
         {
             foreach (string directory in directories)
             {
-                Dataset aggregated = MergeDataset(directory);
+                RawDataset aggregated = MergeDataset(directory);
                 datasets.Add(aggregated);
             }
         }
 
-        static Dataset MergeDataset(string directory)
+        static RawDataset MergeDataset(string directory)
         {
             // Touch Events
             string touchFilepath = directory + "\\Strokes.txt";
@@ -54,18 +55,18 @@ namespace DatasetAggregator
             // EDA Events
             string edaFilepath = directory + "\\EDA.csv";
 
-            DatasetParser parser = new DatasetParser(touchFilepath, emotionFilepath, edaFilepath);
+            RawDatasetParser parser = new RawDatasetParser(touchFilepath, emotionFilepath, edaFilepath);
 
-            DatasetAggregator aggregator = new DatasetAggregator(directory, parser.SampleDataset, parser.EmotionDataset, parser.EDADataset);
+            RawDatasetAggregator aggregator = new RawDatasetAggregator(directory, parser.SampleDataset, parser.EmotionDataset, parser.EDADataset);
 
             return aggregator.Dataset;
         }
 
-        static string ToCSV(List<Dataset> datasets)
+        static string ToCSV(List<RawDataset> datasets)
         {
-            string result = Dataset.CSVHeaders + "\n";
+            string result = RawDataset.CSVHeaders + "\n";
 
-            foreach(Dataset dataset in datasets)
+            foreach(RawDataset dataset in datasets)
             {
                 result += dataset.ToString();
             }
@@ -73,23 +74,23 @@ namespace DatasetAggregator
             return result;
         }
 
-        static void SaveCSVDataset(List<Dataset> datasets, string datasetFile)
+        static void SaveCSVDataset(List<RawDataset> datasets, string datasetFile)
         {
             string csv = ToCSV(datasets);
 
             System.IO.File.WriteAllText(datasetFile + ".csv", csv);
         }
 
-        static void SaveJSONDataset(List<Dataset> datasets, string datasetFile)
+        static void SaveJSONDataset(List<RawDataset> datasets, string datasetFile)
         {
             string json = JsonConvert.SerializeObject(datasets, Formatting.Indented);
 
-            System.IO.File.WriteAllText(datasetFile + ".json", datasetFile);
+            System.IO.File.WriteAllText(datasetFile + ".json", json);
         }
 
         static void GenerateCSVDataset(string[] directories, string csvFile)
         {
-            List<Dataset> datasets = new List<Dataset>();
+            List<RawDataset> datasets = new List<RawDataset>();
 
             MergeDatasets(directories, datasets);
 
@@ -98,7 +99,7 @@ namespace DatasetAggregator
 
         static void GenerateJSONDataset(string[] directories, string jsonFile)
         {
-            List<Dataset> datasets = new List<Dataset>();
+            List<RawDataset> datasets = new List<RawDataset>();
 
             MergeDatasets(directories, datasets);
 

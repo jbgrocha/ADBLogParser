@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatasetAggregator
 {
-    public class DatasetAggregator
+    public class RawDatasetAggregator
     {
         // Touch Events
         public SampleDataset TouchDataset;
@@ -17,15 +17,15 @@ namespace DatasetAggregator
         // EDA Dataset
         public EDADataset EDADataset;
 
-        public Dataset Dataset;
+        public RawDataset Dataset;
 
-        public DatasetAggregator(string datasetId, SampleDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
+        public RawDatasetAggregator(string datasetId, SampleDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
         {
             TouchDataset = touchEvents;
             EmotionDataset = emotionDataset;
             EDADataset = edaDataset;
 
-            Dataset = new Dataset(datasetId);
+            Dataset = new RawDataset(datasetId);
 
             Agregate();
         }
@@ -47,7 +47,7 @@ namespace DatasetAggregator
                 EDADatasetEntry previousEDA = edaPrevNext.Item1;
                 EDADatasetEntry nextEDA = edaPrevNext.Item2;
 
-                DatasetEntry entry = new DatasetEntry(touchEntry, previousEmotion, nextEmotion, previousEDA, nextEDA);
+                RawDatasetEntry entry = new RawDatasetEntry(touchEntry, previousEmotion, nextEmotion, previousEDA, nextEDA);
 
                 Dataset.Entries.Add(entry);
             }

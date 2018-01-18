@@ -7,25 +7,25 @@ using Newtonsoft.Json;
 
 namespace DatasetAggregator
 {
-    public class Dataset
+    public class RawDataset
     {
-        public List<DatasetEntry> Entries { get; set; }
+        public List<RawDatasetEntry> Entries { get; set; }
         public string SessionId { get; set; }
 
         public const string CSVHeaders = "Session"+ ";" + Sample.Headers + ";" + VideoEmotionDatasetEntry.PreviousHeaders + ";" + 
             VideoEmotionDatasetEntry.NextHeaders + ";" + EDADatasetEntry.PreviousHeaders + ";" + EDADatasetEntry.NextHeaders;
 
-        public Dataset(string id)
+        public RawDataset(string id)
         {
             SessionId = id;
-            Entries = new List<DatasetEntry>();
+            Entries = new List<RawDatasetEntry>();
         }
 
         public override string ToString()
         {
             string result = "";
 
-            foreach(DatasetEntry entry in Entries)
+            foreach(RawDatasetEntry entry in Entries)
             {
                 result += SessionId + ";" + entry.ToString() + "\n";
             }
