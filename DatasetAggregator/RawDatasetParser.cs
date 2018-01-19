@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ADBParser;
 using VideoParser;
 using EDAParser;
+using SampleParser;
 
 namespace RawDatasetAggregator
 {
@@ -80,7 +81,7 @@ namespace RawDatasetAggregator
         private void ParseTouchEvents()
         {
             ADBLogEventsParser parser = new ADBLogEventsParser(TouchEventsFilepath);
-            SampleParser sampleParser = new SampleParser(parser.Dataset);
+            SampleDatasetParser sampleParser = new SampleDatasetParser(parser.Dataset);
 
             SampleDataset = sampleParser.Dataset;
         }

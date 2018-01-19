@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using EDAParser;
 using VideoParser;
+using SampleParser;
 
 namespace RawDatasetAggregator
 {

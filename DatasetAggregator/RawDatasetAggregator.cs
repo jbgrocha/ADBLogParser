@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EDAParser;
 using VideoParser;
+using SampleParser;
 
 namespace RawDatasetAggregator
 {

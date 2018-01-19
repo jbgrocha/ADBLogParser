@@ -5,20 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using ADBParser;
 
-namespace RawDatasetAggregator
+namespace SampleParser
 {
-    public class SampleParser
+    public class SampleDatasetParser
     {
         public ADBTouchEventsDataset TouchEvents { get; set; }
         public SampleDataset Dataset { get; set; }
 
-        public SampleParser(ADBTouchEventsDataset touchEvents)
+        public SampleDatasetParser(ADBTouchEventsDataset touchEvents)
         {
             TouchEvents = touchEvents;
             Dataset = new SampleDataset();
             Parse();
         }
 
+        // Parse needs fixing, SYN_MT_REPORT vs SYN_REPORT
+        // think the only moment SYN_REPORT appears by itself is after a touch up (end of stroke)
         public void Parse()
         {
             Sample currentSample = new Sample();

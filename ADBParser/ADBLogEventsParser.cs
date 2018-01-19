@@ -16,6 +16,8 @@ namespace ADBParser
 
         public ADBTouchEventsDataset Dataset { get; set; }
 
+        //change code so that normalization and millisecond conversion can be made optional 
+        //this would help with debugging
         public ADBLogEventsParser(string filePath)
         {
             FilePath = filePath;

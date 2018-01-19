@@ -113,5 +113,25 @@ namespace ADBParser
 
             return result;
         }
+
+        public string ValidateSync()
+        {
+            string result = "";
+
+            ADBLogEvent previous = null;
+
+            foreach(ADBLogEvent entry in DataEntries)
+            {
+                if((previous != null) && (previous.EventType == "SYN_MT_REPORT") && (entry.EventType != "SYN_REPORT"))
+                {
+                    result += previous.ToString() + " -> " + entry.ToString() + "\n";
+                }
+
+                previous = entry;
+
+            }
+
+            return result;
+        }
     }
 }

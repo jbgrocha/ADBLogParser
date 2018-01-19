@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F56CA224-BD16-46A6-8EC3-CA191BA38596}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{2710DD90-5547-4B6D-AE55-43FB3F3DD51D}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ADBParser</RootNamespace>
-    <AssemblyName>ADBParser</AssemblyName>
+    <RootNamespace>SampleParser</RootNamespace>
+    <AssemblyName>SampleParser</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,9 +29,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,11 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADBLogEvent.cs" />
-    <Compile Include="ADBLogEventsParser.cs" />
-    <Compile Include="ADBTouchEventsDataset.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sample.cs" />
+    <Compile Include="SampleDataset.cs" />
+    <Compile Include="SampleDatasetParser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ADBParser\ADBParser.csproj">
+      <Project>{f56ca224-bd16-46a6-8ec3-ca191ba38596}</Project>
+      <Name>ADBParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,6 @@
 ﻿using VideoParser;
 using EDAParser;
+using SampleParser;
 
 namespace RawDatasetAggregator
 {
