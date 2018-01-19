@@ -27,7 +27,12 @@ namespace SampleParser
 
             foreach(ADBLogEvent currentEvent in TouchEvents.DataEntries)
             {
-                if (currentEvent.EventType == "SYN_REPORT")
+                if ((currentEvent.EventType == "SYN_REPORT") && (currentSample.ButtonTouch == ADBLogEvent.TOUCH_UP))
+                {
+                    Dataset.DataEntries.Add(currentSample);
+                    currentSample = new Sample();
+                }
+                else if(currentEvent.EventType == "SYN_MT_REPORT")
                 {
                     Dataset.DataEntries.Add(currentSample);
                     currentSample = new Sample();
