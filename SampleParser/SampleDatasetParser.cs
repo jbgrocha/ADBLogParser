@@ -25,10 +25,12 @@ namespace SampleParser
         {
             Sample currentSample = new Sample();
 
+            ADBLogEvent previousEvent = null;
+
             foreach(ADBLogEvent currentEvent in TouchEvents.DataEntries)
-            {   
+            {
                 // This is the only normal situation where we have a SYN_REPORT without a SYN_MT_REPORT before it
-                if ((currentEvent.EventType == "SYN_REPORT") && (currentSample.ButtonTouch == ADBLogEvent.TOUCH_UP))
+                if ((currentEvent.EventType == "SYN_REPORT") && (previousEvent.EventType != "SYN_MT_REPORT"))
                 {
                     Dataset.DataEntries.Add(currentSample);
                     currentSample = new Sample();
@@ -42,6 +44,8 @@ namespace SampleParser
                 {
                     ParseFeature(currentEvent, currentSample);
                 }
+
+                previousEvent = currentEvent;
             }
         }
 
