@@ -35,33 +35,6 @@ namespace RawDatasetGenerator
             //GenerateJSONDataset(directories, "dataset");
         }
 
-        static void MergeDatasets(string[] directories, List<RawDataset> datasets)
-        {
-            foreach (string directory in directories)
-            {
-                RawDataset aggregated = MergeDataset(directory);
-                datasets.Add(aggregated);
-            }
-        }
-
-        static RawDataset MergeDataset(string directory)
-        {
-            // Touch Events
-            string touchFilepath = directory + "\\Strokes.txt";
-
-            // Emotion Events
-            string emotionFilepath = directory + "\\Video.csv";
-
-            // EDA Events
-            string edaFilepath = directory + "\\EDA.csv";
-
-            RawDatasetParser parser = new RawDatasetParser(touchFilepath, emotionFilepath, edaFilepath);
-
-            RawDatasetGenerator aggregator = new RawDatasetGenerator(directory, parser.SampleDataset, parser.EmotionDataset, parser.EDADataset);
-
-            return aggregator.Dataset;
-        }
-
         static string ToCSV(List<RawDataset> datasets)
         {
             string result = RawDataset.CSVHeaders + "\n";
@@ -100,6 +73,33 @@ namespace RawDatasetGenerator
             List<RawDataset> datasets = GenerateDatasets(directories);
 
             SaveJSONDataset(datasets, jsonFile);
+        }
+
+        static RawDataset MergeDataset(string directory)
+        {
+            // Touch Events
+            string touchFilepath = directory + "\\Strokes.txt";
+
+            // Emotion Events
+            string emotionFilepath = directory + "\\Video.csv";
+
+            // EDA Events
+            string edaFilepath = directory + "\\EDA.csv";
+
+            RawDatasetParser parser = new RawDatasetParser(touchFilepath, emotionFilepath, edaFilepath);
+
+            RawDatasetGenerator aggregator = new RawDatasetGenerator(directory, parser.SampleDataset, parser.EmotionDataset, parser.EDADataset);
+
+            return aggregator.Dataset;
+        }
+
+        static void MergeDatasets(string[] directories, List<RawDataset> datasets)
+        {
+            foreach (string directory in directories)
+            {
+                RawDataset aggregated = MergeDataset(directory);
+                datasets.Add(aggregated);
+            }
         }
 
         static List<RawDataset> GenerateDatasets(string[] directories)
