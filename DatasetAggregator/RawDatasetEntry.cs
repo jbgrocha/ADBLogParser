@@ -2,7 +2,7 @@
 using EDAParser;
 using SampleParser;
 
-namespace RawDatasetAggregator
+namespace RawDatasetGenerator
 {
     public class RawDatasetEntry
     {

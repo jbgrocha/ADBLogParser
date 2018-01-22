@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RawDataset.cs" />
-    <Compile Include="RawDatasetAggregator.cs" />
+    <Compile Include="RawDatasetGenerator.cs" />
     <Compile Include="RawDatasetEntry.cs" />
     <Compile Include="RawDatasetParser.cs" />
     <Compile Include="Program.cs" />

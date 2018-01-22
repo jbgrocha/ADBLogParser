@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawDatasetAggregator", "DatasetAggregator\RawDatasetAggregator.csproj", "{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawDatasetGenerator", "DatasetAggregator\RawDatasetGenerator.csproj", "{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F56CA224-BD16-46A6-8EC3-CA191BA38596} = {F56CA224-BD16-46A6-8EC3-CA191BA38596}
 		{BACE283E-5BE4-4F64-9B0A-CFFDAA5D7D2B} = {BACE283E-5BE4-4F64-9B0A-CFFDAA5D7D2B}

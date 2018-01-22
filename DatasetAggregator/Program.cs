@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace RawDatasetAggregator
+namespace RawDatasetGenerator
 {
     class Program
     {
@@ -57,7 +57,7 @@ namespace RawDatasetAggregator
 
             RawDatasetParser parser = new RawDatasetParser(touchFilepath, emotionFilepath, edaFilepath);
 
-            RawDatasetAggregator aggregator = new RawDatasetAggregator(directory, parser.SampleDataset, parser.EmotionDataset, parser.EDADataset);
+            RawDatasetGenerator aggregator = new RawDatasetGenerator(directory, parser.SampleDataset, parser.EmotionDataset, parser.EDADataset);
 
             return aggregator.Dataset;
         }
@@ -90,20 +90,25 @@ namespace RawDatasetAggregator
 
         static void GenerateCSVDataset(string[] directories, string csvFile)
         {
-            List<RawDataset> datasets = new List<RawDataset>();
-
-            MergeDatasets(directories, datasets);
+            List<RawDataset> datasets = GenerateDatasets(directories);
 
             SaveCSVDataset(datasets, csvFile);
         }
 
         static void GenerateJSONDataset(string[] directories, string jsonFile)
         {
+            List<RawDataset> datasets = GenerateDatasets(directories);
+
+            SaveJSONDataset(datasets, jsonFile);
+        }
+
+        static List<RawDataset> GenerateDatasets(string[] directories)
+        {
             List<RawDataset> datasets = new List<RawDataset>();
 
             MergeDatasets(directories, datasets);
 
-            SaveJSONDataset(datasets, jsonFile);
+            return datasets;
         }
     }
 }

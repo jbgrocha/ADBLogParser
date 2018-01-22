@@ -7,9 +7,9 @@ using EDAParser;
 using VideoParser;
 using SampleParser;
 
-namespace RawDatasetAggregator
+namespace RawDatasetGenerator
 {
-    public class RawDatasetAggregator
+    public class RawDatasetGenerator
     {
         // Touch Events
         public SampleDataset TouchDataset;
@@ -22,7 +22,7 @@ namespace RawDatasetAggregator
 
         public RawDataset Dataset;
 
-        public RawDatasetAggregator(string datasetId, SampleDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
+        public RawDatasetGenerator(string datasetId, SampleDataset touchEvents, VideoEmotionDataset emotionDataset, EDADataset edaDataset)
         {
             TouchDataset = touchEvents;
             EmotionDataset = emotionDataset;

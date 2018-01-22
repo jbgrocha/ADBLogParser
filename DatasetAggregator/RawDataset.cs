@@ -8,7 +8,7 @@ using EDAParser;
 using VideoParser;
 using SampleParser;
 
-namespace RawDatasetAggregator
+namespace RawDatasetGenerator
 {
     public class RawDataset
     {
