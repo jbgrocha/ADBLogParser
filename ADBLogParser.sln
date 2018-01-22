@@ -3,14 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawDatasetGenerator", "DatasetAggregator\RawDatasetGenerator.csproj", "{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F56CA224-BD16-46A6-8EC3-CA191BA38596} = {F56CA224-BD16-46A6-8EC3-CA191BA38596}
-		{BACE283E-5BE4-4F64-9B0A-CFFDAA5D7D2B} = {BACE283E-5BE4-4F64-9B0A-CFFDAA5D7D2B}
-		{C394F15D-59D7-4297-B0B1-AA3130A953A4} = {C394F15D-59D7-4297-B0B1-AA3130A953A4}
-		{2710DD90-5547-4B6D-AE55-43FB3F3DD51D} = {2710DD90-5547-4B6D-AE55-43FB3F3DD51D}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDAParser", "EDAParser\EDAParser.csproj", "{C394F15D-59D7-4297-B0B1-AA3130A953A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoParser", "VideoParser\VideoParser.csproj", "{BACE283E-5BE4-4F64-9B0A-CFFDAA5D7D2B}"
@@ -22,16 +14,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleParser", "SampleParse
 		{F56CA224-BD16-46A6-8EC3-CA191BA38596} = {F56CA224-BD16-46A6-8EC3-CA191BA38596}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawDatasetGenerator", "RawDatasetGenerator\RawDatasetGenerator.csproj", "{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C394F15D-59D7-4297-B0B1-AA3130A953A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C394F15D-59D7-4297-B0B1-AA3130A953A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C394F15D-59D7-4297-B0B1-AA3130A953A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,6 +38,10 @@ Global
 		{2710DD90-5547-4B6D-AE55-43FB3F3DD51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2710DD90-5547-4B6D-AE55-43FB3F3DD51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2710DD90-5547-4B6D-AE55-43FB3F3DD51D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
