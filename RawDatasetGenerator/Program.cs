@@ -27,12 +27,12 @@ namespace RawDatasetGenerator
             */
 
             // BasePath
-            string basePath = "..\\..\\..\\Resources\\Raw\\";
+            string basePath = "..\\..\\..\\Resources\\SingleTouch\\";
 
             string[] directories = Directory.GetDirectories(basePath);
 
-            GenerateCSVDataset(directories, "dataset");
-            //GenerateJSONDataset(directories, "dataset");
+            GenerateCSVDataset(directories, "SingleTouch-Dataset");
+            //GenerateJSONDataset(directories, "SingleTouch-Dataset");
         }
 
         static string ToCSV(List<RawDataset> datasets)
