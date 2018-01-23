@@ -10,6 +10,11 @@ namespace StrokeDatasetParser
     {
         static void Main(string[] args)
         {
+
+            // read dataset - json List<RawDatasets>
+            // create StrokeParser, parses automatically
+            // label dataset
+            // add features to dataset
         }
     }
 }

@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleParser", "SampleParse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawDatasetGenerator", "RawDatasetGenerator\RawDatasetGenerator.csproj", "{A39E3110-915B-4534-B4A9-4FC2FA1B4B30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrokeDatasetParser", "StrokeDatasetParser\StrokeDatasetParser.csproj", "{580B1871-4604-47B3-97ED-59469987883D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrokeDatasetGenerator", "StrokeDatasetParser\StrokeDatasetGenerator.csproj", "{580B1871-4604-47B3-97ED-59469987883D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
