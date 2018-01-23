@@ -36,14 +36,12 @@ namespace StrokeDatasetParser
             {
                 if(entry.TouchSample.ButtonTouch == Sample.TOUCH_DOWN)
                 {
-                    // start stroke
                     currentStroke = new Stroke();
 
                     currentStroke.RawDatasetEntries.Add(entry);
                 }
                 else if(entry.TouchSample.ButtonTouch == Sample.TOUCH_UP)
                 {
-                    // end stroke
                     currentStroke.RawDatasetEntries.Add(entry);
 
                     Strokes.Add(currentStroke);
@@ -52,7 +50,6 @@ namespace StrokeDatasetParser
                 }
                 else
                 {
-                    // add sample
                     currentStroke.RawDatasetEntries.Add(entry);
                 }
             }
