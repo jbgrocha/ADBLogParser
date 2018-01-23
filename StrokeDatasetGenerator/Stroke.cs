@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StrokeDatasetParser
+namespace StrokeDatasetGenerator
 {
     public class Stroke
     {
