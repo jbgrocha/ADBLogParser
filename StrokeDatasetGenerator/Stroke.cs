@@ -37,7 +37,7 @@ namespace StrokeDatasetGenerator
 
             result += FeaturesToString();
 
-            result += "Labels: " + EmotionsToString() + "EDA " + EDA.ToString() + "Emotion " + Emotion.ToString();
+            result += " Emotions: " + EmotionsToString() + " EDA: " + EDA.ToString() + " Emotion: " + Emotion + ";";
 
             return result;
         }
@@ -50,6 +50,8 @@ namespace StrokeDatasetGenerator
             {
                 result += emotion.Key + " " + emotion.Value + "\t";
             }
+
+            result += ";";
 
             return result;
         }

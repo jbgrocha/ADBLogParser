@@ -31,8 +31,8 @@ namespace RawDatasetGenerator
 
             string[] directories = Directory.GetDirectories(basePath);
 
-            GenerateCSVDataset(directories, "SingleTouch-Dataset");
-            //GenerateJSONDataset(directories, "SingleTouch-Dataset");
+            //GenerateCSVDataset(directories, "SingleTouch");
+            GenerateJSONDataset(directories, "SingleTouch");
         }
 
         static string ToCSV(List<RawDataset> datasets)
