@@ -1,8 +1,11 @@
-﻿using System;
+﻿using EDAParser;
+using SampleParser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VideoParser;
 
 namespace StrokeDatasetGenerator
 {
@@ -12,6 +15,7 @@ namespace StrokeDatasetGenerator
         {
             foreach (Stroke stroke in strokes)
             {
+                /*
                 Neutral(stroke);
                 Happy(stroke);
                 Sad(stroke);
@@ -25,7 +29,7 @@ namespace StrokeDatasetGenerator
 
                 Valence(stroke);
                 Arousal(stroke);
-
+                */
                 EDA(stroke);
             }
         }
@@ -40,165 +44,132 @@ namespace StrokeDatasetGenerator
 
         private static void EDA(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEDA.EDA;
-            double? next = stroke.RawDatasetEntries.Last().NextEDA.EDA;
+            EDADatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEDA;
+            EDADatasetEntry next = stroke.RawDatasetEntries.Last().NextEDA;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEDA.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEDA.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.EDA, next.EDA, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.EDA = result;
         }
 
         private static void Neutral(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Neutral;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Neutral;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Neutral, next.Neutral, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Neutral", result);
         }
 
         private static void Happy(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Happy;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Happy;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Happy, next.Happy, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Happy", result);
         }
 
         private static void Sad(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Sad;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Sad;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Sad, next.Sad, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Sad", result);
         }
 
         private static void Angry(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Angry;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Angry;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Angry, next.Angry, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Angry", result);
         }
 
         private static void Surprised(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Surprised;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Surprised;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Surprised, next.Surprised, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Surprised", result);
         }
 
         private static void Scared(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Scared;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Scared;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Scared, next.Scared, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Scared", result);
         }
 
         private static void Disgusted(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Disgusted;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Disgusted;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Disgusted, next.Disgusted, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Disgusted", result);
         }
 
         private static void Contempt(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Contempt;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Contempt;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Contempt, next.Contempt, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Contempt", result);
         }
 
         private static void Valence(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Valence;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Valence;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Valence, next.Valence, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Valence", result);
         }
 
         private static void Arousal(Stroke stroke)
         {
-            double? start = stroke.RawDatasetEntries.Last().PreviousEmotion.Arousal;
-            double? next = stroke.RawDatasetEntries.Last().NextEmotion.Arousal;
+            VideoEmotionDatasetEntry previous = stroke.RawDatasetEntries.Last().PreviousEmotion;
+            VideoEmotionDatasetEntry next = stroke.RawDatasetEntries.Last().NextEmotion;
 
-            double? startTime = stroke.RawDatasetEntries.Last().PreviousEmotion.Timestamp;
-            double? nextTime = stroke.RawDatasetEntries.Last().NextEmotion.Timestamp;
+            Sample touch = stroke.RawDatasetEntries.Last().TouchSample;
 
-            double endTime = stroke.RawDatasetEntries.Last().TouchSample.Timestamp;
-
-            double? result = Interpolate(start, next, startTime, nextTime, endTime);
+            double? result = Interpolate(previous.Arousal, next.Arousal, previous.Timestamp, next.Timestamp, touch.Timestamp);
 
             stroke.Emotions.Add("Arousal", result);
         }
