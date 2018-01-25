@@ -25,7 +25,7 @@ namespace StrokeDatasetGenerator
                 Disgusted(stroke);
                 Contempt(stroke);
 
-                //Emotion(stroke);
+                Emotion(stroke);
 
                 Valence(stroke);
                 Arousal(stroke);
@@ -36,10 +36,21 @@ namespace StrokeDatasetGenerator
 
         private static void Emotion(Stroke stroke)
         {
+            //stroke.Emotion = stroke.Emotions.Max().Key;
 
-            KeyValuePair<string,double?>  result = stroke.Emotions.Max();
+            string result = "";
+            double currentMax = 0.0;
 
-            stroke.Emotion = result.Key;
+            foreach ( KeyValuePair<string, double?> kvp in stroke.Emotions)
+            {
+                if((kvp.Value != null) && (kvp.Value >= currentMax))
+                {
+                    result = kvp.Key;
+                    currentMax = (double) kvp.Value;
+                }
+            }
+
+            stroke.Emotion = result;
         }
 
         private static void EDA(Stroke stroke)
