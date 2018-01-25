@@ -45,9 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseFeatures.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stroke.cs" />
+    <Compile Include="StrokeFeatureAdder.cs" />
     <Compile Include="StrokeLabeller.cs" />
     <Compile Include="StrokeParser.cs" />
   </ItemGroup>

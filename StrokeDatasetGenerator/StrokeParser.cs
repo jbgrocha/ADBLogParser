@@ -42,7 +42,8 @@ namespace StrokeDatasetGenerator
                 }
                 else if(entry.TouchSample.ButtonTouch == Sample.TOUCH_UP)
                 {
-                    currentStroke.RawDatasetEntries.Add(entry);
+                    // Last entry has no actual features since it is TOUCH_UP
+                    //currentStroke.RawDatasetEntries.Add(entry);
 
                     Strokes.Add(currentStroke);
 
