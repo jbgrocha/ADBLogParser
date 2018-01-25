@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -47,20 +48,22 @@ namespace VideoParser
             // "correct implementation" needs to validate all entries in splitLines, but we can just assume this simplifcation
             if ((splitLine[1] != "FIND_FAILED") && (splitLine[1] != "FIT_FAILED"))
             {
+                CultureInfo culture = new CultureInfo("pt-PT", false);
+
                 VideoEmotionDatasetEntry datasetEntry = new VideoEmotionDatasetEntry
                 {
                     Timestamp = (lineNumber - 1) * VideoEmotionDataset.SamplingRate,
 
-                    Neutral = double.Parse(splitLine.ElementAt(1)),
-                    Happy = double.Parse(splitLine.ElementAt(2)),
-                    Sad = double.Parse(splitLine.ElementAt(3)),
-                    Angry = double.Parse(splitLine.ElementAt(4)),
-                    Surprised = double.Parse(splitLine.ElementAt(5)),
-                    Scared = double.Parse(splitLine.ElementAt(6)),
-                    Disgusted = double.Parse(splitLine.ElementAt(7)),
-                    Contempt = double.Parse(splitLine.ElementAt(8)),
-                    Valence = double.Parse(splitLine.ElementAt(9)),
-                    Arousal = double.Parse(splitLine.ElementAt(10))
+                    Neutral = double.Parse(splitLine.ElementAt(1), culture.NumberFormat),
+                    Happy = double.Parse(splitLine.ElementAt(2), culture.NumberFormat),
+                    Sad = double.Parse(splitLine.ElementAt(3), culture.NumberFormat),
+                    Angry = double.Parse(splitLine.ElementAt(4), culture.NumberFormat),
+                    Surprised = double.Parse(splitLine.ElementAt(5), culture.NumberFormat),
+                    Scared = double.Parse(splitLine.ElementAt(6), culture.NumberFormat),
+                    Disgusted = double.Parse(splitLine.ElementAt(7), culture.NumberFormat),
+                    Contempt = double.Parse(splitLine.ElementAt(8), culture.NumberFormat),
+                    Valence = double.Parse(splitLine.ElementAt(9), culture.NumberFormat),
+                    Arousal = double.Parse(splitLine.ElementAt(10), culture.NumberFormat)
                 };
 
                 Dataset.DataEntries.Add(datasetEntry);
