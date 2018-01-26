@@ -20,6 +20,8 @@ namespace StrokeDatasetGenerator
 
             StrokeLabeller.Label(parser.Strokes);
 
+            StrokeFeatureAdder.AddFeatures(parser.Strokes);
+
             foreach (Stroke stroke in parser.Strokes)
             {
                 Console.WriteLine(stroke);

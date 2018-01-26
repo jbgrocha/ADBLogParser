@@ -60,6 +60,11 @@ namespace StrokeDatasetGenerator
         {
             string result = "Features: ";
 
+            foreach (KeyValuePair<string,double?> kvp in Features)
+            {
+                result += kvp.Key + ": " + kvp.Value + " ";
+            }
+
             result += ";";
 
             return result;
