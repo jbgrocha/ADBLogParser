@@ -12,9 +12,11 @@ namespace StrokeDatasetGenerator
         public List<double> Timestamp { get; set; }
 
         public List<double> X { get; set; }
+
         public List<double> Y { get; set; }
 
         public List<double> TouchMajor { get; set; }
+
         public List<double> WidthMajor { get; set; }
 
         public Dictionary<string, double?> Features { get; set; }
@@ -46,12 +48,19 @@ namespace StrokeDatasetGenerator
 
         public void ComputeFeatures()
         {
+            List<double> diffX = Diff(X);
+
+            List<double> diffY = Diff(Y);
+
             // Article base features
             // Stroke length
-            // sum of sqrt(diff_x^2 + diff_y^2)
+            double strokeLength = Pythagorean(diffX, diffY);
+            Features.Add("length", strokeLength);
 
             // Stroke speed -> Avg
             // length / (last touch features time - first touch features time)
+            double speedMean = strokeLength / (Timestamp.Last() - Timestamp.First());
+            Features.Add("mean speed", speedMean);
 
             // Directness index (distance between start and end -> ignores path) -> Avg
             double directness = Distance(X.First(), X.Last(), Y.First(), Y.Last());
@@ -81,6 +90,34 @@ namespace StrokeDatasetGenerator
             double result = 0.0;
 
             result = Math.Sqrt(x * x + y * y);
+
+            return result;
+        }
+
+        // aux diff
+        private List<double> Diff(List<double> doubles)
+        {
+            List<double> result = new List<double>();
+
+            for(int i = 0; i < doubles.Count - 1; i++)
+            {
+                double difference = doubles.ElementAt(i + 1) - doubles.ElementAt(i);
+
+                result.Add(difference);
+            }
+
+            return result;
+        }
+
+        // aux
+        private double Pythagorean(List<double> x, List<double> y)
+        {
+            double result = 0.0;
+
+            for (int i = 0; (i < x.Count) && (i < y.Count); i++)
+            {
+                result += Pythagorean(x.ElementAt(i), y.ElementAt(i));
+            }
 
             return result;
         }
