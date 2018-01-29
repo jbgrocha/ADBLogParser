@@ -10,6 +10,7 @@ using Accord.MachineLearning;
 using Accord.MachineLearning.DecisionTrees;
 using Accord.Math.Optimization.Losses;
 using Accord.Statistics.Analysis;
+using Accord.MachineLearning.DecisionTrees.Learning;
 
 namespace StrokeDatasetGenerator
 {
@@ -138,6 +139,7 @@ namespace StrokeDatasetGenerator
             // Ensure we have reproducible results
             Accord.Math.Random.Generator.Seed = 0;
 
+            // random forest
             var cv = CrossValidation.Create(
 
                 k: 10, // We will be using 10-fold cross validation
@@ -159,6 +161,32 @@ namespace StrokeDatasetGenerator
                 // that will be used in cross-validation. 
                 x: _features, y: _classificationLabel
             );
+
+
+            // decision tree c45
+            //var cv = CrossValidation.Create(
+
+            //    k: 10, // We will be using 10-fold cross validation
+
+            //    learner: (p) => new C45Learning() // here we create the learning algorithm
+            //    {
+            //        Join = 2,
+            //        MaxHeight = 5
+            //    },
+
+            //    // Now we have to specify how the tree performance should be measured:
+            //    loss: (actual, expected, p) => new ZeroOneLoss(expected).Loss(actual),
+
+            //    // This function can be used to perform any special
+            //    // operations before the actual learning is done, but
+            //    // here we will just leave it as simple as it can be:
+            //    fit: (teacher, x, y, w) => teacher.Learn(x, y, w),
+
+            //    // Finally, we have to pass the input and output data
+            //    // that will be used in cross-validation. 
+            //    x: _features, y: _classificationLabel
+            //);
+
 
             // After the cross-validation object has been created,
             // we can call its .Learn method with the input and 
