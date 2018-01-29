@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Accord.MachineLearning;
 using Accord.MachineLearning.DecisionTrees;
 using Accord.Math.Optimization.Losses;
+using Accord.Statistics.Analysis;
 
 namespace StrokeDatasetGenerator
 {
@@ -53,26 +55,26 @@ namespace StrokeDatasetGenerator
 
             foreach(Stroke stroke in parser.Strokes)
             {
-                classificationLabel.Add( labels[ stroke.Emotion ] );
-                //Console.WriteLine(stroke.Emotion);
-                
-                // NOTE: Strokes that are not labeled with an emotion should probably be skipped
-
-                List<double> strokeFeatures = new List<double>();
-
-                // In every stroke the features were added in order so no need to worry too much about this
-                // There should be no null features
-                // The features that were previously added are (in order) : length, mean speed, directness, mean contact area
-                // this means that there is always the same features for every stroke
-                // TODO : fix features in the feature computation, don't know why it is a double? when it starts out as a simple double
-
-                foreach (KeyValuePair<string, double?> feature in stroke.Features)
+                // NOTE: Strokes that are not labeled with an emotion are skipped
+                if ((stroke.Emotion != null) || (stroke.Emotion != ""))
                 {
-                    strokeFeatures.Add( (double) feature.Value);
+                    classificationLabel.Add(labels[stroke.Emotion]);
+
+                    List<double> strokeFeatures = new List<double>();
+
+                    // In every stroke the features were added in order so no need to worry too much about this
+                    // There should be no null features
+                    // The features that were previously added are (in order) : length, mean speed, directness, mean contact area
+                    // this means that there is always the same features for every stroke
+                    // TODO : fix features in the feature computation, don't know why it is a double? when it starts out as a simple double
+
+                    foreach (KeyValuePair<string, double?> feature in stroke.Features)
+                    {
+                        strokeFeatures.Add((double)feature.Value);
+                    }
+
+                    features.Add(strokeFeatures.ToArray());
                 }
-
-                features.Add(strokeFeatures.ToArray());
-
             }
 
             int[] _classificationLabel = classificationLabel.ToArray();
@@ -109,7 +111,7 @@ namespace StrokeDatasetGenerator
 
 
 
-
+            /*
             // training and testing
             // Create the forest learning algorithm
 
@@ -130,7 +132,59 @@ namespace StrokeDatasetGenerator
             // And the classification error (0.0006) can be computed as 
             double error = new ZeroOneLoss(_classificationLabel).Loss(forest.Decide(_features));
 
-            Console.WriteLine("Zero One Loss: " + error);
+            //Console.WriteLine("Zero One Loss: " + error);
+            */
+
+
+            var cv = CrossValidation.Create(
+
+                k: 10, // We will be using 10-fold cross validation
+
+                learner: (p) => new RandomForestLearning()
+                {
+                    NumberOfTrees = 10, // use 10 trees in the forest
+                },
+
+                // Now we have to specify how the tree performance should be measured:
+                loss: (actual, expected, p) => new ZeroOneLoss(expected).Loss(actual),
+
+                // This function can be used to perform any special
+                // operations before the actual learning is done, but
+                // here we will just leave it as simple as it can be:
+                fit: (teacher, x, y, w) => teacher.Learn(x, y, w),
+
+                // Finally, we have to pass the input and output data
+                // that will be used in cross-validation. 
+                x: _features, y: _classificationLabel
+            );
+
+            // After the cross-validation object has been created,
+            // we can call its .Learn method with the input and 
+            // output data that will be partitioned into the folds:
+            var result = cv.Learn(_features, _classificationLabel);
+
+            // We can grab some information about the problem:
+            int numberOfSamples = result.NumberOfSamples;
+            int numberOfInputs = result.NumberOfInputs;
+            int numberOfOutputs = result.NumberOfOutputs;
+
+            double trainingError = result.Training.Mean;
+            double validationError = result.Validation.Mean;
+
+            // If desired, compute an aggregate confusion matrix for the validation sets:
+            GeneralConfusionMatrix gcm = result.ToConfusionMatrix(_features, _classificationLabel);
+            double accuracy = gcm.Accuracy;
+
+
+            Console.WriteLine("Number of samples: " + numberOfSamples);
+            Console.WriteLine("Number of inputs: " + numberOfInputs);
+            Console.WriteLine("Number of outputs: " + numberOfOutputs);
+
+            Console.WriteLine("Training error: " + trainingError);
+            Console.WriteLine("Validation Error: " + validationError);
+
+            Console.WriteLine("Accuracy: " + accuracy);
+
 
 
             //Console.WriteLine(_features.Length);
