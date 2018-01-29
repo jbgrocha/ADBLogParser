@@ -67,6 +67,7 @@ namespace StrokeDatasetGenerator
                     // There should be no null features
                     // The features that were previously added are (in order) : length, mean speed, directness, mean contact area
                     // this means that there is always the same features for every stroke
+
                     // TODO : fix features in the feature computation, don't know why it is a double? when it starts out as a simple double
 
                     foreach (KeyValuePair<string, double?> feature in stroke.Features)
@@ -82,60 +83,7 @@ namespace StrokeDatasetGenerator
 
             double[][] _features = features.ToArray();
 
-
-            // just some debugs printouts
-            /*
-            for(int i = 0; i < _classificationLabel.Length; i++)
-            {
-                Console.WriteLine(_classificationLabel[i]);
-            }
-            */
-
-            //Console.WriteLine(_classificationLabel.Length);
-
-            /*
-            for(int i = 0; i < _features.Length; i++)
-            {
-                double[] strokeFeatures = _features[i];
-
-                string featureStr = "";
-
-                for(int j = 0; j < strokeFeatures.Length; j++)
-                {
-                    featureStr += strokeFeatures[j];
-                    featureStr += ";";
-                }
-
-                Console.WriteLine(featureStr);
-            }
-            */
-
-
-
-            /*
-            // training and testing
-            // Create the forest learning algorithm
-
-            // Fix random seed for reproducibility
-            Accord.Math.Random.Generator.Seed = 1;
-
-            var teacher = new RandomForestLearning()
-            {
-                NumberOfTrees = 10, // use 10 trees in the forest
-            };
-
-            // Finally, learn a random forest from data
-            var forest = teacher.Learn(_features, _classificationLabel);
-
-            // We can estimate class labels using
-            int[] predicted = forest.Decide(_features);
-
-            // And the classification error (0.0006) can be computed as 
-            double error = new ZeroOneLoss(_classificationLabel).Loss(forest.Decide(_features));
-
-            //Console.WriteLine("Zero One Loss: " + error);
-            */
-
+            // Random Forest
             // Ensure we have reproducible results
             Accord.Math.Random.Generator.Seed = 0;
 
@@ -163,7 +111,7 @@ namespace StrokeDatasetGenerator
             );
 
 
-            // decision tree c45
+            // Decision tree c45
             //var cv = CrossValidation.Create(
 
             //    k: 10, // We will be using 10-fold cross validation
@@ -215,18 +163,6 @@ namespace StrokeDatasetGenerator
 
             Console.WriteLine("Accuracy: " + accuracy);
 
-
-
-            //Console.WriteLine(_features.Length);
-
-            // convert dataset features to double [][]
-
-            // convert dataset labels to int[]
-
-            // read dataset - json List<RawDatasets> -> need to sort out the json reader (or a csv reader)
-            // create StrokeParser, parses automatically
-            // label dataset
-            // add features to dataset
         }
     }
 }

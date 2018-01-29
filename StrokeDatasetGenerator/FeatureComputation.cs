@@ -69,6 +69,12 @@ namespace StrokeDatasetGenerator
             // Contact Area (Touch Major) -> Avg
             double contactArea = TouchMajor.Average();
             Features.Add("mean contact area", contactArea);
+
+            double contactAreaMin = TouchMajor.Min();
+            Features.Add("min contact area", contactAreaMin);
+
+            double contactAreaMax = TouchMajor.Max();
+            Features.Add("max contact area", contactAreaMax);
         }
 
         // aux distance between 2 points
