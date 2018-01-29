@@ -135,6 +135,8 @@ namespace StrokeDatasetGenerator
             //Console.WriteLine("Zero One Loss: " + error);
             */
 
+            // Ensure we have reproducible results
+            Accord.Math.Random.Generator.Seed = 0;
 
             var cv = CrossValidation.Create(
 
