@@ -43,8 +43,8 @@ namespace StrokeDatasetGenerator
 
             // not currently used
             Dictionary<string, int> labels = new Dictionary<string, int>() {
-                {"", 0 },
-                { "Neutral", 1 },
+                {"", 0},
+                { "Neutral", 1},
                 {"Happy", 2},
                 {"Sad", 3},
                 {"Angry", 4},
@@ -54,10 +54,21 @@ namespace StrokeDatasetGenerator
                 {"Contempt", 8}
             };
 
+            Dictionary<string, int> labelCount = new Dictionary<string, int>();
+
             foreach(Stroke stroke in parser.Strokes)
             {
+                if(labelCount.ContainsKey(stroke.Emotion))
+                {
+                    labelCount[stroke.Emotion] += 1;
+                }
+                else
+                {
+                    labelCount.Add(stroke.Emotion, 1);
+                }
+
                 // NOTE: Strokes that are not labeled with an emotion are skipped
-                if ((stroke.Emotion != null) || (stroke.Emotion != ""))
+                if ((stroke.Emotion != null) && (stroke.Emotion != ""))
                 {
                     classificationLabel.Add(labels[stroke.Emotion]);
 
@@ -83,32 +94,55 @@ namespace StrokeDatasetGenerator
 
             double[][] _features = features.ToArray();
 
-            // Random Forest
+
+            foreach(double[] strkFeat in _features)
+            {
+                foreach(double feat in strkFeat)
+                {
+                    Console.Write(feat + ";");
+                }
+
+                Console.Write("\n");
+            }
+
+            //foreach(int label in _classificationLabel)
+            //{
+            //    Console.WriteLine(label);
+            //}
+
+
+            //foreach(KeyValuePair<string, int> kvp in labelCount)
+            //{
+            //    Console.WriteLine(kvp.Key + ": " + kvp.Value);
+            //}
+
             // Ensure we have reproducible results
             Accord.Math.Random.Generator.Seed = 0;
 
-            // random forest
-            var cv = CrossValidation.Create(
 
-                k: 10, // We will be using 10-fold cross validation
 
-                learner: (p) => new RandomForestLearning()
-                {
-                    NumberOfTrees = 10, // use 10 trees in the forest
-                },
+            //// random forest
+            //var cv = CrossValidation.Create(
 
-                // Now we have to specify how the tree performance should be measured:
-                loss: (actual, expected, p) => new ZeroOneLoss(expected).Loss(actual),
+            //    k: 10, // We will be using 10-fold cross validation
 
-                // This function can be used to perform any special
-                // operations before the actual learning is done, but
-                // here we will just leave it as simple as it can be:
-                fit: (teacher, x, y, w) => teacher.Learn(x, y, w),
+            //    learner: (p) => new RandomForestLearning()
+            //    {
+            //        NumberOfTrees = 10, // use 10 trees in the forest
+            //    },
 
-                // Finally, we have to pass the input and output data
-                // that will be used in cross-validation. 
-                x: _features, y: _classificationLabel
-            );
+            //    // Now we have to specify how the tree performance should be measured:
+            //    loss: (actual, expected, p) => new ZeroOneLoss(expected).Loss(actual),
+
+            //    // This function can be used to perform any special
+            //    // operations before the actual learning is done, but
+            //    // here we will just leave it as simple as it can be:
+            //    fit: (teacher, x, y, w) => teacher.Learn(x, y, w),
+
+            //    // Finally, we have to pass the input and output data
+            //    // that will be used in cross-validation. 
+            //    x: _features, y: _classificationLabel
+            //);
 
 
             // Decision tree c45
@@ -136,32 +170,32 @@ namespace StrokeDatasetGenerator
             //);
 
 
-            // After the cross-validation object has been created,
-            // we can call its .Learn method with the input and 
-            // output data that will be partitioned into the folds:
-            var result = cv.Learn(_features, _classificationLabel);
+            //// After the cross-validation object has been created,
+            //// we can call its .Learn method with the input and 
+            //// output data that will be partitioned into the folds:
+            //var result = cv.Learn(_features, _classificationLabel);
 
-            // We can grab some information about the problem:
-            int numberOfSamples = result.NumberOfSamples;
-            int numberOfInputs = result.NumberOfInputs;
-            int numberOfOutputs = result.NumberOfOutputs;
+            //// We can grab some information about the problem:
+            //int numberOfSamples = result.NumberOfSamples;
+            //int numberOfInputs = result.NumberOfInputs;
+            //int numberOfOutputs = result.NumberOfOutputs;
 
-            double trainingError = result.Training.Mean;
-            double validationError = result.Validation.Mean;
+            //double trainingError = result.Training.Mean;
+            //double validationError = result.Validation.Mean;
 
-            // If desired, compute an aggregate confusion matrix for the validation sets:
-            GeneralConfusionMatrix gcm = result.ToConfusionMatrix(_features, _classificationLabel);
-            double accuracy = gcm.Accuracy;
+            //// If desired, compute an aggregate confusion matrix for the validation sets:
+            //GeneralConfusionMatrix gcm = result.ToConfusionMatrix(_features, _classificationLabel);
+            //double accuracy = gcm.Accuracy;
 
 
-            Console.WriteLine("Number of samples: " + numberOfSamples);
-            Console.WriteLine("Number of inputs: " + numberOfInputs);
-            Console.WriteLine("Number of outputs: " + numberOfOutputs);
+            //Console.WriteLine("Number of samples: " + numberOfSamples);
+            //Console.WriteLine("Number of inputs: " + numberOfInputs);
+            //Console.WriteLine("Number of outputs: " + numberOfOutputs);
 
-            Console.WriteLine("Training error: " + trainingError);
-            Console.WriteLine("Validation Error: " + validationError);
+            //Console.WriteLine("Training error: " + trainingError);
+            //Console.WriteLine("Validation Error: " + validationError);
 
-            Console.WriteLine("Accuracy: " + accuracy);
+            //Console.WriteLine("Accuracy: " + accuracy);
 
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Accord.Statistics;
 
 namespace StrokeDatasetGenerator
 {
@@ -52,29 +53,42 @@ namespace StrokeDatasetGenerator
 
             List<double> diffY = Diff(Y);
 
+            List<double> diffTimestamp = Diff(Timestamp);
+
+
+
             // Article base features
             // Stroke length
             double strokeLength = Pythagorean(diffX, diffY);
             Features.Add("length", strokeLength);
+
+
 
             // Stroke speed -> Avg
             // length / (last touch features time - first touch features time)
             double speedMean = strokeLength / (Timestamp.Last() - Timestamp.First());
             Features.Add("mean speed", speedMean);
 
+
+
             // Directness index (distance between start and end -> ignores path) -> Avg
             double directness = Distance(X.First(), X.Last(), Y.First(), Y.Last());
             Features.Add("directness", directness);
+
+
 
             // Contact Area (Touch Major) -> Avg
             double contactArea = TouchMajor.Average();
             Features.Add("mean contact area", contactArea);
 
-            double contactAreaMin = TouchMajor.Min();
-            Features.Add("min contact area", contactAreaMin);
+            //double contactAreaMin = TouchMajor.Min();
+            //Features.Add("min contact area", contactAreaMin);
 
-            double contactAreaMax = TouchMajor.Max();
-            Features.Add("max contact area", contactAreaMax);
+            //double contactAreaMax = TouchMajor.Max();
+            //Features.Add("max contact area", contactAreaMax);
+
+            //double contactAreaStd = Measures.StandardDeviation(TouchMajor.ToArray(), false);
+            //Features.Add("std max contact area", contactAreaStd);
         }
 
         // aux distance between 2 points
